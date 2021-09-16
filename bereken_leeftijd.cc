@@ -1,37 +1,73 @@
 #include <iostream>
-#include <time.h>
-using namespace std;
-// bovenaan:
 #include <ctime>
+using namespace std;
 
-// vijf variabelen voor minuut, uur, dag, maand en jaar
-int minuut, uur, dag, maand, jaar;
+int main ( ) {
+    int jaar;
+    int maand;
+    int dag;
+    int leeftijd_dag;
+    int leeftijd_jaar;
+    int leeftijd_maand;
+    int leeftijd;
+    tm s;
+    time_t t;
 
-// en dan twee hulp-variabelen
-tm s;
-time_t t;
-int jaar_invoer;
-int leeftijd_noday;
+    time (&t);
+    s = * localtime (&t);
+    int cdag = s.tm_mday;
+    int cmaand = s.tm_mon + 1; // 0 voor januari
+    int cjaar = s.tm_year + 1900; // vanaf 1900
 
-// iedere keer als je de tijd wilt weten:
+    cout <<"In welk jaar ben je geboren: ";
+    cin >> jaar;
 
+    if (jaar < cjaar - 10){
+        cout << "Sorry je bent te jong.";
+}else{
+      if (jaar > cjaar + 100){
+      cout << "Sorry je bent te oud.";
+    }else{
+        cout <<"In welke maand ben je geboren: ";
+        cin >> maand;
+      }
+        if (jaar == cjaar - 10 && maand < cmaand){
+        cout << "Sorry je bent net te jong.";
+      } else{
+          if (jaar == cjaar + 100 && maand > cmaand){
+          cout << "Sorry je bent net te oud.";
+        }else{
+        cout <<"Op welke dag ben je geboren: ";
+        cin >> dag;
+      }
+        if (jaar == cjaar - 10 && maand == cmaand && dag < cdag){
+        cout << "Sorry je bent echt net te jong.";
+      }else{
+          if  (jaar == cjaar + 100 && maand == cmaand && dag > cdag - 1){
+          cout << "Sorry je bent echt net te oud.";
+        }
 
-int main ()
-{
-  cout << "voer aub uw jaar van geboorte in" << endl;
-  cin >> jaar_invoer;
-  time (&t);
-  s = * localtime (&t);
-  minuut = s.tm_min;
-  uur = s.tm_hour;
-  dag = s.tm_mday;
-  maand = s.tm_mon; // 0 voor januari
-  jaar = s.tm_year + 1900; // vanaf 1900
+          else{
+          cout << "Je bent zo oud:";
+        }
+        }
+      }
 
-  cout << uur << ":" << minuut << "-"
-       << dag << ":" << maand + 1 << ":" << jaar << endl;
-  leeftijd_noday = jaar - jaar_invoer;
-  cout << leeftijd_noday << endl;
+  cin >> dag;
+  leeftijd_jaar = cjaar - jaar;
+  leeftijd_maand = cmaand - maand;
+  if (leeftijd_maand >= 0){
+  leeftijd_dag = cdag - dag;
+  if (leeftijd_dag >= 0){
+    leeftijd_jaar = leeftijd;
+  }else{
+    leeftijd_jaar = leeftijd - 1;
+  }
 
+}
+  else{
+  return 1;
+}
 
+return 0;
 }
