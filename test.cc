@@ -15,7 +15,7 @@ int main ( ) {
     int cmaand = s.tm_mon + 1; // 0 voor januari
     int cjaar = s.tm_year + 1900; // vanaf 1900
 
-    cout <<"In welk jaar ben je geboren: ";
+    cout << "In welk jaar ben je geboren: ";
     cin >> jaar;
 
     if (jaar < cjaar - 10)
@@ -26,7 +26,7 @@ int main ( ) {
       cout << "Sorry je bent te oud.";
 
       else
-        cout <<"In welke maand ben je geboren: ";
+        cout << "In welke maand ben je geboren: ";
         cin >> maand;
 
         if (jaar == cjaar - 10 && maand < cmaand)
@@ -35,6 +35,20 @@ int main ( ) {
         else
           if (jaar == cjaar + 100 && maand > cmaand)
           cout << "Sorry je bent net te oud.";
+
+          else
+          cout <<"Op welke dag ben je geboren: ";
+          cin >> dag;
+
+          if (jaar == cjaar - 10 && maand == cmaand && dag < cdag)
+          cout << "Sorry je bent echt net te jong.";
+
+          else
+            if  (jaar == cjaar + 100 && maand == cmaand && dag > cdag - 1)
+            cout << "Sorry je bent echt net te oud.";
+
+            else
+            cout << "Je bent zo oud:";
 
 return 0;
 }//main end
