@@ -61,22 +61,18 @@ int main ( ) {
               else{
               leeftijd_jaar = cjaar - jaar;
               leeftijd_maand = cmaand - maand;
+              if(cdag == dag){
+                cout << "gefeliciteerd je bent maandig" << endl;
+              }
               if (leeftijd_maand == 0){
               leeftijd_dag = cdag - dag;
               if (leeftijd_dag >= 0){
                 leeftijd_in_maand = (leeftijd_jaar * 12) + maand + leeftijd_maand;
                 cout << leeftijd_in_maand << endl;
                 cout << leeftijd_jaar << endl; //je bent .. jaar oud
-                cout << "gefeliciteerd je bent maandig" << endl;
                 if (leeftijd_dag == 0){
                 cout << "gefeliciteerd je bent jarig." << endl;
                 }
-              }else{
-                leeftijd_jaar = leeftijd_jaar - 1;
-                leeftijd_in_maand = (leeftijd_jaar * 12) + maand + leeftijd_maand;
-                cout << leeftijd_in_maand << endl;
-                cout << leeftijd_jaar << endl; //je bent .. jaar oud
-
               }
             }else{
               if (leeftijd_maand > 0){
