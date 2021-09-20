@@ -22,6 +22,8 @@ int main ( ) {
     int antwoord_kwadraat;
     double echt_antwoord_kwadraat1;
     double echt_antwoord_kwadraat2;
+    string cultuurvraag1;
+    string cultuurvraag2;
     tm s;
     time_t t;
 
@@ -78,7 +80,7 @@ int main ( ) {
               if (leeftijd_maand == 0){
               leeftijd_dag = cdag - dag;
               if (leeftijd_dag >= 0){
-                leeftijd_in_maand = (leeftijd_jaar * 12) + maand + leeftijd_maand;
+                leeftijd_in_maand = (leeftijd_jaar * 12) + maand+leeftijd_maand;
                 cout << leeftijd_in_maand << endl;
                 cout << leeftijd_jaar << endl; //je bent .. jaar oud
                 if (leeftijd_dag == 0){
@@ -87,7 +89,7 @@ int main ( ) {
               }
             }else{
               if (leeftijd_maand > 0){
-                leeftijd_in_maand = (leeftijd_jaar * 12) + maand + leeftijd_maand;
+                leeftijd_in_maand = (leeftijd_jaar * 12) + maand+leeftijd_maand;
                 cout << leeftijd_in_maand << endl;
                 cout << leeftijd_jaar << endl; //je bent .. jaar oud
             }else{
@@ -100,7 +102,7 @@ int main ( ) {
             a = rand ( ) % 40;
             b = rand ( ) % 50;
             c = rand ( ) % 30;
-            cout << "los op: " << a << "x^2 + " << b << "x + " << c << endl; //formule
+            cout << "los op: " << a << "x^2 + " << b << "x + " << c << endl;
             discriminant = (pow(b,2))-4*a*c;
             cout << "voer in 0, 1 of 2 als aantal oplossingen" << endl;
             cin >> invoer_kwadraat;
@@ -111,20 +113,61 @@ int main ( ) {
             }else{
               antwoord_kwadraat = 0;
             }
-            if (antwoord_kwadraat == invoer_kwadraat){
-              cout << "Gefeliciteerd u heeft het correcte antwoord" << endl;
-            }else{
-              cout << "Helaas het antwoord klopt niet." << endl;
-            }
             if (antwoord_kwadraat == 2){
               echt_antwoord_kwadraat1 = (-b-sqrt(discriminant))/(2*a);
               echt_antwoord_kwadraat2 = (-b+sqrt(discriminant))/(2*a);
-              cout << "De antwoorden zijn: x=" << echt_antwoord_kwadraat1 << " en x=" << echt_antwoord_kwadraat2  << endl;
+              cout << "De antwoorden zijn: x=" << echt_antwoord_kwadraat1 <<
+              " en x=" << echt_antwoord_kwadraat2  << endl;
             }
           else{ if (antwoord_kwadraat == 1){
             echt_antwoord_kwadraat1 = (-b)/(2*a);
             cout << "Het antwoord is: x=" << echt_antwoord_kwadraat1 << endl;
                 }
+
+          }if (antwoord_kwadraat == invoer_kwadraat){
+            cout << "Gefeliciteerd u heeft het correcte antwoord, " <<
+             "u bent toegelaten tot de exacte studie." << endl;
+          }else{
+              cout << "Helaas het antwoord klopt niet." << endl;
+              cout << "Nu volgt een kunst en literatuur vragen" << endl;
+              if(leeftijd_jaar > 30){
+                cout <<"Het Gemeentemuseum in Den Haag organiseerde een expo "<<
+                "over het leven en werk van Piet Mondriaan, een van de " <<
+                "protagonisten van De Stijl. Het museum bezit ook het laatste"<<
+                " schilderij van Mondriaan. De kunstenaar begon het werk in " <<
+                "1942 in New York en liet het bij zijn dood in 1944 " <<
+                "onafgewerkt achter. Wat is de titel van dit schilderij?"<<endl;
+                cout << "a. Piet Mondriaan" << endl;
+                cout << "b. Ryan's pa" << endl;
+                cout << "c. Rembrandt van rijn" << endl;
+                cout << "d. Victory Boogie Woogie" << endl;
+                cout << "typ in je antwoord a,b,c of d:" << endl;
+                cin >> cultuurvraag1;
+                if (cultuurvraag1 == "d"){
+                  cout<<"Gefeliciteerd uw antwoord is juist. Namelijk d."<<
+                  " U bent toegelaten tot de alfa studie." << endl;
+                }else{
+                  cout << "helaas uw antwoord is fout." <<endl;
+              }
+            }else{
+              cout << "Het Chinese nieuwe jaar wordt bijna altijd eind januari"
+               << " / begin februari gevierd. Elk jaar staat er een ander dier"
+              << "centraal voor dat jaar."
+               << "Welk dier staat dit jaar centraal (2020)?" << endl;
+               cout << "a. kat" << endl;
+               cout << "b. Hond" << endl;
+               cout << "c. Rat" << endl;
+               cout << "d. Vleermuis" << endl;
+               cout << "typ in je antwoord a,b,c of d:" << endl;
+               cin >> cultuurvraag2;
+               if (cultuurvraag2 == "c"){
+                 cout<<"Gefeliciteerd uw antwoord is juist. Namelijk c."<<
+                 " U bent toegelaten tot de alfa studie." << endl;
+               }else{
+                 cout << "helaas uw antwoord is fout." <<
+                  " U wordt niet aangenomen." <<endl;
+             }
+            }
 
           }
 
