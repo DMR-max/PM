@@ -1,5 +1,6 @@
 #include <iostream>
 #include <ctime>
+#include <math.h>
 using namespace std;
 
 int main ( ) {
@@ -17,6 +18,10 @@ int main ( ) {
     int maand3;
     int maand4;
     int totaal;
+    int schikkel;
+    int welke_dag;
+    char geborte_dag;
+    int ingevuld;
     tm s;
     time_t t;
 
@@ -102,22 +107,48 @@ int main ( ) {
                 maand2 = maand / 2; // kijken hoeveel maanden met 30 ipv 31 dagen
                 if (maand == 2 || maand == 4 || maand == 6 || maand == 9 || maand == 11){ // voor alle even 30 dagen maanden
                   if (maand > 2){ // nog geen rekening met 28 dagen in feb
-                maand3 = aantal_maanden - 1 - maand2;
-              } else{ // wel rekening met 28 dagen in feb
-                  maand3 = aantal_maanden + 1 - maand2; // te veel dagen afhalen zodat het klopt
-                }
-                cout << "maanden: " << maand3 << endl; // kan weg uiteindelijk
-              } else{
-                if (maand > 2){ // nog geen rekening met 28 dagen in feb
-                maand3 = aantal_maanden - 2 - maand2;
-              } else{ // wel rekening met 28 dagen in feb
-                maand3 = aantal_maanden - maand2; // te veel dagen afhalen zodat het klopt
-              }
-                cout << "maanden: " << maand3 << endl; // kan uiteindelijk weg
-              }
-                totaal = aantal_jaren + maand3 + dag; // alle dagen bij elkaar optellen
+                    maand3 = aantal_maanden - 1 - maand2; // te veel dagen afhalen zodat het klopt
+                    schikkel = (jaar - 1900) / 4 - 1; // aantal schikkeljaren berekenen
+                  } else{ // wel rekening met 28 dagen in feb
+                      maand3 = aantal_maanden + 1 - maand2; // te veel dagen afhalen zodat het klopt
+                      schikkel = (jaar - 1900) / 4; // aantal schikkeljaren berekenen
+                    }
+              } else{ // voor alle 31 dagen maanden
+                  if (maand > 2){ // nog geen rekening met 28 dagen in feb
+                      maand3 = aantal_maanden - 2 - maand2; // te veel dagen afhalen zodat het klopt
+                      schikkel = (jaar - 1900) / 4 - 1; // aantal schikkeljaren berekenen
+                  } else{ // wel rekening met 28 dagen in feb
+                      maand3 = aantal_maanden - maand2; // te veel dagen afhalen zodat het klopt
+                      schikkel = (jaar - 1900) / 4; // aantal schikkeljaren berekenen
+                    }
+                  }
+                totaal = aantal_jaren + maand3 + dag + schikkel; // alle dagen bij elkaar optellen
+                welke_dag = totaal % 7; // kijken welke dag het is
+                cout << "Op wat voor dag ben je geboren, ";
+                cout << "vul de eerste letter in voor: " << endl;
+                cout << "maandag, woensdag, vrijdag." << endl;
+                cout << "Vul de eerste 2 letters in voor:" << endl;
+                cout << "dinsdag, donderdag, zaterdag, zondag.";
+                cout << "(Geen hoofdletters)" << endl;
 
-                cout << totaal;
+
+
+
+                // check of ingevulde dag klopt, moet nog gedaan worden!
+                cin >> geborte_dag;
+                if (geborte_dag == 'd'){
+                  ingevuld == 0;
+                } else {
+                  ingevuld == 1;
+                }
+
+                cout << "Ingevuld: " << ingevuld << endl;
+                cout << "Welke: " << welke_dag << endl;
+                cout << "Geboorte: " << geborte_dag << endl;
+
+                if (ingevuld == welke_dag){
+                  cout << "Je hebt het goed!";
+                }
 
               }
             }
@@ -125,8 +156,5 @@ int main ( ) {
         }
       }
     }
-
-
-
 return 0;
 }
