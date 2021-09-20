@@ -2,6 +2,7 @@
 #include <ctime>
 #include <cstdlib>
 #include <cmath>
+#include <cstring>
 using namespace std;
 
 int main ( ) {
@@ -22,8 +23,8 @@ int main ( ) {
     int antwoord_kwadraat;
     double echt_antwoord_kwadraat1;
     double echt_antwoord_kwadraat2;
-    string cultuurvraag1;
-    string cultuurvraag2;
+    char cultuurvraag1;
+    char cultuurvraag2;
     tm s;
     time_t t;
 
@@ -143,7 +144,7 @@ int main ( ) {
                 cout << "d. Victory Boogie Woogie" << endl;
                 cout << "typ in je antwoord a,b,c of d:" << endl;
                 cin >> cultuurvraag1;
-                if (cultuurvraag1 == "d"){
+                if (cultuurvraag1 == 'd'){
                   cout<<"Gefeliciteerd uw antwoord is juist. Namelijk d."<<
                   " U bent toegelaten tot de alfa studie." << endl;
                 }else{
@@ -156,12 +157,12 @@ int main ( ) {
                << "Welk dier staat dit jaar centraal (2020)?" << endl;
                cout << "a. kat" << endl;
                cout << "b. Hond" << endl;
-               cout << "c. Rat" << endl;
-               cout << "d. Vleermuis" << endl;
+               cout << "c. Vleermuis" << endl;
+               cout << "d. Rat" << endl;
                cout << "typ in je antwoord a,b,c of d:" << endl;
                cin >> cultuurvraag2;
-               if (cultuurvraag2 == "c"){
-                 cout<<"Gefeliciteerd uw antwoord is juist. Namelijk c."<<
+               if (cultuurvraag2 == 'd'){
+                 cout<<"Gefeliciteerd uw antwoord is juist. Namelijk d."<<
                  " U bent toegelaten tot de alfa studie." << endl;
                }else{
                  cout << "helaas uw antwoord is fout." <<
