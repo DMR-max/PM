@@ -106,24 +106,48 @@ int main ( ) {
             }
                 //Hier verder met code! nog rekening houden met schikkeljaren!
                 aantal_jaren = (jaar - 1901) * 365; // aantal dagen voor de jaren
-                aantal_maanden = (maand - 1) * 31; // aantal dagen voor de maanden (te veel)
-                maand2 = maand / 2; // kijken hoeveel maanden met 30 ipv 31 dagen
-                if (maand == 2 || maand == 4 || maand == 6 || maand == 9 || maand == 11){ // voor alle even 30 dagen maanden
-                  if (maand > 2){ // nog geen rekening met 28 dagen in feb
-                    maand3 = aantal_maanden - 1 - maand2; // te veel dagen afhalen zodat het klopt
-                  } else{ // wel rekening met 28 dagen in feb
-                      maand3 = aantal_maanden + 1 - maand2; // te veel dagen afhalen zodat het klopt
-                    }
-              } else{ // voor alle 31 dagen maanden
-                  if (maand > 2){ // nog geen rekening met 28 dagen in feb
-                      maand3 = aantal_maanden - 2 - maand2; // te veel dagen afhalen zodat het klopt
-                  } else{ // wel rekening met 28 dagen in feb
-                      maand3 = aantal_maanden - maand2; // te veel dagen afhalen zodat het klopt
-                    }
-                  }
 
                 schikkel = (jaar - 1901) / 4 - 1;
-                totaal = aantal_jaren + maand3 + dag + schikkel; // alle dagen bij elkaar optellen
+
+                if (maand == 1){
+                  aantal_maanden = 0;
+                }
+                if (maand == 2){
+                  aantal_maanden = 31;
+                }
+                if (maand == 3){
+                  aantal_maanden = 59;
+                }
+                if (maand == 4){
+                  aantal_maanden = 90;
+                }
+                if (maand == 5){
+                  aantal_maanden = 120;
+                }
+                if (maand == 6){
+                  aantal_maanden = 151;
+                }
+                if (maand == 7){
+                  aantal_maanden = 181;
+                }
+                if (maand == 8){
+                  aantal_maanden = 212;
+                }
+                if (maand == 9){
+                  aantal_maanden = 243;
+                }
+                if (maand == 10){
+                  aantal_maanden = 273;
+                }
+                if (maand == 11){
+                  aantal_maanden = 304;
+                }
+                if (maand == 12){
+                  aantal_maanden = 334;
+                }
+
+                totaal = aantal_jaren + aantal_maanden + schikkel + dag;
+
                 welke_dag = totaal % 7; // kijken welke dag het is
                 cout << "Op wat voor dag ben je geboren, ";
                 cout << "vul de eerste letter in voor: " << endl;
@@ -184,6 +208,7 @@ int main ( ) {
                     cout << "Je hebt het goed!";
                   } else {
                     cout << "Je hebt het fout!";
+                    return 1;
                   }
                 }
 
@@ -192,6 +217,7 @@ int main ( ) {
                     cout << "Je hebt het goed!";
                   } else {
                     cout << "Je hebt het fout!";
+                    return 1;
                   }
                 }
 
@@ -200,6 +226,7 @@ int main ( ) {
                     cout << "Je hebt het goed!";
                   } else {
                     cout << "Je hebt het fout!";
+                    return 1;
                   }
                 }
 
@@ -208,6 +235,7 @@ int main ( ) {
                     cout << "Je hebt het goed!";
                   } else {
                     cout << "Je hebt het fout!";
+                    return 1;
                   }
                 }
 
@@ -216,10 +244,12 @@ int main ( ) {
                     cout << "Je hebt het goed!";
                   } else {
                     cout << "Je hebt het fout!";
+                    return 1;
                   }
                 }
 
-                cout << "    Je bent geboren op een: " << welke_dag;
+
+
               }
             }
           }
