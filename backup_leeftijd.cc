@@ -79,39 +79,29 @@ int main ( ) {
               }else{
                 leeftijd_jaar = cjaar - jaar;
                 leeftijd_maand = cmaand - maand;
-                if (cdag == dag){
-                  cout << "gefeliciteerd je bent maandig" << endl;
-                }
                 if (leeftijd_maand == 0){
                   leeftijd_dag = cdag - dag;
                   if (leeftijd_dag >= 0){
                     totaal_maanden = (leeftijd_jaar * 12)
                     + maand + leeftijd_maand;
-                    cout << "je bent " << totaal_maanden
-                    << " maanden oud" << endl;
-                    cout << "je bent " << leeftijd_jaar
-                    << " jaren oud" << endl; //je bent .. jaar oud
-                    if (leeftijd_dag == 0){
-                      cout << "gefeliciteerd je bent jarig." << endl;
-                    }
                   }
                 }else{
                   if (leeftijd_maand > 0){
                     totaal_maanden = (leeftijd_jaar * 12)
                     + maand + leeftijd_maand;
-                    cout << "je bent " << totaal_maanden
-                    << " maanden oud" << endl;
-                    cout << "je bent " << leeftijd_jaar
-                    << " jaren oud" << endl; //je bent .. jaar oud
                   }else{
                     leeftijd_jaar = leeftijd_jaar - 1;
                     totaal_maanden = (leeftijd_jaar * 12)
                     + maand + leeftijd_maand;
-                    cout << "je bent " << totaal_maanden
-                    << " maanden oud"<< endl;
-                    cout << "je bent " << leeftijd_jaar
-                    << " jaren oud" << endl; //je bent .. jaar oud
                   }
+                }
+                cout << "je bent " << totaal_maanden << " maanden oud" << endl;
+                cout << "je bent " << leeftijd_jaar << " jaren oud" << endl; //je bent .. jaar oud
+                if (cdag == dag){
+                  cout << "gefeliciteerd je bent maandig" << endl;
+                }
+                if (leeftijd_dag == 0){
+                  cout << "gefeliciteerd je bent jarig." << endl;
                 }
 
                 aantal_jaren = (jaar - 1901) * 365; // aantal dagen voor de jaren

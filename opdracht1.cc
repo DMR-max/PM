@@ -15,7 +15,9 @@ int main ( ) {
     int welke_dag; //Voor berekenen welke dag
     char geborte_dag, geborte_dag2; //Invullen letters voor welke dag geboren
     char juiste_dag, juiste_dag2; //Juiste letters voor welke dag geboren
+    float schikkeljaar; //checken of dag mogelijk is
     int a, b, c;
+    int max_dag; //maximaal aantal dagen wat men mag invullen
     double discriminant;
     int invoer_kwadraat, antwoord_kwadraat;
     double echt_antwoord_kwadraat1, echt_antwoord_kwadraat2;
@@ -56,17 +58,24 @@ int main ( ) {
           }else{
             cout << "Op welke dag ben je geboren: ";
             cin >> dag;
-            if (maand == 2){
-              if (jaar/4){
-
-              }
-
-            }
             if (maand == 1 || maand == 3 || maand == 5 || maand == 7 ||
-              maand == 9 || maand == 11){
-              cout << "Deze maand heeft 31 dagen.";
+              maand == 8 || maand == 10 || maand == 12){
+              max_dag = 31;
             }else{
-              cout << "Deze maand heeft 30 dagen.";
+              if (maand == 2){
+                schikkeljaar = jaar/4.0;
+                if (floor(schikkeljaar) == schikkeljaar){
+                  max_dag = 29;
+                }else{
+                  max_dag = 28;
+                }
+              }else{
+                max_dag = 30;
+              }
+            }
+            if (dag > max_dag){
+              cout << "voer aub een echte datum in" << endl;
+              return 1;
             }
             cout << endl;
             if (jaar == cjaar - 10 && maand == cmaand && dag > cdag){
@@ -79,41 +88,30 @@ int main ( ) {
               }else{
                 leeftijd_jaar = cjaar - jaar;
                 leeftijd_maand = cmaand - maand;
-                if (cdag == dag){
-                  cout << "gefeliciteerd je bent maandig" << endl;
-                }
                 if (leeftijd_maand == 0){
                   leeftijd_dag = cdag - dag;
                   if (leeftijd_dag >= 0){
                     totaal_maanden = (leeftijd_jaar * 12)
                     + maand + leeftijd_maand;
-                    cout << "je bent " << totaal_maanden
-                    << " maanden oud" << endl;
-                    cout << "je bent " << leeftijd_jaar
-                    << " jaren oud" << endl; //je bent .. jaar oud
-                    if (leeftijd_dag == 0){
-                      cout << "gefeliciteerd je bent jarig." << endl;
-                    }
                   }
                 }else{
                   if (leeftijd_maand > 0){
                     totaal_maanden = (leeftijd_jaar * 12)
                     + maand + leeftijd_maand;
-                    cout << "je bent " << totaal_maanden
-                    << " maanden oud" << endl;
-                    cout << "je bent " << leeftijd_jaar
-                    << " jaren oud" << endl; //je bent .. jaar oud
                   }else{
                     leeftijd_jaar = leeftijd_jaar - 1;
                     totaal_maanden = (leeftijd_jaar * 12)
                     + maand + leeftijd_maand;
-                    cout << "je bent " << totaal_maanden
-                    << " maanden oud"<< endl;
-                    cout << "je bent " << leeftijd_jaar
-                    << " jaren oud" << endl; //je bent .. jaar oud
                   }
                 }
-
+                cout << "je bent " << totaal_maanden << " maanden oud" << endl;
+                cout << "je bent " << leeftijd_jaar << " jaren oud" << endl; //je bent .. jaar oud
+                if (cdag == dag){
+                  cout << "gefeliciteerd je bent maandig" << endl;
+                }
+                if (leeftijd_dag == 0){
+                  cout << "gefeliciteerd je bent jarig." << endl;
+                }
                 aantal_jaren = (jaar - 1901) * 365; // aantal dagen voor de jaren
                 aantal_maanden = (maand - 1) * 31; // aantal dagen voor de maanden (te veel)
                 maanden_30 = maand / 2; // kijken hoeveel maanden met 30 ipv 31 dagen
@@ -219,9 +217,9 @@ int main ( ) {
                 }
               }
 
-              a = rand ( ) % 40;
-              b = rand ( ) % 50;
-              c = rand ( ) % 30;
+              a = rand ( ) % 40 + 1;
+              b = rand ( ) % 50 + 1;
+              c = rand ( ) % 30 + 1;
               cout << "Los op: " << a << "x^2 + " << b << "x + " << c << endl;
               discriminant = (pow(b,2))-4*a*c;
               cout << "Voer in: 0, 1 of 2 als aantal oplossingen." << endl;
