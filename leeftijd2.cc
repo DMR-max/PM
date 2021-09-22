@@ -41,7 +41,7 @@ int main ( ) {
       }else{
         cout << "In welke maand ben je geboren: ";
         cin >> maand;
-        if (maand >= 12 || jaar >= 2022){
+        if (maand > 12 || jaar >= 2022){
           cout << "voer aub een echte datum in" << endl;
           return 1;
         }
