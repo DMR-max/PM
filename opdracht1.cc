@@ -16,12 +16,12 @@ int main ( ) {
     char geborte_dag, geborte_dag2; //Invullen letters voor welke dag geboren
     char juiste_dag, juiste_dag2; //Juiste letters voor welke dag geboren
     float schikkeljaar; //checken of dag mogelijk is
-    int a, b, c;
+    int a, b, c; //variabelen voor kwadratische formule
     int max_dag; //maximaal aantal dagen wat men mag invullen
-    double discriminant;
-    int invoer_kwadraat, antwoord_kwadraat;
-    double echt_antwoord_kwadraat1, echt_antwoord_kwadraat2;
-    char cultuurvraag1, cultuurvraag2;
+    double discriminant; //de discriminant double omdat het een kommagetal mag zijn.
+    int invoer_kwadraat, antwoord_kwadraat; //hoeveel antwoorden men denkt dat er zijn op de kwadratische formule.
+    double echt_antwoord_kwadraat1, echt_antwoord_kwadraat2; //het uiteindelijke antwoord van de kwadratische formule.
+    char cultuurvraag1, cultuurvraag2; //de antwoorden voor de cultuur vragen
     tm s;
     time_t t;
 
@@ -217,16 +217,16 @@ int main ( ) {
                 }
               }
 
-              a = rand ( ) % 40 + 1;
+              a = rand ( ) % 40 + 1; //randomizen van kwadratische formule
               b = rand ( ) % 50 + 1;
               c = rand ( ) % 30 + 1;
               cout << "Los op: " << a << "x^2 + " << b << "x + " << c << endl;
-              discriminant = (pow(b,2))-4*a*c;
+              discriminant = (pow(b,2))-4*a*c; //discriminant berekenen
               cout << "Voer in: 0, 1 of 2 als aantal oplossingen." << endl;
               cin >> invoer_kwadraat;
               if (discriminant == 0){
                 antwoord_kwadraat = 1;
-              }else if (discriminant > 0){
+              }if (discriminant > 0){
                 antwoord_kwadraat = 2;
               }else{
                 antwoord_kwadraat = 0;
@@ -245,12 +245,17 @@ int main ( ) {
               }
             }
             if (antwoord_kwadraat == invoer_kwadraat){
+              if (leeftijd_jaar >= 30){ //netter aangesproken
               cout << "Gefeliciteerd u heeft het correcte antwoord, " << endl;
               cout << "u bent toegelaten tot de exacte studie!" << endl;
             }else{
-              cout << "Helaas het antwoord klopt niet." << endl << endl;
-              cout << "Nu volgt een kunst en literatuur vraag." << endl;
-              if (leeftijd_jaar > 30){
+              cout << "Gefeliciteerd je hebt het correcte antwoord, " << endl;
+              cout << "je bent toegelaten tot de exacte studie!" << endl;
+            }
+            }else{
+              if (leeftijd_jaar >= 30){ //vraag splitsing voor groter dan 30
+                cout << "Helaas uw antwoord klopt niet." << endl << endl;
+                cout << "Nu volgt een kunst en literatuur vraag." << endl;
                 cout << "Het Gemeentemuseum in Den Haag organiseerde een "
                 << "expo over het leven en werk van Piet Mondriaan,"<< endl;
                 cout << "een van de protagonisten van De Stijl." << endl;
@@ -275,6 +280,8 @@ int main ( ) {
                   cout << "U wordt niet aangenomen." << endl;
                 }
               }else{
+                cout << "Helaas je antwoord klopt niet." << endl << endl;
+                cout << "Nu volgt een kunst en literatuur vraag." << endl;
                 cout << "Het Chinese nieuwe jaar wordt bijna altijd " << endl;
                 cout << "eind januari / begin februari gevierd." << endl;
                 cout << "Elk jaar staat er een ander dier"
