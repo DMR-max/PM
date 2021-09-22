@@ -4,26 +4,14 @@
 using namespace std;
 
 int main ( ) {
-    int jaar;
-    int maand;
-    int dag;
-    int leeftijd_dag;
-    int leeftijd_jaar;
-    int leeftijd_maand;
-    int leeftijd;
-    int leeftijd_in_maand;
-    int aantal_jaren;
-    int aantal_maanden;
-    int maand2;
-    int maand3;
-    int maand4;
-    int totaal;
-    int schikkel;
-    int welke_dag;
-    char geborte_dag;
-    char geborte_dag2;
-    char juiste_dag;
-    char juiste_dag2;
+    int jaar, maand, dag; //Moet de gebruiker invullen
+    int leeftijd_jaar, leeftijd_maand, leeftijd_dag; //Huidige - geborte
+    int totaal_maanden; //Hoeveel maanden oud de gebruiker is
+    int aantal_jaren, aantal_maanden; //Voor uitrekenen hoeveel dagen vanaf 1900
+    int totaal, schikkel; //Voor uitrekenen hoeveel dagen vanaf 1900
+    int welke_dag; //Voor berekenen welke dag
+    char geborte_dag, geborte_dag2; //Invullen letters voor welke dag geboren
+    char juiste_dag, juiste_dag2; //Juiste letters voor welke dag geboren
     tm s;
     time_t t;
 
@@ -78,8 +66,8 @@ int main ( ) {
               if (leeftijd_maand == 0){
               leeftijd_dag = cdag - dag;
               if (leeftijd_dag >= 0){                   // Je bent jarig en maandig
-                leeftijd_in_maand = (leeftijd_jaar * 12) + maand + leeftijd_maand;
-                cout << "Je bent " << leeftijd_in_maand << " maanden oud." << endl;
+                totaal_maanden = (leeftijd_jaar * 12) + maand + leeftijd_maand;
+                cout << "Je bent " << totaal_maanden << " maanden oud." << endl;
                 cout << "Je bent " << leeftijd_jaar << " jaar oud." << endl << endl;
                 cout << "gefeliciteerd je bent maandig." << endl << endl;
                 if (leeftijd_dag == 0){
@@ -87,20 +75,20 @@ int main ( ) {
                 }
               }else{                                  // Je bent maandig
                 leeftijd_jaar = leeftijd_jaar - 1;
-                leeftijd_in_maand = (leeftijd_jaar * 12) + maand + leeftijd_maand;
-                cout <<  "Je bent " << leeftijd_in_maand << " maanden oud." << endl;
+                totaal_maanden = (leeftijd_jaar * 12) + maand + leeftijd_maand;
+                cout <<  "Je bent " << totaal_maanden << " maanden oud." << endl;
                 cout <<  "Je bent " << leeftijd_jaar << " jaar oud." << endl << endl;
                 cout << "gefeliciteerd je bent maandig." << endl << endl;
               }
             }else{                                   // Bent al jarig geweest
               if (leeftijd_maand > 0){
-                leeftijd_in_maand = (leeftijd_jaar * 12) + maand + leeftijd_maand;
-                cout <<  "Je bent " << leeftijd_in_maand << " maanden oud." << endl;
+                totaal_maanden = (leeftijd_jaar * 12) + maand + leeftijd_maand;
+                cout <<  "Je bent " << totaal_maanden << " maanden oud." << endl;
                 cout <<  "Je bent " << leeftijd_jaar << " jaar oud." << endl << endl;
             }else{                                  // Bent nog niet jarig geweest
             leeftijd_jaar = leeftijd_jaar - 1;
-            leeftijd_in_maand = (leeftijd_jaar * 12) + maand + leeftijd_maand;
-            cout <<  "Je bent " << leeftijd_in_maand << " maanden oud." << endl;
+            totaal_maanden = (leeftijd_jaar * 12) + maand + leeftijd_maand;
+            cout <<  "Je bent " << totaal_maanden << " maanden oud." << endl;
             cout <<  "Je bent " << leeftijd_jaar << " jaar oud." << endl << endl;
               }
             }
@@ -157,14 +145,9 @@ int main ( ) {
                 cout << "(Geen hoofdletters)";
                 cout << "(vul de letters appart in per regel)" << endl;
 
-                // welke_dag = 0 = dinsdag
-                // welke_dag = 1 = woensdag etc.
-
-
-                // check of ingevulde dag klopt, moet nog gedaan worden!
                 cin >> geborte_dag;
 
-                if (welke_dag == 0 || welke_dag == 2 || welke_dag == 4 || welke_dag == 5){
+                if (geborte_dag == 'd' || geborte_dag == 'z'){
                 cin >> geborte_dag2;
               }
 
