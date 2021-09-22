@@ -55,6 +55,9 @@ int main ( ) {
           }else{
             cout << "Op welke dag ben je geboren: ";
             cin >> dag;
+            if (maand == 1 || 3 || 5 || 7 || 9 || 11){
+              cout << "Deze maand heeft 31 dagen.";
+            }
             cout << endl;
             if (jaar == cjaar - 10 && maand == cmaand && dag > cdag){
               cout << "Je bent te jong.";
