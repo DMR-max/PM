@@ -146,98 +146,6 @@ int main ( ) {
 
     cin >> geborte_dag;
 
-<<<<<<< HEAD
-              a = rand ( ) % 40 + 1; //randomizen van kwadratische formule
-              b = rand ( ) % 50 + 1;
-              c = rand ( ) % 30 + 1;
-              cout << "Los op: " << a << "x^2 + " << b << "x + " << c << endl;
-              discriminant = (pow(b,2))-4*a*c; //discriminant berekenen
-              cout << "Voer in: 0, 1 of 2 als aantal oplossingen." << endl;
-              cin >> invoer_kwadraat;
-              if (discriminant == 0){
-                antwoord_kwadraat = 1;
-              }if (discriminant > 0){
-                antwoord_kwadraat = 2;
-              }else{
-                antwoord_kwadraat = 0;
-              }
-              if (antwoord_kwadraat == 2){
-                echt_antwoord_kwadraat1 = (-b-sqrt(discriminant))/(2*a);
-                echt_antwoord_kwadraat2 = (-b+sqrt(discriminant))/(2*a);
-                cout << "De antwoorden zijn: x = " << echt_antwoord_kwadraat1
-                << " en x = " << echt_antwoord_kwadraat2  << endl;
-              }
-            else{
-              if (antwoord_kwadraat == 1){
-                echt_antwoord_kwadraat1 = (-b)/(2*a);
-                cout << "Het antwoord is: x = "
-                << echt_antwoord_kwadraat1 << endl;
-              }
-            }
-            if (antwoord_kwadraat == invoer_kwadraat){
-              if (leeftijd_jaar >= 30){ //netter aangesproken
-              cout << "Gefeliciteerd u heeft het correcte antwoord, " << endl;
-              cout << "u bent toegelaten tot de exacte studie!" << endl;
-            }else{
-              cout << "Gefeliciteerd je hebt het correcte antwoord, " << endl;
-              cout << "je bent toegelaten tot de exacte studie!" << endl;
-            }
-            }else{
-              if (leeftijd_jaar >= 30){ //vraag splitsing voor groter dan 30
-                cout << "Helaas uw antwoord klopt niet." << endl << endl;
-                cout << "Nu volgt een kunst en literatuur vraag." << endl;
-                cout << "Het Gemeentemuseum in Den Haag organiseerde een "
-                << "expo over het leven en werk van Piet Mondriaan,"<< endl;
-                cout << "een van de protagonisten van De Stijl." << endl;
-                cout << "Het museum bezit ook het laatste schilderij "
-                << "van Mondriaan." << endl;
-                cout << "De kunstenaar begon het werk in 1942 in " << endl;
-                cout << "New York en liet het bij zijn dood " << endl;
-                cout << "in 1944 onafgewerkt achter." << endl << endl;
-                cout << "Wat is de titel van dit schilderij?" << endl;
-                cout << "A. Piet Mondriaan" << endl;
-                cout << "B. Ryan's pa" << endl;
-                cout << "C. Rembrandt van rijn" << endl;
-                cout << "D. Victory Boogie Woogie" << endl;
-                cout << "typ in je antwoord A, B, C of D:" << endl;
-                cin >> cultuurvraag1;
-                if (cultuurvraag1 == 'D' || cultuurvraag1 == 'd'){
-                  cout << "Gefeliciteerd, uw antwoord is juist!" << endl;
-                  cout << "U bent toegelaten tot de alfa studie." << endl;
-                }else{
-                  cout << "helaas uw antwoord is fout." << endl;
-                  cout << "Het juiste antwoord is 'D'." << endl;
-                  cout << "U wordt niet aangenomen." << endl;
-                }
-              }else{
-                cout << "Helaas je antwoord klopt niet." << endl << endl;
-                cout << "Nu volgt een kunst en literatuur vraag." << endl;
-                cout << "Het Chinese nieuwe jaar wordt bijna altijd " << endl;
-                cout << "eind januari / begin februari gevierd." << endl;
-                cout << "Elk jaar staat er een ander dier"
-                << "centraal voor dat jaar." << endl;
-                cout << "Welk dier staat dit jaar centraal (2020)?" << endl;
-
-                cout << "A. Kat" << endl;
-                cout << "B. Hond" << endl;
-                cout << "C. Vleermuis" << endl;
-                cout << "D. Rat" << endl;
-                cout << "Type in je antwoord A, B, C of D:" << endl;
-                cin >> cultuurvraag2;
-                if (cultuurvraag2 == 'D' || cultuurvraag2 == 'd'){
-                  cout << "Gefeliciteerd, uw antwoord is juist!" << endl;
-                  cout << "U bent toegelaten tot de alfa studie." << endl;
-                }else{
-                  cout << "Helaas uw antwoord is fout." << endl;
-                  cout << "Het juiste antwoord is 'D'." << endl;
-                  cout << "U wordt niet aangenomen." << endl;
-                }
-              }
-            }
-            }
-          }
-        }
-=======
     if (geborte_dag == 'd' || geborte_dag == 'z'){
     cin >> geborte_dag2;
   }
@@ -308,7 +216,6 @@ int main ( ) {
       }else{
         cout << "Je hebt het fout!";
         return 1;
->>>>>>> 06e2d2ea17eb63c412b6c646fb886b445e58b3f7
       }
     }
 
