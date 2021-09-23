@@ -30,11 +30,13 @@ int main ( ) {
     int cmaand = s.tm_mon + 1; // 0 voor januari
     int cjaar = s.tm_year + 1900; // vanaf 1900
 
-    cout << "makers: Sjouk Ketwaru (s3287297), Ryan Sleeuwaegen ()" << endl;
+    cout << "makers: Sjouk Ketwaru (s3287297),"
+    << "Ryan Sleeuwaegen (s3122166)" << endl;
     cout << "jaar van aankomst: 2021" << endl;
     cout << "studierichting: Kunstmatige Intelligentie" << endl;
     cout << "opgave 1, gemaakt op 23-09-2021" << endl;
-    cout << "Dit is de test om binnen te komen in een universiteit." << endl;
+    cout << "Dit is de test om binnen te komen in een universiteit." << endl
+    << endl << endl;
 
     cout << "In welk jaar ben je geboren: ";
     cin >> jaar;
@@ -164,7 +166,6 @@ int main ( ) {
     cout << "(Geen hoofdletters)";
     cout << "(vul de letters appart in per regel)" << endl;
 
-    cout << "welke dag: " << welke_dag << endl;
     cin >> geborte_dag;
 
     if (geborte_dag == 'd' || geborte_dag == 'z'){
