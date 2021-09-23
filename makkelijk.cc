@@ -134,7 +134,7 @@ int main ( ) {
                   aantal_maanden = 334;
                 }
 
-                totaal = aantal_jaren + aantal_maanden + schikkel + dag;
+                totaal = aantal_jaren + aantal_maanden + schikkel + dag;S
 
                 welke_dag = totaal % 7; // kijken welke dag het is
                 cout << "Op wat voor dag ben je geboren, ";

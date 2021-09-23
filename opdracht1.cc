@@ -23,6 +23,7 @@ int main ( ) {
     double echt_antwoord_kwadraat1, echt_antwoord_kwadraat2; //het uiteindelijke antwoord van de kwadratische formule.
     char cultuurvraag1, cultuurvraag2; //de antwoorden voor de cultuur vragen
     tm s;
+
     time_t t;
 
     time (&t);
@@ -290,6 +291,7 @@ int main ( ) {
                 cout << "Elk jaar staat er een ander dier"
                 << "centraal voor dat jaar." << endl;
                 cout << "Welk dier staat dit jaar centraal (2020)?" << endl;
+
                 cout << "A. Kat" << endl;
                 cout << "B. Hond" << endl;
                 cout << "C. Vleermuis" << endl;
