@@ -4,6 +4,14 @@
 #include <cstdlib>
 using namespace std;
 
+/*
+Auteurs: Sjouk Ketwaru en Ryan Sleeuwaegen
+naam bestand: test.cc
+Het programma determineerd of iemand een universiteit aan kan.
+text editor: Atom, compiler: MinGW.
+Laatst aan gewerkt op: 23-09-2021.
+ */
+
 int main ( ) {
     srand (time(NULL)); //ranodmizen met behulp van huidige tijd
     int jaar, maand, dag; //Moet de gebruiker invullen
@@ -38,7 +46,7 @@ int main ( ) {
     cout << "Dit is de test om binnen te komen in een universiteit." << endl
     << endl << endl;
 
-    cout << "In welk jaar ben je geboren: ";
+    cout << "In welk jaar ben je geboren? (JJJJ)" << endl;
     cin >> jaar;
     if (jaar > cjaar - 10){
       cout << "Je bent te jong.";
@@ -49,7 +57,7 @@ int main ( ) {
       return 1;
     }
 
-    cout << "In welke maand ben je geboren: ";
+    cout << "In welke maand ben je geboren? (MM)" << endl;
     cin >> maand;
     if (maand < 1 || maand > 12){
       cout << "voer aub een echte datum in" << endl;
@@ -64,7 +72,7 @@ int main ( ) {
       return 1;
     }
 
-    cout << "Op welke dag ben je geboren: ";
+    cout << "Op welke dag ben je geboren? (DD)" << endl;
     cin >> dag;
     if (maand == 1 || maand == 3 || maand == 5 || maand == 7 ||
       maand == 8 || maand == 10 || maand == 12){

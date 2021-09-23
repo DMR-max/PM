@@ -4,6 +4,7 @@
 #include <cstdlib>
 using namespace std;
 
+
 int main ( ) {
     srand (time(NULL)); //ranodmizen met behulp van huidige tijd
     int jaar, maand, dag; //Moet de gebruiker invullen
