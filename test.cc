@@ -116,43 +116,41 @@ int main ( ) {
                 if (leeftijd_dag == 0){
                   cout << "Gefeliciteerd je bent jarig!" << endl << endl;
                 }
+
                 aantal_jaren = (jaar - 1901) * 365; // aantal dagen voor de jaren
-                schikkel = (jaar - 1901) / 4 - 1;
+                if (jaar % 4 == 0){
+                  if ( maand > 2 ){
+                  schikkel = (jaar - 1901) / 4;
+                }else{
+                  schikkel = (jaar - 1901) / 4 - 1;
+                }
+              }else{
+                  schikkel = (jaar - 1901) / 4 - 1;
+                }
 
                 if (maand == 1){
                   aantal_maanden = 0;
-                }
-                if (maand == 2){
+                }else if (maand == 2){
                   aantal_maanden = 31;
-                }
-                if (maand == 3){
+                }else if (maand == 3){
                   aantal_maanden = 59;
-                }
-                if (maand == 4){
+                }else if (maand == 4){
                   aantal_maanden = 90;
-                }
-                if (maand == 5){
+                }else if (maand == 5){
                   aantal_maanden = 120;
-                }
-                if (maand == 6){
+                }else if (maand == 6){
                   aantal_maanden = 151;
-                }
-                if (maand == 7){
+                }else if (maand == 7){
                   aantal_maanden = 181;
-                }
-                if (maand == 8){
+                }else if (maand == 8){
                   aantal_maanden = 212;
-                }
-                if (maand == 9){
+                }else if (maand == 9){
                   aantal_maanden = 243;
-                }
-                if (maand == 10){
+                }else if (maand == 10){
                   aantal_maanden = 273;
-                }
-                if (maand == 11){
+                }else if (maand == 11){
                   aantal_maanden = 304;
-                }
-                if (maand == 12){
+                }else if (maand == 12){
                   aantal_maanden = 334;
                 }
 
@@ -166,6 +164,7 @@ int main ( ) {
                 cout << "(Geen hoofdletters)";
                 cout << "(vul de letters appart in per regel)" << endl;
 
+                cout << "welke dag: " << welke_dag << endl;
                 cin >> geborte_dag;
 
                 if (geborte_dag == 'd' || geborte_dag == 'z'){
@@ -174,64 +173,35 @@ int main ( ) {
                 if (welke_dag == 0){
                   juiste_dag = 'd';
                   juiste_dag2 = 'i';
-                }
-                if (welke_dag == 1){
+                }else if (welke_dag == 1){
                   juiste_dag = 'w';
-                  juiste_dag2 = 'o';
-                }
-                if (welke_dag == 2){
+                }else if (welke_dag == 2){
                   juiste_dag = 'd';
                   juiste_dag2 = 'o';
-                }
-                if (welke_dag == 3){
+                }else if (welke_dag == 3){
                   juiste_dag = 'v';
-                  juiste_dag2 = 'r';
-                }
-                if (welke_dag == 4){
+                }else if (welke_dag == 4){
                   juiste_dag = 'z';
                   juiste_dag2 = 'a';
-                }
-                if (welke_dag == 5){
+                }else if (welke_dag == 5){
                   juiste_dag = 'z';
                   juiste_dag2 = 'o';
-                }
-                if (welke_dag == 6){
+                }else if (welke_dag == 6){
                   juiste_dag = 'm';
-                  juiste_dag2 = 'a';
                 }
-                if (juiste_dag == 'd' && juiste_dag2 == 'i'){
+
+                if ((juiste_dag == 'd' &&
+                (juiste_dag2 == 'i' || juiste_dag2 == 'o')) ||
+                (juiste_dag == 'z' &&
+                (juiste_dag2 == 'a' || juiste_dag2 == 'o'))){
                   if (geborte_dag == juiste_dag && geborte_dag2 == juiste_dag2){
                     cout << "Je hebt het goed!" << endl << endl;
                   }else{
                     cout << "Je hebt het fout!";
                     return 1;
                   }
-                }
-                if (juiste_dag == 'd' && juiste_dag2 == 'o'){
-                  if (geborte_dag == juiste_dag && geborte_dag2 == juiste_dag2){
-                    cout << "Je hebt het goed!" << endl << endl;
-                  }else{
-                    cout << "Je hebt het fout!";
-                    return 1;
-                  }
-                }
-                if (juiste_dag == 'z' && juiste_dag2 == 'a'){
-                  if (geborte_dag == juiste_dag && geborte_dag2 == juiste_dag2){
-                    cout << "Je hebt het goed!" << endl << endl;
-                  }else{
-                    cout << "Je hebt het fout!";
-                    return 1;
-                  }
-                }
-                if (juiste_dag == 'z' && juiste_dag2 == 'o'){
-                  if (geborte_dag == juiste_dag && geborte_dag2 == juiste_dag2){
-                    cout << "Je hebt het goed!" << endl << endl;
-                  }else{
-                    cout << "Je hebt het fout!";
-                    return 1;
-                  }
-                }
-                if (juiste_dag == 'm' || juiste_dag == 'w'
+
+                }else if (juiste_dag == 'm' || juiste_dag == 'w'
                 || juiste_dag == 'v'){
                   if (geborte_dag == juiste_dag){
                     cout << "Je hebt het goed!" << endl << endl;
@@ -240,6 +210,7 @@ int main ( ) {
                     return 1;
                   }
                 }
+
               }
 
               a = rand ( ) % 40 + 1; //randomizen van kwadratische formule
