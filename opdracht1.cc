@@ -31,6 +31,8 @@ int main ( ) {
     int cmaand = s.tm_mon + 1; // 0 voor januari
     int cjaar = s.tm_year + 1900; // vanaf 1900
 
+    cout << "";
+
     cout << "In welk jaar ben je geboren: ";
     cin >> jaar;
     if(jaar >= 2022){
