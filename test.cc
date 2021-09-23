@@ -5,7 +5,7 @@
 using namespace std;
 
 int main ( ) {
-  srand (time(NULL)); //ranodmizen met behulp van huidige tijd
+    srand (time(NULL)); //ranodmizen met behulp van huidige tijd
     int jaar, maand, dag; //Moet de gebruiker invullen
     int leeftijd_jaar, leeftijd_maand, leeftijd_dag; //Huidige - geborte
     int totaal_maanden; //Hoeveel maanden oud de gebruiker is
