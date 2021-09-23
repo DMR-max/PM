@@ -18,12 +18,12 @@ int main ( ) {
     int leeftijd_jaar, leeftijd_maand, leeftijd_dag; //Huidige - geborte
     int totaal_maanden; //Hoeveel maanden oud de gebruiker is
     int aantal_jaren, aantal_maanden; //Voor uitrekenen hoeveel dagen vanaf 1900
-    int totaal, schikkel; //Voor uitrekenen hoeveel dagen vanaf 1900
+    int totaal, schrikkel; //Voor uitrekenen hoeveel dagen vanaf 1900
     int maanden_30, maanden_uiteindelijk; //Voor uitrekenen hoeveel dagen vanaf 1900
     int welke_dag; //Voor berekenen welke dag
     char geborte_dag, geborte_dag2; //Invullen letters voor welke dag geboren
     char juiste_dag, juiste_dag2; //Juiste letters voor welke dag geboren
-    float schikkeljaar; //checken of dag mogelijk is
+    float schrikkeljaar; //checken of dag mogelijk is
     int a, b, c; //variabelen voor kwadratische formule
     int max_dag; //maximaal aantal dagen wat men mag invullen
     int discriminant; //de discriminant double omdat het een kommagetal mag zijn.
@@ -79,8 +79,8 @@ int main ( ) {
       max_dag = 31;
     }else{
       if (maand == 2){
-        schikkeljaar = jaar/4.0;
-        if (floor(schikkeljaar) == schikkeljaar){
+        schrikkeljaar = jaar/4.0;
+        if (floor(schrikkeljaar) == schrikkeljaar){
           max_dag = 29;
         }else{
           max_dag = 28;
@@ -130,12 +130,12 @@ int main ( ) {
     aantal_jaren = (jaar - 1901) * 365; // aantal dagen voor de jaren
     if (jaar % 4 == 0){
       if ( maand > 2 ){
-      schikkel = (jaar - 1901) / 4;
+      schrikkel = (jaar - 1901) / 4;
       }else{
-        schikkel = (jaar - 1901) / 4 - 1;
+        schrikkel = (jaar - 1901) / 4 - 1;
       }
     }else{
-      schikkel = (jaar - 1901) / 4 - 1;
+      schrikkel = (jaar - 1901) / 4 - 1;
     }
 
     if (maand == 1){
@@ -164,7 +164,7 @@ int main ( ) {
       aantal_maanden = 334;
     }
 
-    totaal = aantal_jaren + aantal_maanden + schikkel + dag; // alle dagen bij elkaar optellen
+    totaal = aantal_jaren + aantal_maanden + schrikkel + dag; // alle dagen bij elkaar optellen
     welke_dag = totaal % 7; // kijken welke dag het is
     cout << "Op wat voor dag ben je geboren, ";
     cout << "vul de eerste letter in voor: " << endl;
