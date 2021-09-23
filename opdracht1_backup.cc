@@ -263,7 +263,7 @@ if (antwoord_kwadraat == invoer_kwadraat){
   if (leeftijd_jaar >= 30){ //vraag splitsing voor groter dan 30
     cout << "Helaas uw antwoord klopt niet." << endl << endl;
     cout << "Nu volgt een kunst en literatuur vraag." << endl;
-    cout << "Hoe wordt het schilderij de Mona Lisa genoemd in het Italiaans?"
+    cout << "Hoe wordt het schilderij de Mona Lisa genoemd in het Italiaans?" << endl;
     cout << "A. Piet Mondriaan" << endl;
     cout << "B. Ryan's pa" << endl;
     cout << "C. Broadway Boogie Woogie" << endl;

@@ -23,19 +23,18 @@ int main ( ) {
     double echt_antwoord_kwadraat1, echt_antwoord_kwadraat2; //het uiteindelijke antwoord van de kwadratische formule.
     char cultuurvraag1, cultuurvraag2; //de antwoorden voor de cultuur vragen
     tm s;
-
     time_t t;
-
     time (&t);
     s = * localtime (&t);
     int cdag = s.tm_mday;
     int cmaand = s.tm_mon + 1; // 0 voor januari
     int cjaar = s.tm_year + 1900; // vanaf 1900
 
-    cout << "makers: Sjouk Ketwaru, Ryan Sleeuwaegen" << endl;
-    cout << "makers: Sjouk Ketwaru, Ryan Sleeuwaegen" << endl;
-    cout << "makers: Sjouk Ketwaru, Ryan Sleeuwaegen" << endl;
-    cout << "makers: Sjouk Ketwaru, Ryan Sleeuwaegen" << endl;
+    cout << "makers: Sjouk Ketwaru (s3287297), Ryan Sleeuwaegen ()" << endl;
+    cout << "jaar van aankomst: 2021" << endl;
+    cout << "studierichting: Kunstmatige Intelligentie" << endl;
+    cout << "opgave 1, gemaakt op 23-09-2021" << endl;
+    cout << "Dit is de test om binnen te komen in een universiteit." << endl;
 
     cout << "In welk jaar ben je geboren: ";
     cin >> jaar;
@@ -62,6 +61,7 @@ int main ( ) {
       cout << "Je bent te oud.";
       return 1;
     }
+
     cout << "Op welke dag ben je geboren: ";
     cin >> dag;
     if (maand == 1 || maand == 3 || maand == 5 || maand == 7 ||
@@ -92,24 +92,24 @@ int main ( ) {
       cout << "Je bent te oud.";
       return 1;
     }
+
     leeftijd_jaar = cjaar - jaar;
     leeftijd_maand = cmaand - maand;
     if (leeftijd_maand == 0){
       leeftijd_dag = cdag - dag;
       if (leeftijd_dag >= 0){
-        totaal_maanden = (leeftijd_jaar * 12)+maand+leeftijd_maand;
+        totaal_maanden = (leeftijd_jaar * 12) + maand + leeftijd_maand;
       }
     }else{
       if (leeftijd_maand > 0){
-        totaal_maanden = (leeftijd_jaar * 12)+maand+leeftijd_maand;
+        totaal_maanden = (leeftijd_jaar * 12) + maand + leeftijd_maand;
       }else{
         leeftijd_jaar = leeftijd_jaar - 1;
-        totaal_maanden = (leeftijd_jaar * 12)+maand+leeftijd_maand;
+        totaal_maanden = (leeftijd_jaar * 12) + maand + leeftijd_maand;
       }
     }
     cout << "je bent " << totaal_maanden << " maanden oud" << endl;
-    cout << "je bent " << leeftijd_jaar << " jaren oud"
-    << endl << endl; //je bent .. jaar oud
+    cout << "je bent " << leeftijd_jaar << " jaren oud" << endl << endl; //je bent .. jaar oud
     if (cdag == dag){
       cout << "Gefeliciteerd je bent maandig!" << endl << endl;
     }
@@ -121,10 +121,10 @@ int main ( ) {
     if (jaar % 4 == 0){
       if ( maand > 2 ){
       schikkel = (jaar - 1901) / 4;
+      }else{
+        schikkel = (jaar - 1901) / 4 - 1;
+      }
     }else{
-      schikkel = (jaar - 1901) / 4 - 1;
-    }
-  }else{
       schikkel = (jaar - 1901) / 4 - 1;
     }
 
@@ -169,7 +169,7 @@ int main ( ) {
 
     if (geborte_dag == 'd' || geborte_dag == 'z'){
     cin >> geborte_dag2;
-  }
+    }
     if (welke_dag == 0){
       juiste_dag = 'd';
       juiste_dag2 = 'i';
@@ -210,9 +210,10 @@ int main ( ) {
         return 1;
       }
     }
+
   a = rand ( ) % 1000000 + 1; //randomizen van kwadratische formule
-  b = rand ( ) % 1000000 - 25;
-  c = rand ( ) % 1000000 + 1;
+  b = rand ( ) % 1000000 - 500000;
+  c = rand ( ) % 1000000 - 500000;
   cout << "Los op: " << a << "x^2 + " << b << "x + " << c << endl;
   discriminant = (double)b*b - 4.0*a*c; //discriminant berekenen
   cout << "Voer in: 0, 1 of 2 als aantal oplossingen." << endl;
@@ -292,6 +293,6 @@ if (antwoord_kwadraat == invoer_kwadraat){
     }
   }
 }
-return 0;
 }
+return 0;
 }
