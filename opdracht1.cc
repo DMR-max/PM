@@ -33,7 +33,10 @@ int main ( ) {
 
     cout << "In welk jaar ben je geboren: ";
     cin >> jaar;
-
+    if(jaar >= 2022){
+      cout << "voer aub een echte datum in" << endl;
+      return 1;
+    }
     if (jaar > cjaar - 10){
       cout << "Je bent te jong.";
       return 1;
@@ -44,7 +47,7 @@ int main ( ) {
       }else{
         cout << "In welke maand ben je geboren: ";
         cin >> maand;
-        if (maand > 12 || jaar >= 2022){
+        if (maand > 12){
           cout << "voer aub een echte datum in" << endl;
           return 1;
         }
@@ -91,17 +94,14 @@ int main ( ) {
                 if (leeftijd_maand == 0){
                   leeftijd_dag = cdag - dag;
                   if (leeftijd_dag >= 0){
-                    totaal_maanden = (leeftijd_jaar * 12)
-                    + maand + leeftijd_maand;
+                    totaal_maanden = (leeftijd_jaar * 12)+maand+leeftijd_maand;
                   }
                 }else{
                   if (leeftijd_maand > 0){
-                    totaal_maanden = (leeftijd_jaar * 12)
-                    + maand + leeftijd_maand;
+                    totaal_maanden = (leeftijd_jaar * 12)+maand+leeftijd_maand;
                   }else{
                     leeftijd_jaar = leeftijd_jaar - 1;
-                    totaal_maanden = (leeftijd_jaar * 12)
-                    + maand + leeftijd_maand;
+                    totaal_maanden = (leeftijd_jaar * 12)+maand+leeftijd_maand;
                   }
                 }
                 cout << "je bent " << totaal_maanden << " maanden oud" << endl;
