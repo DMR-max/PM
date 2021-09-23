@@ -105,12 +105,13 @@ int main ( ) {
                   }
                 }
                 cout << "je bent " << totaal_maanden << " maanden oud" << endl;
-                cout << "je bent " << leeftijd_jaar << " jaren oud" << endl; //je bent .. jaar oud
+                cout << "je bent " << leeftijd_jaar << " jaren oud"
+                << endl << endl; //je bent .. jaar oud
                 if (cdag == dag){
-                  cout << "gefeliciteerd je bent maandig" << endl;
+                  cout << "Gefeliciteerd je bent maandig!" << endl << endl;
                 }
                 if (leeftijd_dag == 0){
-                  cout << "gefeliciteerd je bent jarig." << endl;
+                  cout << "Gefeliciteerd je bent jarig!" << endl << endl;
                 }
                 aantal_jaren = (jaar - 1901) * 365; // aantal dagen voor de jaren
                 aantal_maanden = (maand - 1) * 31; // aantal dagen voor de maanden (te veel)
@@ -265,13 +266,13 @@ int main ( ) {
                 cout << "New York en liet het bij zijn dood " << endl;
                 cout << "in 1944 onafgewerkt achter." << endl << endl;
                 cout << "Wat is de titel van dit schilderij?" << endl;
-                cout << "a. Piet Mondriaan" << endl;
-                cout << "b. Ryan's pa" << endl;
-                cout << "c. Rembrandt van rijn" << endl;
-                cout << "d. Victory Boogie Woogie" << endl;
-                cout << "typ in je antwoord a,b,c of d:" << endl;
+                cout << "A. Piet Mondriaan" << endl;
+                cout << "B. Ryan's pa" << endl;
+                cout << "C. Rembrandt van rijn" << endl;
+                cout << "D. Victory Boogie Woogie" << endl;
+                cout << "typ in je antwoord A, B, C of D:" << endl;
                 cin >> cultuurvraag1;
-                if (cultuurvraag1 == 'd'){
+                if (cultuurvraag1 == 'D' || cultuurvraag1 == 'd'){
                   cout << "Gefeliciteerd, uw antwoord is juist!" << endl;
                   cout << "U bent toegelaten tot de alfa studie." << endl;
                 }else{
@@ -287,24 +288,22 @@ int main ( ) {
                 cout << "Elk jaar staat er een ander dier"
                 << "centraal voor dat jaar." << endl;
                 cout << "Welk dier staat dit jaar centraal (2020)?" << endl;
-                cout << "a. kat" << endl;
-                cout << "b. Hond" << endl;
-                cout << "c. Vleermuis" << endl;
-                cout << "d. Rat" << endl;
-                cout << "typ in je antwoord a,b,c of d:" << endl;
+                cout << "A. Kat" << endl;
+                cout << "B. Hond" << endl;
+                cout << "C. Vleermuis" << endl;
+                cout << "D. Rat" << endl;
+                cout << "Type in je antwoord A, B, C of D:" << endl;
                 cin >> cultuurvraag2;
-                if (cultuurvraag2 == 'd'){
+                if (cultuurvraag2 == 'D' || cultuurvraag2 == 'd'){
                   cout << "Gefeliciteerd, uw antwoord is juist!" << endl;
                   cout << "U bent toegelaten tot de alfa studie." << endl;
                 }else{
-                  cout << "helaas uw antwoord is fout." << endl;
+                  cout << "Helaas uw antwoord is fout." << endl;
                   cout << "Het juiste antwoord is 'D'." << endl;
                   cout << "U wordt niet aangenomen." << endl;
                 }
               }
-
             }
-
             }
           }
         }
