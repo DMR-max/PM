@@ -265,7 +265,7 @@ if (antwoord_kwadraat == invoer_kwadraat){
       cout << "Het juiste antwoord is 'D'." << endl;
       cout << "U wordt niet aangenomen." << endl;
     }
-// Vraag voor 30
+// Vraag voor 30 -
   }else{
     cout << "Helaas je antwoord klopt niet." << endl << endl;
     cout << "Nu volgt een kunst en literatuur vraag." << endl;
