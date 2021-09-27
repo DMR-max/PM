@@ -236,14 +236,14 @@ int main ( ) {
     cout << "Er zijn geen antwoorden voor deze vergelijking." << endl;
   }
 if (antwoord_kwadraat == invoer_kwadraat){
-  if (leeftijd_jaar >= 30){ //netter aangesproken
+  if (leeftijd_jaar >= 30){ 
   cout << "Gefeliciteerd u heeft het correcte antwoord, " << endl;
   cout << "u bent toegelaten tot de exacte studie!" << endl;
 }else{
   cout << "Gefeliciteerd je hebt het correcte antwoord, " << endl;
   cout << "je bent toegelaten tot de exacte studie!" << endl;
 }
-//vraag splitsing voor leeftijd
+// vraag splitsing voor leeftijd
 }else if (leeftijd_jaar >= 30){
     cout << "Helaas uw antwoord klopt niet." << endl << endl;
 // Vraag voor 30 +
