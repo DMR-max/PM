@@ -236,7 +236,7 @@ int main ( ) {
     cout << "Er zijn geen antwoorden voor deze vergelijking." << endl;
   }
 if (antwoord_kwadraat == invoer_kwadraat){
-  if (leeftijd_jaar >= 30){ 
+  if (leeftijd_jaar >= 30){
   cout << "Gefeliciteerd u heeft het correcte antwoord, " << endl;
   cout << "u bent toegelaten tot de exacte studie!" << endl;
 }else{
