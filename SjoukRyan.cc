@@ -6,7 +6,7 @@ using namespace std;
 
 /*
 Auteurs: Sjouk Ketwaru en Ryan Sleeuwaegen
-naam bestand: test.cc
+naam bestand: SjoukRyan.cc
 Het programma determineerd of iemand een universiteit aan kan.
 text editor: Atom, compiler: MinGW.
 Laatst aan gewerkt op: 23-09-2021.
