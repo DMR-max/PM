@@ -5,7 +5,9 @@ int v = 12;
 int antwoord;
 int macht;
 double nummer;
-int b, z, a, i;
+int b, z, a, i, len;
+int getal;
+
 void infoblokje(){
   cout << "makers: Sjouk Ketwaru (s3287297),"
   << "Ryan Sleeuwaegen (s3122166)" << endl;
@@ -52,5 +54,15 @@ int main ( ) {
     i++;
   }
   cout << a << endl;
+  cin >> getal;
+  if(getal>0){
+    for (len=0; getal>0; len++){
+      getal = getal / 10;
+    }
+  }
+  cout << len << endl;
+
+
+  cout << getal << endl;
   return 0;
 }//main
