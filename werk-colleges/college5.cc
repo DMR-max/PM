@@ -3,8 +3,9 @@
 using namespace std;
 
 
-  ifstream invoer ("invoer.txt", ios::in); // denk aan <fstream>
-  ofstream uitvoer ("uitvoer.txt", ios::out);
+  ifstream invoer ("invoer.txt"); // denk aan <fstream>
+  ofstream uitvoer ("uitvoer.txt");
+int main (){
   char kar = invoer.get ( );
   while ( ! invoer.eof ( ) ) {
     uitvoer.put (kar); // of uitvoer << kar;
@@ -12,3 +13,4 @@ using namespace std;
   }//while
   invoer.close ( );
   uitvoer.close ( );
+}
