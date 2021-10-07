@@ -13,7 +13,7 @@ int main (){
     if ( '0' <= kar && kar <= '9' ){
       cout << kar << endl;
       int b = kar;
-      int a = b;
+      int a = b; //asci wordt volgensmij ingelezen
       cout << a << endl;
     }else{
       uitvoer.put (kar); // of uitvoer << kar;
