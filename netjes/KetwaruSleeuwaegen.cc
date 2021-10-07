@@ -9,4 +9,6 @@ text editor: Atom, compiler: MinGW.
 Laatst aan gewerkt op: .
  */
 
- 
+void infoblokje ( ) {
+  
+}
