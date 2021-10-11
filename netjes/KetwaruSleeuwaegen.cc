@@ -11,22 +11,43 @@ Laatst aan gewerkt op: .
  */
 
 void infoblokje ( ) {
-
+  cout << "Makers: Sjouk Ketwaru (s3287297), "
+  << "Ryan Sleeuwaegen (s3122166)" << endl
+  << "Jaar van aankomst: 2021" << endl
+  << "Studierichting: Kunstmatige Intelligentie" << endl
+  << "opgave 2, gemaakt op 18-10-2021" << endl
+  << "Dit is een programma dat een foutloos te compileren C++-programma "
+  << "een klein beetje probeert te begrijpen." << endl << endl;
 }
 
-ifstream invoer ("invoer.txt", ios::in | ios::binary); // denk aan <fstream>
-ofstream uitvoer ("uitvoer.txt", ios::out | ios::binary);
-int main (){
-  int karakters;
-  karakters = 0;
+
+
+void copy ( ) {
+  ifstream invoer ("invoer.txt", ios::in | ios::binary);
+  ofstream uitvoer ("uitvoer.txt", ios::out | ios::binary);
   char kar = invoer.get ( );
+  char kar_vorige;
   while ( ! invoer.eof ( ) ) {
-
-    kar = invoer.get ( );
-    karakters++;
-
+    uitvoer.put (kar);
+    kar_vorige = kar;
+    if (kar_vorige == '/' ){
+        kar = invoer.get ( );
+      if(kar == '/'){                                                            /// zorgt voor problemen, moet dat gecontroleerd worden??
+        while (kar != '\n'){
+          uitvoer.put(' ');
+        }
+      }
+    }else{
+      kar = invoer.get ( );
+    }
   }//while
   invoer.close ( );
   uitvoer.close ( );
+}
 
+
+
+int main ( ){
+  infoblokje ( );
+  copy ( );
 }
