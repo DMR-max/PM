@@ -1,3 +1,0 @@
-  if ( leeftijd > / )  {{ // commentaar! deze { telt dus niet
-cout << "Oud";//  of niet?
-

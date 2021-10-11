@@ -2,30 +2,25 @@
 #include <fstream>
 using namespace std;
 
-/*
-Auteurs: Sjouk Ketwaru en Ryan Sleeuwaegen
-naam bestand: KetwaruSleeuwaegen.cc
-*Beschrijving van t bestand*
-text editor: Atom, compiler: MinGW.
-Laatst aan gewerkt op: .
- */
-
-void infoblokje ( ) {
-
-}
 
 ifstream invoer ("invoer.txt", ios::in | ios::binary); // denk aan <fstream>
 ofstream uitvoer ("uitvoer.txt", ios::out | ios::binary);
 int main (){
-  int karakters;
+  int karakters, a;
   karakters = 0;
   char kar = invoer.get ( );
   while ( ! invoer.eof ( ) ) {
-
     kar = invoer.get ( );
     karakters++;
-
+    if (isdigit(kar) == true){
+      cout << kar << endl;
+      a = kar * kar;
+      cout << a << endl;
+    }else{
+      uitvoer.put (kar); // of uitvoer << kar;
+    }
   }//while
+  cout << karakters << endl;
   invoer.close ( );
   uitvoer.close ( );
 
