@@ -30,7 +30,8 @@ void copy ( ) {
   while ( ! invoer.eof ( ) ) {
     kar_vorige = kar;
     cout << kar << endl;
-    if (kar_vorige == '/' ){
+    if (kar_vorige == '/' ){ // ifjes samenvoegen
+
         kar = invoer.get ( );
 
       if(kar == '/'){                                                            /// zorgt voor problemen, moet dat gecontroleerd worden??
@@ -41,9 +42,8 @@ void copy ( ) {
       }
     }else{
       kar = invoer.get ( );
-      uitvoer.put (kar);
     }
-
+    uitvoer.put (kar_vorige);
   }//while
   invoer.close ( );
   uitvoer.close ( );
