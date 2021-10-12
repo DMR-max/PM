@@ -43,14 +43,14 @@ void copy ( ) {
     if (kar == '}'){
       diepte--;
     }
-    if (commentaar == true){
+    if (commentaar == true){ // comments mist een slash
       while(kar != '\n'){
        uitvoer.put(' ');
        kar = invoer.get ( );
       }
       commentaar = false;
     }
-     if (inspringen == true){
+     if (inspringen == true){ //inspringen niet werkend
       uitvoer.put('\n');
         for(int i; i < diepte; i++){
           uitvoer.put(' ');
