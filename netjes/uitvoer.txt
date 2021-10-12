@@ -1,2 +1,4 @@
-  if ( leeftijd > 6171/97 )  {{                                   /
+  if ( leeftijd > 6171/97 ) 
+ 
+{{                                   /
 cout << "Oud";             /

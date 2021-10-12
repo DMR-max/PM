@@ -27,27 +27,43 @@ void copy ( ) {
   ofstream uitvoer ("uitvoer.txt", ios::out | ios::binary);
   char kar = invoer.get ( );
   char kar_vorige;
+  bool commentaar, inspringen;
+  int d, diepte = 0;
+  cin >> d;
   while ( ! invoer.eof ( ) ) {
     kar_vorige = kar;
-    cout << kar << endl;
-    if (kar_vorige == '/' ){ // ifjes samenvoegen
-
-        kar = invoer.get ( );
-
-      if(kar == '/'){                                                            /// zorgt voor problemen, moet dat gecontroleerd worden??
-        while (kar != '\n'){
-          uitvoer.put(' ');
-          kar = invoer.get ( );
-        }
-      }
-    }else{
-      kar = invoer.get ( );
+    kar = invoer.get();
+    if (kar == '/' && kar_vorige == '/'){
+      commentaar = true;
     }
-    uitvoer.put (kar_vorige);
-  }//while
-  invoer.close ( );
-  uitvoer.close ( );
+    if (kar =='{' ){
+      diepte++;
+      inspringen = true;
+    }
+    if (kar == '}'){
+      diepte--;
+    }
+    if (commentaar == true){
+      while(kar != '\n'){
+       uitvoer.put(' ');
+       kar = invoer.get ( );
+      }
+      commentaar = false;
+    }
+     if (inspringen == true){
+      uitvoer.put('\n');
+        for(int i; i < diepte; i++){
+          uitvoer.put(' ');
+        }
+      inspringen = false;
+    }
+    for (int i; i < d; i++){
+      uitvoer.put(' ');
+    }
+    uitvoer.put(kar_vorige);
+    }
 }
+
 
 
 
