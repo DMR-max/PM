@@ -27,7 +27,7 @@ void copy ( ) {
   ofstream uitvoer ("uitvoer.txt", ios::out | ios::binary);
   char kar = invoer.get ( );
   char kar_vorige;
-  bool commentaar, inspringen;
+  bool commentaar;
   int d, diepte = 0;
   cin >> d;
   while ( ! invoer.eof ( ) ) {
@@ -38,16 +38,15 @@ void copy ( ) {
     }
     if (kar =='{' ){
       diepte++;
-      inspringen = true;
     }
     if (kar == '}'){
       diepte--;
     }
-    if (commentaar == true){ // comments mist een slash
-      while(kar != '\n'){
-       uitvoer.put(' ');
-       kar = invoer.get ( );
-      }
+  //  if (commentaar == true){ // comments mist een slash
+    //  while(kar != '\n'){
+    //   uitvoer.put(' ');
+    //   kar = invoer.get ( );
+    /*  }
       commentaar = false;
     }
      if (inspringen == true){ //inspringen niet werkend
@@ -56,9 +55,8 @@ void copy ( ) {
           uitvoer.put(' ');
         }
       inspringen = false;
-    }
+    } */
     for (int i; i < d; i++){
-      uitvoer.put(' ');
     }
     uitvoer.put(kar_vorige);
     }
