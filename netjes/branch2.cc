@@ -36,47 +36,33 @@ void copy ( ) {
     if (kar == '/' && kar_vorige == '/'){
       commentaar = true;
     }
-
-    if (commentaar == true){
-      kar_vorige = invoer.get ();
-      if (kar_vorige == '\n'){
-        commentaar = false;
-      }
-      kar = invoer.get();
-    }
-
-    if (kar_vorige == '{'){
+    if (kar == '{'){
       diepte++;
-      cout << diepte << endl;
-      cout << d << endl;
     }
-    if (kar_vorige == '}'){
+    if (kar == '}'){
       diepte--;
     }
+    if (commentaar == true){
+      kar = invoer.get();
+      if (kar == '\n'){
+        commentaar = false;
+      }
 
-    //if (! commentaar && diepte > 0){
-        for (int i; i < diepte * d; i++){
-          uitvoer.put(' ');
-        }
-  //  }
-
-
-
-
-
+    }
 
   //  if (commentaar == true){ // comments mist een slash
     //  while(kar != '\n'){
     //   uitvoer.put(' ');
     //   kar = invoer.get ( );
-    //  }
-    //  commentaar = false;
-  //  }
-  /*   if (inspringen == true){ //inspringen niet werkend
+    /*  }
+      commentaar = false;
+    }
+     if (inspringen == true){ //inspringen niet werkend
       uitvoer.put('\n');
         for(int i; i < diepte; i++){
           uitvoer.put(' ');
         }
+      inspringen = false;
     } */
     //for (int i; i < d; i++){
     //}

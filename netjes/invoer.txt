@@ -1,2 +1,5 @@
   if ( leeftijd > 6171/97 )  {{ // commentaar! deze { telt dus niet
 cout << "Oud";// 64 of niet?
+{
+ni
+}

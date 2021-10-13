@@ -1,4 +1,4 @@
-  if ( leeftijd > 6171/97 ) 
- 
-{{                                   /
-cout << "Oud";             /
+ if ( leeftijd > 6171/97 )  {{ /cout << "Oud";/{
+ni
+}
+ÿ
