@@ -1,5 +1,5 @@
-  if ( leeftijd > 6171/97 )          {        {         
-cout << "Oud";
-        {
-ni
-}
+  if ( leeftijd > 6171/97 )  {{ /
+   cout << "Oud";/
+   {
+    ni
+   }

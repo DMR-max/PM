@@ -31,44 +31,75 @@ void copy ( ) {
   int d, diepte = 0;
   cin >> d;
   while ( ! invoer.eof ( ) ) {
-    kar_vorige = kar;
-    kar = invoer.get();
     if (kar == '/' && kar_vorige == '/'){
       commentaar = true;
     }
-    if (kar == '{'){
+    if (kar == '/' && kar_vorige != '/'){
+     commentaar = false;
+    }
+
+    if (commentaar){
+      if (kar == '\n'){
+        commentaar = false;
+      }
+    }
+
+   if (kar_vorige == '{'){
       diepte++;
     }
     if (kar == '}'){
       diepte--;
     }
-    if (commentaar == true){
-      kar = invoer.get();
-      if (kar == '\n'){
-        commentaar = false;
+    if (diepte > 0 && kar_vorige == '\n'){
+      cout << diepte << endl;
+      cout << d << endl;
+      for (int i=0; i < diepte * d; i++){
+        uitvoer.put(' ');
       }
-
     }
+    if(! commentaar){
+      uitvoer.put(kar);
+    }
+    kar_vorige = kar;
+    kar = invoer.get();
+
+
+  /*  if (kar == '\n' && kar_vorige == '{'){
+      diepte++;
+      cout << diepte << endl;
+      cout << d << endl;
+    }
+    if (kar_vorige == '}'){
+      diepte--;
+    }
+
+    for (int i; i < diepte * d; i++){
+      uitvoer.put(' ');
+    }
+    //if (! commentaar && diepte > 0){
+
+  //  }
+
+
+
+
+
 
   //  if (commentaar == true){ // comments mist een slash
     //  while(kar != '\n'){
     //   uitvoer.put(' ');
     //   kar = invoer.get ( );
-    /*  }
-      commentaar = false;
-    }
-     if (inspringen == true){ //inspringen niet werkend
+    //  }
+    //  commentaar = false;
+  //  }
+  /*   if (inspringen == true){ //inspringen niet werkend
       uitvoer.put('\n');
         for(int i; i < diepte; i++){
           uitvoer.put(' ');
         }
-      inspringen = false;
     } */
     //for (int i; i < d; i++){
     //}
-    if(! commentaar){
-      uitvoer.put(kar_vorige);
-    }
     }
 }
 
