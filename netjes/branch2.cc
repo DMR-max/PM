@@ -34,7 +34,7 @@ void copy ( ) {
     if (kar == '/' && kar_vorige == '/'){
       commentaar = true;
     }
-    if (kar == '/' && kar_vorige != '/'){
+    if (kar == '/' && kar_vorige != '/'){ //er moet hier iets worden aangepast comments laten een slash over namelijk de slash van kar_vorige
      commentaar = false;
     }
 
