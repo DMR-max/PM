@@ -53,11 +53,11 @@ void copy ( ) {
     if (kar_vorige == '}'){
       diepte--;
     }
-
+    for (int i; i < diepte * d; i++){
+      uitvoer.put(' ');
+    }
     //if (! commentaar && diepte > 0){
-        for (int i; i < diepte * d; i++){
-          uitvoer.put(' ');
-        }
+
   //  }
 
 
