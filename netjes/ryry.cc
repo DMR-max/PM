@@ -29,6 +29,7 @@ void copy ( ) {
   bool commentaar;
   bool tabs;
   bool letters;
+  bool nr;
   int d, diepte = 0;
   char a, b, c;
 
@@ -80,6 +81,19 @@ void copy ( ) {
         commentaar = false;
     }
 
+
+    if (kar_vorige == '\n' && kar == ' '){
+      nr = true;
+      uitvoer.put('F');
+    }
+
+    if (nr && kar != ' '){
+      nr = false;
+      uitvoer.put('S');
+    }
+
+
+
    if (kar_vorige == '{' && ! commentaar){
       diepte++;
     }
@@ -88,20 +102,15 @@ void copy ( ) {
       diepte--;
     }
 
-    if (diepte > 0 && kar_vorige == '\n'){
+    if (kar_vorige == '\n'){
       cout << diepte << endl;
-      cout << d << endl;
 
       for (int i=0; i < diepte * d; i++){
         uitvoer.put(' ');
       }
     }
-    if ( ’0’ <= kar && kar <= ’9’ ){
-      getal = 10 * getal + ( kar - ’0’ );
-    }
 
-
-    if(! commentaar && kar != '/'){
+    if(! commentaar && kar != '/' && !nr){
       uitvoer.put(kar);
     }
 

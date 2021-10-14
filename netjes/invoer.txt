@@ -1,6 +1,31 @@
-  if ( leeftijd > 6171/97 )  {{ // commentaar! deze {{ telt dus nietabc
-cout << "Oud";// 64 of niet?
-{
-ni
-abc ABC aBc
-}}}
+
+// Lastige (?) voorbeeldfile voor tweede programmeeropgave
+//
+
+and he carries the {{{reminders of}} every glove {{that laid him down
+ and cut him till}} he cried out
+Where have you gone, Joe} DiMaggio?
+         our nation turns its lonely eyes to you
+The words of the prophets are written on the subway walls
+counting the cars on the New Jersey Turnpike /
+Tellen mag.
+Die laatste / moet er wel staan in de vorige regel,
+     en deze ook allemaal: / / /  / /   /
+Nu wat inspringwerk:
+		{{{{
+  }}// deze dus niet: }}
+blabla
+  }}
+Een paar leuke getallen:
+6171
+77031
+837799
+8400511
+63728127
+715827881
+715827882
+715827883 <=== na nul stappen, tijdens de eerste, gaat het fout.
+715827884
+We nemen aan dat INT_MAX gelijk is aan 2147483647.
+En dan nog een 0, altijd leuk.
+Dat was het weer.
