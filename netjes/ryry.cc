@@ -20,29 +20,98 @@ void infoblokje ( ) {
   << "een klein beetje probeert te begrijpen." << endl << endl;
 }
 
-
-
 void copy ( ) {
   ifstream invoer ("invoer.txt", ios::in | ios::binary);
   ofstream uitvoer ("uitvoer.txt", ios::out | ios::binary);
   char kar = invoer.get ( );
   char kar_vorige;
+  char kar_vorige2;
+  bool commentaar;
+  bool tabs;
+  int d, diepte = 0;
+
+  cin >> d;
+
   while ( ! invoer.eof ( ) ) {
-    if (kar == '/' && kar == kar_vorige){
-        while (kar != '\n'){
-          kar = invoer.get ( );
-      }
-    }else if(kar_vorige == '/' || kar_vorige != '/'){
-      uitvoer.put(kar_vorige);
+
+    if (kar == '/' && kar_vorige == '/'){
+      commentaar = true;
     }
+
+    if (kar == '/' && kar_vorige != '/'){
+     commentaar = false;
+    }
+
+    if (kar != '/' && kar_vorige == '/' && kar_vorige2 != '/'){
+      uitvoer.put('/');
+    }
+
+    if (commentaar && kar == '\n'){
+        commentaar = false;
+    }
+
+   if (kar_vorige == '{' && ! commentaar){
+      diepte++;
+    }
+
+    if (kar == '}' && ! commentaar){
+      diepte--;
+    }
+
+    if (diepte > 0 && kar_vorige == '\n'){
+      cout << diepte << endl;
+      cout << d << endl;
+
+      for (int i=0; i < diepte * d; i++){
+        uitvoer.put(' ');
+      }
+    }
+
+    if(! commentaar && kar != '/'){
+      uitvoer.put(kar);
+    }
+
+    kar_vorige2 = kar_vorige;
     kar_vorige = kar;
-    kar = invoer.get( );
-  }
-  invoer.close ( );
-  uitvoer.close ( );
+    kar = invoer.get();
+
+  /*  if (kar == '\n' && kar_vorige == '{'){
+      diepte++;
+      cout << diepte << endl;
+      cout << d << endl;
+    }
+    if (kar_vorige == '}'){
+      diepte--;
+    }
+
+    for (int i; i < diepte * d; i++){
+      uitvoer.put(' ');
+    }
+    //if (! commentaar && diepte > 0){
+
+  //  }
+
+  //  if (commentaar == true){ // comments mist een slash
+    //  while(kar != '\n'){
+    //   uitvoer.put(' ');
+    //   kar = invoer.get ( );
+    //  }
+    //  commentaar = false;
+  //  }
+  /*   if (inspringen == true){ //inspringen niet werkend
+      uitvoer.put('\n');
+        for(int i; i < diepte; i++){
+          uitvoer.put(' ');
+        }
+    } */
+    //for (int i; i < d; i++){
+    //}
+    }
+
+    if (diepte != 0){
+      cout << "Niet goed gegaan" << endl;
+    }
 }
-
-
 
 int main ( ){
   infoblokje ( );
