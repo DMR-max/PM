@@ -1,5 +1,6 @@
   if ( leeftijd > 6171/97 )  {{ 
-          cout << "Oud";
-          {
-               ni
-          }}}
+      cout << "Oud";
+      {
+         ni
+         abc
+      }}}

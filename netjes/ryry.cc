@@ -57,7 +57,13 @@ void copy ( ) {
   }
 
   while (! invoer.eof ( )) {
-
+    if (kar_vorige2 == a){
+      if (kar_vorige == b){
+        if (kar == c){
+          cout << "letter combinatie gevonden" << endl;
+        }
+      }
+    }
     if (kar == '/' && kar_vorige == '/'){
       commentaar = true;
     }
