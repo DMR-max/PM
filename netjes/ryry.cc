@@ -8,7 +8,7 @@ naam bestand: KetwaruSleeuwaegen.cc
 *Beschrijving van t bestand*
 text editor: Atom, compiler: MinGW.
 Laatst aan gewerkt op: .
- */
+*/
 
 void infoblokje ( ) {
   cout << "Makers: Sjouk Ketwaru (s3287297), "
@@ -28,11 +28,35 @@ void copy ( ) {
   char kar_vorige2;
   bool commentaar;
   bool tabs;
+  bool letters;
   int d, diepte = 0;
+  char a, b, c;
 
+  cout << "Aantal spaties: ";
   cin >> d;
 
-  while ( ! invoer.eof ( ) ) {
+  cout << "Vul een letter in: ";
+  cin >> a;
+  cout << "Vul een letter in: ";
+  cin >> b;
+  cout << "Vul een letter in: ";
+  cin >> c;
+
+  while (!letters){
+    if ((! islower(a) || ! islower(b) || ! islower(c)) || (a == b || a == c || b == c)){ // of isuper(a)
+      cout << "er is iets fout" << endl;
+      cout << "Vul een letter in: ";
+      cin >> a;
+      cout << "Vul een letter in: ";
+      cin >> b;
+      cout << "Vul een letter in: ";
+      cin >> c;
+    } else{
+      letters = true;
+      }
+  }
+
+  while (! invoer.eof ( )) {
 
     if (kar == '/' && kar_vorige == '/'){
       commentaar = true;
