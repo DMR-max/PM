@@ -43,7 +43,8 @@ void copy ( ) {
   cin >> c;
 
   while (!letters){
-    if ((! islower(a) || ! islower(b) || ! islower(c)) || (a == b || a == c || b == c)){ // of isuper(a)
+    if (a < 97 || a > 122 || b < 97 || b >122 || c < 97 || c > 122 ||
+    a == b || a == c || b == c) {
       cout << "er is iets fout" << endl;
       cout << "Vul een letter in: ";
       cin >> a;
@@ -57,13 +58,12 @@ void copy ( ) {
   }
 
   while (! invoer.eof ( )) {
-    if (kar_vorige2 == a){
-      if (kar_vorige == b){
-        if (kar == c){
-          cout << "letter combinatie gevonden" << endl;
-        }
-      }
+    if ((kar_vorige2 == a || kar_vorige2 == a - 32) &&  // ipv - 32 een functie maken
+    (kar_vorige == b || kar_vorige == b - 32) &&
+    (kar == c || kar == c - 32)){
+      cout << "letter combinatie gevonden" << endl;
     }
+
     if (kar == '/' && kar_vorige == '/'){
       commentaar = true;
     }
@@ -96,6 +96,10 @@ void copy ( ) {
         uitvoer.put(' ');
       }
     }
+    if ( ’0’ <= kar && kar <= ’9’ ){
+      getal = 10 * getal + ( kar - ’0’ );
+    }
+
 
     if(! commentaar && kar != '/'){
       uitvoer.put(kar);

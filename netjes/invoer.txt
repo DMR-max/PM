@@ -1,6 +1,6 @@
-  if ( leeftijd > 6171/97 )  {{ // commentaar! deze {{ telt dus niet
+  if ( leeftijd > 6171/97 )  {{ // commentaar! deze {{ telt dus nietabc
 cout << "Oud";// 64 of niet?
 {
 ni
-abc
+abc ABC aBc
 }}}
