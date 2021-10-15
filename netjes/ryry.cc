@@ -27,7 +27,7 @@ void copy ( ) {
   char kar = invoer.get ( );
   char kar_vorige, kar_vorige2;
   bool commentaar, tabs, letters, nr;
-  int d, diepte = 0, getal = 0;
+  int d, diepte = 0, getal = 0, test = 0;
   char a, b, c;
 
   cout << "Aantal spaties: ";
@@ -109,18 +109,29 @@ void copy ( ) {
 
 
     if ('0' <= kar_vorige && kar_vorige <= '9'){
+
       getal = 10 * getal + (kar_vorige - '0');
-      cout << "getal: " << getal << endl;
-      if (!('0' <= kar && kar <= '9')){
-        while ( getal != 1 ){
-            if ( getal % 2 == 0 ){
-              getal = getal / 2;
-            }else{
-              getal = 3 * getal + 1;
-            }
+
+      if (! ('0' <= kar && kar <= '9')){
+
+        cout << "getal: " << getal << endl;
+
+        while (getal != 1 && getal != 0 && getal < 2147483647){
+
+          if ( getal % 2 == 0 ){        // 0 % 2 kan niet dus dan loopt hij vast
+            getal = getal / 2;
+            test++;
+          }else{
+            getal = 3 * getal + 1;
+            test++;
+          }
 
         }
+        cout << "eindgetal: " << getal << endl;
+        cout << "iteraties: " << test << endl;
+
         getal = 0;
+        test = 0;
       }
     }
 
