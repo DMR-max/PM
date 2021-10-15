@@ -108,10 +108,10 @@ void copy ( ) {
 
 
 
-    if ('0' < kar_vorige && kar_vorige < '9'){
+    if ('0' <= kar_vorige && kar_vorige <= '9'){
       getal = 10 * getal + (kar_vorige - '0');
       cout << "getal: " << getal << endl;
-      if (!('0' < kar && kar < '9')){
+      if (!('0' <= kar && kar <= '9')){
         getal = 0;
       }
     }
