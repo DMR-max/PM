@@ -112,9 +112,18 @@ void copy ( ) {
       getal = 10 * getal + (kar_vorige - '0');
       cout << "getal: " << getal << endl;
       if (!('0' <= kar && kar <= '9')){
+        while ( getal != 1 ){
+            if ( getal % 2 == 0 ){
+              getal = getal / 2;
+            }else{
+              getal = 3 * getal + 1;
+            }
+
+        }
         getal = 0;
       }
     }
+
 
 
 
