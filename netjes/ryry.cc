@@ -116,7 +116,7 @@ void copy ( ) {
 
         cout << "getal: " << getal << endl;
 
-        while (getal != 1 && getal != 0 && getal < 2147483647){
+        while (getal != 1 && getal != 0 && getal < INT_MAX){
 
           if ( getal % 2 == 0 ){        // 0 % 2 kan niet dus dan loopt hij vast
             getal = getal / 2;
@@ -124,8 +124,10 @@ void copy ( ) {
           }else{
             getal = 3 * getal + 1;
             test++;
+            if (test == 100){
+              cout << test << endl;
+            }
           }
-
         }
         cout << "eindgetal: " << getal << endl;
         cout << "iteraties: " << test << endl;
@@ -183,7 +185,9 @@ void copy ( ) {
     }
 
     if (diepte != 0){
-      cout << "Niet goed gegaan" << endl;
+      cout << "Niet goed gepaarde accolades" << endl; //NIET VERGETEN foutcontrole accolades DUBBELE ACCOLADES EN NIET GESLOTEN
+    }else{
+      cout << "Goed gepaarde accolades" << endl;
     }
 }
 

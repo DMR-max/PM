@@ -1,0 +1,24 @@
+#include <iostream>
+using namespace std;
+
+int main(){
+char mangimeter;
+
+cout <<"Hello world" << endl;
+cout << "Hello Freyanki!"<< endl;
+cout << "lieve Freyanki ik heb speciaal voor jou een progamma geschreven <3";
+cout << "  geniet er aub van :)" << endl;
+
+cout << "Ben je een mangi?? (y/n) : ";
+cin >>  mangimeter;
+
+if (mangimeter == 'y'){
+cout << "Gelukkig weet je het zelf ook !!" << endl;
+}
+else {
+cout << "Jij bent zeker wel een mangi, mangi XD" << endl;
+}
+
+return 0;
+} // main
+
