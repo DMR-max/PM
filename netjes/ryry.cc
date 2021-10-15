@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include <climits>
 using namespace std;
 
 /*
@@ -24,13 +25,9 @@ void copy ( ) {
   ifstream invoer ("invoer.txt", ios::in | ios::binary);
   ofstream uitvoer ("uitvoer.txt", ios::out | ios::binary);
   char kar = invoer.get ( );
-  char kar_vorige;
-  char kar_vorige2;
-  bool commentaar;
-  bool tabs;
-  bool letters;
-  bool nr;
-  int d, diepte = 0;
+  char kar_vorige, kar_vorige2;
+  bool commentaar, tabs, letters, nr;
+  int d, diepte = 0, getal = 0;
   char a, b, c;
 
   cout << "Aantal spaties: ";
@@ -46,7 +43,7 @@ void copy ( ) {
   while (!letters){
     if (a < 97 || a > 122 || b < 97 || b >122 || c < 97 || c > 122 ||
     a == b || a == c || b == c) {
-      cout << "er is iets fout" << endl;
+      cout << "Er is iets fout" << endl;
       cout << "Vul een letter in: ";
       cin >> a;
       cout << "Vul een letter in: ";
@@ -81,18 +78,15 @@ void copy ( ) {
         commentaar = false;
     }
 
-
     if (kar_vorige == '\n' && kar == ' '){
       nr = true;
       uitvoer.put('F');
     }
 
     if (nr && kar != ' '){
-      nr = false;
-      uitvoer.put('S');
+     nr = false;
+     uitvoer.put('S');
     }
-
-
 
    if (kar_vorige == '{' && ! commentaar){
       diepte++;
@@ -110,7 +104,21 @@ void copy ( ) {
       }
     }
 
-    if(! commentaar && kar != '/' && !nr){
+
+
+
+
+    if ('0' < kar_vorige && kar_vorige < '9'){
+      getal = 10 * getal + (kar_vorige - '0');
+      cout << "getal: " << getal << endl;
+    }
+
+
+
+
+
+
+    if(! commentaar && kar != '/' && ! nr){
       uitvoer.put(kar);
     }
 
