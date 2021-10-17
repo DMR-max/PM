@@ -21,6 +21,16 @@ void infoblokje ( ) {
   << "een klein beetje probeert te begrijpen." << endl << endl;
 }
 
+void comments ( ) {
+
+}
+
+void tabs ( ) {
+
+}
+
+void letters
+
 void copy ( ) {
   ifstream invoer ("invoer.txt", ios::in | ios::binary);
   ofstream uitvoer ("uitvoer.txt", ios::out | ios::binary);
@@ -78,14 +88,12 @@ void copy ( ) {
         commentaar = false;
     }
 
-    if (kar_vorige == '\n' && kar == ' '){
+    if (kar_vorige == '\n' && (kar == ' ' || kar == '\t')){ //spaties gaan niet weg
       nr = true;
-      uitvoer.put('F');
     }
 
     if (nr && kar != ' '){
      nr = false;
-     uitvoer.put('S');
     }
 
    if (kar_vorige == '{' && ! commentaar){
@@ -116,19 +124,19 @@ void copy ( ) {
 
         cout << "getal: " << getal << endl;
 
-        while (getal != 1 && getal != 0 && getal < INT_MAX){
+        while (getal != 1 && getal > 0 && getal < INT_MAX && getal != 0){
 
           if ( getal % 2 == 0 ){        // 0 % 2 kan niet dus dan loopt hij vast
             getal = getal / 2;
             test++;
           }else{
-            getal = 3 * getal + 1;
-            test++;
-            if (test == 100){
-              cout << test << endl;
+              getal = 3 * getal + 1;
+              test++;
+              if (test == 100){
+                cout << test << endl;
+              }
             }
           }
-        }
         cout << "eindgetal: " << getal << endl;
         cout << "iteraties: " << test << endl;
 
