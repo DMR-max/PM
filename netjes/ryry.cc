@@ -193,7 +193,7 @@ void hoofdvoid ( ) {
   string eigen_uitvoer;
   ifstream invoer (eigen_invoer, ios::in | ios::binary);
   // Karakters inlezen, en de vorige 2 karakters
-  char kar = invoer.get ( );
+  char kar;
   char kar_vorige, kar_vorige2;
   // Booleans om loops aan en uit te zetten (nr = nieuwe regel)
   bool commentaar, letters, nr;
@@ -204,7 +204,7 @@ void hoofdvoid ( ) {
 
   // Functie om invoer en uitvoer file te openen
   filenaam(eigen_invoer, eigen_uitvoer, invoer);
-  ofstream uitvoer (eigen_uitvoer, ios::out | ios::binary);
+  ofstream uitvoer (eigen_uitvoer, ios::out | ios::binary); // random y met trema error FIXEN
 
 
   cout << "Aantal spaties voor een tab: ";
@@ -213,7 +213,7 @@ void hoofdvoid ( ) {
 
   // Functie voor 3 letters vragen
   letterinvoer (a, b, c, letters);
-
+  kar = invoer.get();
   while (! invoer.eof ( )) {
 
     // Functie om 3 gevraagde letters ook te detecteren als er hoofdletters zijn
