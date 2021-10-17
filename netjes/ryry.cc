@@ -192,8 +192,6 @@ void hoofdvoid ( ) {
   string eigen_invoer;
   string eigen_uitvoer;
   ifstream invoer (eigen_invoer, ios::in | ios::binary);
-  ofstream uitvoer (eigen_uitvoer, ios::out | ios::binary);
-
   // Karakters inlezen, en de vorige 2 karakters
   char kar = invoer.get ( );
   char kar_vorige, kar_vorige2;
@@ -206,6 +204,8 @@ void hoofdvoid ( ) {
 
   // Functie om invoer en uitvoer file te openen
   filenaam(eigen_invoer, eigen_uitvoer, invoer);
+  ofstream uitvoer (eigen_uitvoer, ios::out | ios::binary);
+
 
   cout << "Aantal spaties voor een tab: ";
   cin >> d;
