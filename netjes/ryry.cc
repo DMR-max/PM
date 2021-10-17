@@ -176,7 +176,7 @@ void filenaam (string & eigen_invoer, string & eigen_uitvoer, ifstream & invoer)
 
   cout << "Voer de naam van het invoer bestand in (.txt niet invullen): ";
   cin >> eigen_invoer;
-  eigen_invoer = eigen_invoer + ".txt";
+  eigen_invoer = eigen_invoer + ".txt"; //vraag of dit nodig is!!!!!
   invoer.open (eigen_invoer.c_str ( ));
   if (invoer.fail ( )){
     cout << "Dit bestand bestaat niet." << endl;
@@ -184,6 +184,7 @@ void filenaam (string & eigen_invoer, string & eigen_uitvoer, ifstream & invoer)
   }
   cout << "Voer de naam van het uitvoer bestand in (.txt niet invullen): ";
   cin >> eigen_uitvoer;
+  eigen_uitvoer = eigen_uitvoer + ".txt"; //vraag of dit nodig is!!!!!
   cout << endl;
 }
 
