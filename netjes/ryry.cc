@@ -198,7 +198,7 @@ void hoofdvoid ( ) {
   // Functie om invoer en uitvoer file te openen
   filenaam(eigen_invoer, eigen_uitvoer, invoer);
   // Bestand maken of bestand
-  ofstream uitvoer (eigen_uitvoer, ios::out | ios::binary); //windows voegt txt niet toe?
+  ofstream uitvoer (eigen_uitvoer, ios::out | ios::binary); 
 
 
   cout << "Aantal spaties voor een tab: ";
