@@ -1,23 +1,20 @@
-if ( leeftijd > 6171/97 )  {{ // commentaar! deze { telt dus niet
-cout << "Oud";// 64 of niet?
 
 
-// Lastige (?) voorbeeldfile voor tweede programmeeropgave
-//
+
 and he carries the {{{reminders of}} every glove {{that laid him down
- and cut him till}} he cried out
-Where have you gone, Joe} DiMaggio?
-                    our nation turns its lonely eyes to you
+         and cut him till}} he cried out
+   Where have you gone, Joe} DiMaggio?
+our nation turns its lonely eyes to you
 The words of the prophets are written on the subway walls
 counting the cars on the New Jersey Turnpike /
 Tellen mag.
 Die laatste / moet er wel staan in de vorige regel,
-     en deze ook allemaal: / / /  / /   /
+en deze ook allemaal: / / /  / /   /
 Nu wat inspringwerk:
-     {{{{
-  }}// deze dus niet: }}
-blabla
-  }}
+{{{{
+            }}
+      blabla
+      }}
 Een paar leuke getallen:
 12
 6171

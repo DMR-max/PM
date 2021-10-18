@@ -1,31 +1,24 @@
+#include <iostream>
+using namespace std;
 
+int main(){
+   char mangimeter;
+   
+   cout <<"Hello world" << endl;
+   cout << "Hello Freyanki!"<< endl;
+   cout << "lieve Freyanki ik heb speciaal voor jou een progamma geschreven <3";
+   cout << "  geniet er aub van :)" << endl;
+   
+   cout << "Ben je een mangi?? (y/n) : ";
+   cin >>  mangimeter;
+   
+   if (mangimeter == 'y'){
+      cout << "Gelukkig weet je het zelf ook !!" << endl;
+   }
+   else {
+      cout << "Jij bent zeker wel een mangi, mangi XD" << endl;
+   }
+   
+   return 0;
+} 
 
-
-and he carries the {{{reminders of}} every glove {{that laid him down
-         and cut him till}} he cried out
-   Where have you gone, Joe} DiMaggio?
-our nation turns its lonely eyes to you
-The words of the prophets are written on the subway walls
-counting the cars on the New Jersey Turnpike /
-Tellen mag.
-Die laatste / moet er wel staan in de vorige regel,
-en deze ook allemaal: / / /  / /   /
-Nu wat inspringwerk:
-{{{{
-            }}
-      blabla
-      }}
-Een paar leuke getallen:
-12
-6171
-77031
-837799
-8400511
-63728127
-715827881
-715827882
-715827883 <=== na nul stappen, tijdens de eerste, gaat het fout.
-715827884
-We nemen aan dat INT_MAX gelijk is aan 2147483647.
-En dan nog een 0, altijd leuk.
-Dat was het weer.

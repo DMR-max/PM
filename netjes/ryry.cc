@@ -10,7 +10,7 @@ geeft een 3 letter combinatie, en het programma kijkt
 hoe vaak die combinatie voor komt. Er wordt gecontroleerd
 of het collatz vermoeden waar is voor alle getallen.
 
-Text editor: Atom, Compiler: MinGW.
+Text editor: Atom (ubuntu), Compiler: G++.
 Laatst aan gewerkt op: 17-10-2021.
 */
 
@@ -34,7 +34,7 @@ void infoblokje ( ) {
   << "hoeveel spaties een tab is. De gebruiker moet 3 letters " << endl
   << "invoeren, en er wordt gecontroleerd hoe vaak die combinatie "<< endl
   << "voor komt. Als laatst wordt voor elk getal gecontroleerd of " << endl
-  << "Collatz vermoeden waar is." << endl endl;
+  << "Collatz vermoeden waar is." << endl << endl;
 } // Void infoblokje
 
 void comments (ofstream & uitvoer, char & kar,
@@ -133,11 +133,8 @@ void collatz (char & kar_vorige, char & kar, int & getal, int & iteraties) {
 
   // Loop totdat gehele getal is gedetecteerd
   if ('0' <= kar_vorige && kar_vorige <= '9') {
-
     getal = 10 * getal + (kar_vorige - '0');
-
     if (! ('0' <= kar && kar <= '9')) {
-
       cout << "Getal: " << getal << endl;
 
       //Loop om Collatz vermoeden te berekenen
@@ -149,10 +146,6 @@ void collatz (char & kar_vorige, char & kar, int & getal, int & iteraties) {
         } else {
             getal = 3 * getal + 1;
             iteraties++;
-
-            if (iteraties == 100) {
-              cout << iteraties << endl;
-            }
           }
       } // While
 
@@ -164,7 +157,6 @@ void collatz (char & kar_vorige, char & kar, int & getal, int & iteraties) {
         cout << "Boven INT_MAX of getal = 0 dus gestopt." << endl;
       }
       cout << endl;
-
       // Reset aantal iteraties en getal voor het volgende getal
       getal = 0;
       iteraties = 0;
