@@ -129,10 +129,11 @@ void convertie (char & a, char & b, char & c,char & kar,
   }
 } // Void convertie
 
-void collatz (char & kar_vorige, char & kar, int & getal, int & iteraties) {
+void collatz (char & kar_vorige, char & kar, int & getal,
+  int & iteraties, bool & commentaar) {
 
   // Loop totdat gehele getal is gedetecteerd
-  if ('0' <= kar_vorige && kar_vorige <= '9') {
+  if ('0' <= kar_vorige && kar_vorige <= '9' && ! commentaar) {
     getal = 10 * getal + (kar_vorige - '0');
     if (! ('0' <= kar && kar <= '9')) {
       cout << "Getal: " << getal << endl;
@@ -198,7 +199,7 @@ void hoofdvoid ( ) {
   // Functie om invoer en uitvoer file te openen
   filenaam(eigen_invoer, eigen_uitvoer, invoer);
   // Bestand maken of bestand
-  ofstream uitvoer (eigen_uitvoer, ios::out | ios::binary); 
+  ofstream uitvoer (eigen_uitvoer, ios::out | ios::binary);
 
 
   cout << "Aantal spaties voor een tab: ";
@@ -208,6 +209,8 @@ void hoofdvoid ( ) {
   // Functie voor 3 letters vragen
   letterinvoer (a, b, c, letters);
   kar = invoer.get();
+
+  // Main while loop om karakters te printen
   while (! invoer.eof ( )) {
 
     // Functie om 3 gevraagde letters ook te detecteren als er hoofdletters zijn
@@ -220,7 +223,7 @@ void hoofdvoid ( ) {
     tabs (kar, kar_vorige, nr, diepte, uitvoer, commentaar, d);
 
     // Functie om Collatz vermoeden te berekenen
-    collatz (kar_vorige, kar, getal, iteraties);
+    collatz (kar_vorige, kar, getal, iteraties, commentaar);
 
     // Hier mogen de meeste karakters pas worden geprint
     // Commentaar, slashes (worden eerder al geprint als er geen /
