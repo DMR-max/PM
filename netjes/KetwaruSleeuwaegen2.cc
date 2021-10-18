@@ -1,6 +1,6 @@
 /*
 Auteurs: Sjouk Ketwaru en Ryan Sleeuwaegen
-naam bestand: KetwaruSleeuwaegen.cc
+naam bestand: KetwaruSleeuwaegen2.cc
 
 Het programmma maakt een begin aan het compileren
 van een C++ programma. Al het commentaar dat begint
@@ -22,6 +22,7 @@ Laatst aan gewerkt op: 17-10-2021.
 #include <string>
 using namespace std;
 
+// Functie met alle informatie over de makers en het programma
 void infoblokje ( ) {
   cout << "Makers: Sjouk Ketwaru (s3287297), "
   << "Ryan Sleeuwaegen (s3122166)" << endl
@@ -37,6 +38,7 @@ void infoblokje ( ) {
   << "Collatz vermoeden waar is." << endl << endl;
 } // Void infoblokje
 
+// Functie om commentaar te filteren
 void comments (ofstream & uitvoer, char & kar,
   char & kar_vorige, char & kar_vorige2, bool & commentaar) {
 
@@ -56,6 +58,7 @@ void comments (ofstream & uitvoer, char & kar,
   }
 } // Void comments
 
+// Funcite om tabs toe te voegen en spaties weg te halen
 void tabs (char & kar, char & kar_vorige, bool & nr,
   int & diepte, ofstream & uitvoer, bool & commentaar, int & d) {
 
@@ -88,6 +91,7 @@ void tabs (char & kar, char & kar_vorige, bool & nr,
   }
 } // Void tabs
 
+// Functie voor 3 letters vragen
 void letterinvoer (char & a, char & b, char & c, bool & letters) {
 
   cout << "Vul aub 3 verschillende kleine letters in (1 per keer)." << endl;
@@ -118,7 +122,8 @@ void letterinvoer (char & a, char & b, char & c, bool & letters) {
   } // While
 } // Void letterinvoer
 
-void convertie (char & a, char & b, char & c,char & kar,
+// Functie om 3 gevraagde letters ook te detecteren als er hoofdletters zijn
+void convertie (char & a, char & b, char & c, char & kar,
   char & kar_vorige, char & kar_vorige2, int & aantal_letters) {
 
   // Hoofdletters en kleine letters detecteren voor 3 letter combinatie
@@ -129,6 +134,7 @@ void convertie (char & a, char & b, char & c,char & kar,
   }
 } // Void convertie
 
+// Functie om Collatz vermoeden te berekenen en getallen te detecteren
 void collatz (char & kar_vorige, char & kar, int & getal,
   int & iteraties, bool & commentaar) {
 
@@ -139,9 +145,9 @@ void collatz (char & kar_vorige, char & kar, int & getal,
       cout << "Getal: " << getal << endl;
 
       //Loop om Collatz vermoeden te berekenen
-      while (getal != 1 && getal > 0 && getal < INT_MAX) {
+      while (getal != 1 && getal > 0 && getal <= INT_MAX) {
 
-        if ( getal % 2 == 0 ) {
+        if (getal % 2 == 0) {
           getal = getal / 2;
           iteraties++;
         } else {
@@ -165,6 +171,7 @@ void collatz (char & kar_vorige, char & kar, int & getal,
   } // Eerste if (r. 125)
 } // Void collatz
 
+// Functie om invoer en uitvoer file te openen
 void filenaam (string & eigen_invoer,
   string & eigen_uitvoer, ifstream & invoer) {
 
@@ -182,11 +189,18 @@ void filenaam (string & eigen_invoer,
   cout << endl;
 }
 
+// Functie met de grote while loop en alle andere functies waarin
+// alles wordt gecontroleerd en wordt geprint in het uitvoer bestand
 void hoofdvoid ( ) {
   // Eigen textbestanden
   string eigen_invoer;
   string eigen_uitvoer;
   ifstream invoer (eigen_invoer, ios::in | ios::binary);
+
+  filenaam(eigen_invoer, eigen_uitvoer, invoer);
+
+  // Bestand maken of bestand
+  ofstream uitvoer (eigen_uitvoer, ios::out | ios::binary);
   // Karakters inlezen, en de vorige 2 karakters
   char kar;
   char kar_vorige, kar_vorige2;
@@ -196,33 +210,21 @@ void hoofdvoid ( ) {
   int d, diepte = 0, getal = 0, iteraties = 0, aantal_letters = 0;
   // de 3 door de gebruiker ingevulde letters
   char a, b, c;
-  // Functie om invoer en uitvoer file te openen
-  filenaam(eigen_invoer, eigen_uitvoer, invoer);
-  // Bestand maken of bestand
-  ofstream uitvoer (eigen_uitvoer, ios::out | ios::binary);
 
 
   cout << "Aantal spaties voor een tab: ";
   cin >> d;
   cout << endl;
 
-  // Functie voor 3 letters vragen
   letterinvoer (a, b, c, letters);
-  kar = invoer.get();
+  kar = invoer.get ( );
 
   // Main while loop om karakters te printen
   while (! invoer.eof ( )) {
 
-    // Functie om 3 gevraagde letters ook te detecteren als er hoofdletters zijn
     convertie (a, b, c, kar, kar_vorige, kar_vorige2, aantal_letters);
-
-    // Functie om comments te filteren
     comments (uitvoer, kar, kar_vorige, kar_vorige2, commentaar);
-
-    // Funcite om tabs toe te voegen en spaties weg te halen
     tabs (kar, kar_vorige, nr, diepte, uitvoer, commentaar, d);
-
-    // Functie om Collatz vermoeden te berekenen
     collatz (kar_vorige, kar, getal, iteraties, commentaar);
 
     // Hier mogen de meeste karakters pas worden geprint
