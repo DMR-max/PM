@@ -34,7 +34,7 @@ void infoblokje ( ) {
   << "hoeveel spaties een tab is. De gebruiker moet 3 letters " << endl
   << "invoeren, en er wordt gecontroleerd hoe vaak die combinatie "<< endl
   << "voor komt. Als laatst wordt voor elk getal gecontroleerd of " << endl
-  << "Collatz vermoeden waar is." << endl;
+  << "Collatz vermoeden waar is." << endl endl;
 } // Void infoblokje
 
 void comments (ofstream & uitvoer, char & kar,
