@@ -70,7 +70,7 @@ void tabs (char & kar, char & kar_vorige, bool & nr,
   }
 
   // { Detecteren en 1 er bij optellen
-  if (kar_vorige == '{' && ! commentaar) {                                       //boba2 geeft inspringen bij b terwijl dat niet hoort.
+  if (kar_vorige == '{' && ! commentaar) {
     diepte++;
   }
 
@@ -164,11 +164,12 @@ void collatz (char & kar_vorige, char & kar, int & getal, int & iteraties) {
   } // Eerste if (r. 125)
 } // Void collatz
 
-void filenaam (string & eigen_invoer, string & eigen_uitvoer, ifstream & invoer) {
+void filenaam (string & eigen_invoer,
+  string & eigen_uitvoer, ifstream & invoer) {
 
   cout << "Voer de naam van het invoer bestand in (.txt niet invullen): ";
   cin >> eigen_invoer;
-  eigen_invoer = eigen_invoer + ".txt"; //vraag of dit nodig is!!!!!
+  eigen_invoer = eigen_invoer + ".txt";
   invoer.open (eigen_invoer.c_str ( ));
   if (invoer.fail ( )){
     cout << "Dit bestand bestaat niet." << endl;
@@ -176,7 +177,7 @@ void filenaam (string & eigen_invoer, string & eigen_uitvoer, ifstream & invoer)
   }
   cout << "Voer de naam van het uitvoer bestand in (.txt niet invullen): ";
   cin >> eigen_uitvoer;
-  eigen_uitvoer = eigen_uitvoer + ".txt"; //vraag of dit nodig is!!!!!
+  eigen_uitvoer = eigen_uitvoer + ".txt";
   cout << endl;
 }
 
@@ -194,10 +195,10 @@ void hoofdvoid ( ) {
   int d, diepte = 0, getal = 0, iteraties = 0, aantal_letters = 0;
   // de 3 door de gebruiker ingevulde letters
   char a, b, c;
-
   // Functie om invoer en uitvoer file te openen
   filenaam(eigen_invoer, eigen_uitvoer, invoer);
-  ofstream uitvoer (eigen_uitvoer, ios::out | ios::binary); // random y met trema error FIXEN
+  // Bestand maken of bestand
+  ofstream uitvoer (eigen_uitvoer, ios::out | ios::binary); //windows voegt txt niet toe?
 
 
   cout << "Aantal spaties voor een tab: ";
