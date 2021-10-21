@@ -139,7 +139,7 @@ void collatz (char & kar_vorige, char & kar, int & getal,
       cout << "Getal: " << getal << endl;
 
       //Loop om Collatz vermoeden te berekenen
-      while (getal != 1 && getal > 0 && getal < INT_MAX) {
+      while (getal != 1 && getal > 0 && getal <= INT_MAX) {
 
         if ( getal % 2 == 0 ) {
           getal = getal / 2;
