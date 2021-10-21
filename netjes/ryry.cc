@@ -34,7 +34,7 @@ void infoblokje ( ) {
   << "hoeveel spaties een tab is. De gebruiker moet 3 letters " << endl
   << "invoeren, en er wordt gecontroleerd hoe vaak die combinatie "<< endl
   << "voor komt. Als laatst wordt voor elk getal gecontroleerd of " << endl
-  << "Collatz vermoeden waar is." << endl;
+  << "Collatz vermoeden waar is." << endl endl;
 } // Void infoblokje
 
 void comments (ofstream & uitvoer, char & kar,
@@ -82,7 +82,7 @@ void tabs (char & kar, char & kar_vorige, bool & nr,
   // Spaties voor tabs printen
   if (kar_vorige == '\n') {
 
-    for (int i=0; i < diepte * d; i++) {
+    for (int i = 0; i < diepte * d; i++) {
       uitvoer.put (' ');
     }
   }
@@ -129,7 +129,9 @@ void convertie (char & a, char & b, char & c,char & kar,
   }
 } // Void convertie
 
-void getalvinden (char & kar, char & kar_vorige, int & getal) {
+void collatz (char & kar_vorige, char & kar, int & getal, int & iteraties) {
+
+  // Loop totdat gehele getal is gedetecteerd
   if ('0' <= kar_vorige && kar_vorige <= '9') {
 
     getal = 10 * getal + (kar_vorige - '0');
@@ -137,26 +139,22 @@ void getalvinden (char & kar, char & kar_vorige, int & getal) {
     if (! ('0' <= kar && kar <= '9')) {
 
       cout << "Getal: " << getal << endl;
-    }
-  }
-}
 
-void collatz (char & kar_vorige, char & kar, int & getal, int & iteraties) {
-    //Loop om Collatz vermoeden te berekenen
-    while (getal != 1 && getal > 0 && getal < INT_MAX) {
+      //Loop om Collatz vermoeden te berekenen
+      while (getal != 1 && getal > 0 && getal < INT_MAX) {
 
-      if ( getal % 2 == 0 ) {
-        getal = getal / 2;
-        iteraties++;
-      } else {
-          getal = 3 * getal + 1;
+        if ( getal % 2 == 0 ) {
+          getal = getal / 2;
           iteraties++;
+        } else {
+            getal = 3 * getal + 1;
+            iteraties++;
 
-          if (iteraties == 100) {
-            cout << iteraties << endl;
+            if (iteraties == 100) {
+              cout << iteraties << endl;
+            }
           }
-        }
-    } // While
+      } // While
 
       // Print het uiteindelijke getal en aantal iteraties om dat te betrijken
       cout << "Eindgetal: " << getal << endl;
@@ -170,6 +168,8 @@ void collatz (char & kar_vorige, char & kar, int & getal, int & iteraties) {
       // Reset aantal iteraties en getal voor het volgende getal
       getal = 0;
       iteraties = 0;
+    } // Tweede if (r. 129)
+  } // Eerste if (r. 125)
 } // Void collatz
 
 void filenaam (string & eigen_invoer, string & eigen_uitvoer, ifstream & invoer) {
@@ -190,11 +190,12 @@ void filenaam (string & eigen_invoer, string & eigen_uitvoer, ifstream & invoer)
 
 void hoofdvoid ( ) {
   // Eigen textbestanden
-  string eigen_invoer, eigen_uitvoer;
-  // Invoer
+  string eigen_invoer;
+  string eigen_uitvoer;
   ifstream invoer (eigen_invoer, ios::in | ios::binary);
   // Karakters inlezen, en de vorige 2 karakters
-  char kar, kar_vorige, kar_vorige2;
+  char kar;
+  char kar_vorige, kar_vorige2;
   // Booleans om loops aan en uit te zetten (nr = nieuwe regel)
   bool commentaar, letters, nr;
   // d is door de gebruiker ingevulde aantal spaties
@@ -204,7 +205,6 @@ void hoofdvoid ( ) {
 
   // Functie om invoer en uitvoer file te openen
   filenaam(eigen_invoer, eigen_uitvoer, invoer);
-
   ofstream uitvoer (eigen_uitvoer, ios::out | ios::binary); // random y met trema error FIXEN
 
 
@@ -223,11 +223,8 @@ void hoofdvoid ( ) {
     // Functie om comments te filteren
     comments (uitvoer, kar, kar_vorige, kar_vorige2, commentaar);
 
-    // Functie om tabs toe te voegen en spaties weg te halen
+    // Funcite om tabs toe te voegen en spaties weg te halen
     tabs (kar, kar_vorige, nr, diepte, uitvoer, commentaar, d);
-
-    // Functie om getal om te keren
-    getalvinden (kar, kar_vorige, getal);
 
     // Functie om Collatz vermoeden te berekenen
     collatz (kar_vorige, kar, getal, iteraties);
