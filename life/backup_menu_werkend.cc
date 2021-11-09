@@ -4,9 +4,6 @@ using namespace std;
 class life {
   public:
     life ( ) {
-      hoogte = 4;
-      breedte = 4;
-
     }
     void drukaf ( );
     void heelschoon ( );
@@ -23,86 +20,38 @@ class life {
     void menu ( );
 
   private:
-    static const int MAX = 1000;
-    bool dewereld[1][1]; // array!!!
-    bool reserve[3][4];
+    bool dewereld[50][50]; // array!!!
+    bool reserve[50][50]; // en nog een
     int hoogte, breedte;
     int percentage, schuif;
 };
 
 void life::drukaf ( ){
   int i, j;
-  for ( i = 0; i < hoogte; i++ ) { // hij start dus bij i = 1
+  for ( i = 0; i < hoogte; i++ ) {
     for ( j = 0; j < breedte; j++ ) {
       if ( dewereld[i][j] ) {
-        cout << "X ";
+        cout << " X";
       }
       else {
-        cout << "O ";
+        cout << " O";
       }
     }//for j
   cout << endl;
   }//for i
-cout << endl;
 }//life::drukaf
 
-void LeesGetal ( ) {
-  char kar;
-  int getal = 0;
-
-  kar = cin.get ( );
-
-  while (kar != '\n') {
-    if ('0' <= kar && kar <= '9') {
-      getal = 10 * getal + (kar - '0');
-    }
-    kar = cin.get( );
-  }
-  cout << "Getal: " << getal << endl;
-}
-
 void life::heelschoon ( ) {
-  int i, j;
-  for ( i = 0; i < MAX; i++ ) { // hij start dus bij i = 1
-    for ( j = 0; j < MAX; j++ ) {
-      dewereld[i][j] = false;
-    }
-  }
-  drukaf( );
+
 }
 
 void life::schoon ( ) {
-  int i, j;
-  for ( i = 0; i < hoogte; i++ ) { // hij start dus bij i = 1
-    for ( j = 0; j < breedte; j++ ) {
-        cout << "O ";
-    }//for j
-  cout << endl;
-  }//for i
-cout << endl;
+
 }
 
 void life::verschuif ( ) {
-  int omhoog, hoogte_min, j;
-  cout << "voer in hoeveel u omhoog wil gaan in" << endl;
-  omhoog = cin.get();
-  hoogte_min = -omhoog;
-  for ( hoogte_min; hoogte_min < hoogte; hoogte_min++ ) { // hij start dus bij i = 1
-    for ( j = 0; j < breedte; j++ ) {
-      if ( dewereld[hoogte_min][j] ) {
-        cout << "X ";
-      }
-      else {
-        cout << "O ";
-      }
-    }//for j
-  cout << endl;
-  }//for i
-cout << endl;
+
 }
-
-
-
 
 void life::verschuivingsstap ( ) {
 
@@ -110,8 +59,6 @@ void life::verschuivingsstap ( ) {
 }
 
 void life::Percentage ( ) {
-  //int percentage;
-  //cout << "Vul een getal tussen 1 en 100 in: " << LeesGetal ( );
 
 }
 
@@ -139,7 +86,6 @@ void life::parameters ( ) {
 
       case 'P': case 'p':
         cout << "Percentage" << endl << endl;
-        Percentage ( );
         fout = false;
         break;
 
@@ -278,5 +224,4 @@ void life::menu ( ) {
 int main ( ) {
   life M;
   M.drukaf ( );
-  M.menu ( );
 }
