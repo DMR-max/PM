@@ -1,7 +1,28 @@
 #include <iostream>
 using namespace std;
 
-void heelschoon ( ) {
+class life {
+  public:
+    life ( );
+    void heelschoon ( );
+    void schoon ( );
+    void verschuif ( );
+    void verschuivingsstap ( );
+    void percentage ( );
+    void parameters ( );
+    void ranomizer ( );
+    void toggle ( );
+    void glidergun ( );
+    void een ( );
+    void gaan ( );
+    void menu ( );
+
+  private:
+    void  ( );
+};
+
+
+void life::heelschoon ( ) {
 
 }
 
