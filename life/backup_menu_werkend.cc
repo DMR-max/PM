@@ -12,7 +12,7 @@ class life {
     void heelschoon ( );
     void schoon ( );
     int verschuif ( );
-    void verschuivingsstap ( );
+    int verschuivingsstap ( );
     void Percentage ( );
     void parameters ( );
     void randomizer ( );
@@ -28,8 +28,13 @@ class life {
     bool dewereld[1][1]; // array!!!
     bool reserve[3][4];
     int hoogte, breedte;
-    int percentage, schuif = 0;
+    int percentage;
+    int schuif = 0;
     int schuifbreedte = 0;
+    int omlaag = 1;
+    int omhoog = 1;
+    int rechts = 1;
+    int links = 1;
 };
 
 void life::drukaf ( ){
@@ -90,8 +95,9 @@ cout << endl;
 }
 
 int life::verschuif ( ) {
-  int j, i = 0, omlaag = 1, omhoog = 1, links = 1, rechts = 1;
+  int j, i = 0;
   char letterinvoer;
+  cout << "voer een letter in: S = omlaag, W = omhoog, A = links, D = rechts" << endl;
   letterinvoer = cin.get( );
   while (letterinvoer == '\n') {
     letterinvoer = cin.get( );
@@ -101,6 +107,7 @@ int life::verschuif ( ) {
     case 'S': case 's':
       schuif = schuif + omlaag;
       hoogte = hoogte + omlaag;
+      cout << schuif << endl;
       break;
 
     case 'W': case 'w':
@@ -108,17 +115,21 @@ int life::verschuif ( ) {
       hoogte = hoogte - omhoog;
       break;
 
-    case 'L': case 'l':
+    case 'A': case 'a':
       schuifbreedte = schuifbreedte - links;
       breedte = breedte - links;
       break;
 
-    case 'R': case 'r':
+    case 'D': case 'd':
       schuifbreedte = schuifbreedte + rechts;
       breedte = breedte + rechts;
       break;
     }
-  drukaf();
+    cout << hoogte << endl;
+    cout << breedte << endl;
+    cout << schuif << endl;
+    cout << schuifbreedte << endl;
+  drukaf( );
 
 return 1;
 }
@@ -126,38 +137,38 @@ return 1;
 
 
 
-void life::verschuivingsstap ( ) {
-  char omlaag, omhoog, rechts, links;
-
+int life::verschuivingsstap ( ) {
+  char omlaag_invoer, omhoog_invoer, links_invoer, rechts_invoer;
   cout << "voer in hoeveel u omlaag wil gaan in" << endl;
-  omlaag = cin.get( );
-  while (omlaag == '\n') {
-    omlaag = cin.get( );
+  omlaag_invoer = cin.get( );
+  while (omlaag_invoer == '\n') {
+    omlaag_invoer = cin.get( );
   }
-  schuif = schuif + omlaag - '0';
+  omlaag = omlaag_invoer - '0';
 
   cout << "voer in hoeveel u omhoog wil gaan in" << endl;
-  omhoog = cin.get( );
-  while (omhoog == '\n') {
-    omhoog = cin.get( );
+  omhoog_invoer = cin.get( );
+  while (omhoog_invoer == '\n') {
+    omhoog_invoer = cin.get( );
   }
-  schuif = schuif - omhoog - '0';
+  omhoog = omhoog_invoer - '0';
 
   cout << "voer in hoeveel u rechts wil gaan in" << endl;
-  rechts = cin.get( );
-  while (rechts == '\n') {
-    rechts = cin.get( );
+  rechts_invoer = cin.get( );
+  while (rechts_invoer == '\n') {
+    rechts_invoer = cin.get( );
   }
-  schuifbreedte = schuifbreedte + rechts - '0';
+  rechts = rechts_invoer - '0';
 
   cout << "voer in hoeveel u links wil gaan in" << endl;
-  links = cin.get( );
-  while (links == '\n') {
-    links = cin.get( );
+  links_invoer = cin.get( );
+  while (links_invoer == '\n') {
+    links_invoer = cin.get( );
   }
-  schuif = schuifbreedte - links - '0';
+  links = links_invoer - '0';
 
-
+  verschuif( );
+  return 1;
 }
 
 void life::Percentage ( ) {
