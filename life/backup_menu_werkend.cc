@@ -21,19 +21,21 @@ class life {
     void een ( );
     void gaan ( );
     void menu ( );
+    void LeesGetal ( );
 
   private:
     static const int MAX = 1000;
     bool dewereld[1][1]; // array!!!
     bool reserve[3][4];
     int hoogte, breedte;
-    int percentage, schuif;
+    int percentage, schuif = 0;
+    int schuifbreedte = 0;
 };
 
 void life::drukaf ( ){
   int i, j;
-  for ( i = 0; i < hoogte; i++ ) { // hij start dus bij i = 1
-    for ( j = 0; j < breedte; j++ ) {
+  for ( i = schuif; i < hoogte; i++ ) { // hij start dus bij i = 1
+    for ( j = schuifbreedte; j < breedte; j++ ) {
       if ( dewereld[i][j] ) {
         cout << "X ";
       }
@@ -46,19 +48,24 @@ void life::drukaf ( ){
 cout << endl;
 }//life::drukaf
 
-void LeesGetal ( ) {
+void life::LeesGetal ( ) {
   char kar;
-  int getal = 0;
+  percentage = 0;
 
-  kar = cin.get ( );
+  cin.get ( );
 
-  while (kar != '\n') {
-    if ('0' <= kar && kar <= '9') {
-      getal = 10 * getal + (kar - '0');
+  while (kar !='\n'){
+    if ('0' <= kar && kar <= '9' && percentage * 10 < 101) {
+      percentage = 10 * percentage + (kar - '0');
     }
     kar = cin.get( );
   }
-  cout << "Getal: " << getal << endl;
+
+  if (percentage > 100 && percentage < 110) {
+    percentage = percentage / 10;
+  }
+
+  cout << "Getal: " << percentage << endl << endl;
 }
 
 void life::heelschoon ( ) {
@@ -83,30 +90,36 @@ cout << endl;
 }
 
 int life::verschuif ( ) {
-  int j, i, ingv;
-  char omlaag;
-
-  cout << "voer in hoeveel u omlaag wil gaan in" << endl;
-  omlaag = cin.get( );
-  while (omlaag == '\n') {
-    omlaag = cin.get( );
+  int j, i = 0, omlaag = 1, omhoog = 1, links = 1, rechts = 1;
+  char letterinvoer;
+  letterinvoer = cin.get( );
+  while (letterinvoer == '\n') {
+    letterinvoer = cin.get( );
   }
-  cout << omlaag << endl;
-  hoogte = hoogte + omlaag;
-  i = 0;
-  i = omlaag;
-  for ( i; i < hoogte; i++ ) { // hij start dus bij i = 1
-    for ( j = 0; j < breedte; j++ ) {
-      if ( dewereld[i][j] ) {
-        cout << "X ";
-      }
-      else {
-        cout << "O ";
-      }
-    }//for j
-  cout << endl;
-  }//for i
-cout << endl;
+  switch (letterinvoer) {
+
+    case 'S': case 's':
+      schuif = schuif + omlaag;
+      hoogte = hoogte + omlaag;
+      break;
+
+    case 'W': case 'w':
+      schuif = schuif - omhoog;
+      hoogte = hoogte - omhoog;
+      break;
+
+    case 'L': case 'l':
+      schuifbreedte = schuifbreedte - links;
+      breedte = breedte - links;
+      break;
+
+    case 'R': case 'r':
+      schuifbreedte = schuifbreedte + rechts;
+      breedte = breedte + rechts;
+      break;
+    }
+  drukaf();
+
 return 1;
 }
 
@@ -114,13 +127,42 @@ return 1;
 
 
 void life::verschuivingsstap ( ) {
+  char omlaag, omhoog, rechts, links;
+
+  cout << "voer in hoeveel u omlaag wil gaan in" << endl;
+  omlaag = cin.get( );
+  while (omlaag == '\n') {
+    omlaag = cin.get( );
+  }
+  schuif = schuif + omlaag - '0';
+
+  cout << "voer in hoeveel u omhoog wil gaan in" << endl;
+  omhoog = cin.get( );
+  while (omhoog == '\n') {
+    omhoog = cin.get( );
+  }
+  schuif = schuif - omhoog - '0';
+
+  cout << "voer in hoeveel u rechts wil gaan in" << endl;
+  rechts = cin.get( );
+  while (rechts == '\n') {
+    rechts = cin.get( );
+  }
+  schuifbreedte = schuifbreedte + rechts - '0';
+
+  cout << "voer in hoeveel u links wil gaan in" << endl;
+  links = cin.get( );
+  while (links == '\n') {
+    links = cin.get( );
+  }
+  schuif = schuifbreedte - links - '0';
 
 
 }
 
 void life::Percentage ( ) {
-  //int percentage;
-  //cout << "Vul een getal tussen 1 en 100 in: " << LeesGetal ( );
+  cout << "Kies een percentage tussen 1 en 100: ";
+  LeesGetal ( );
 
 }
 
@@ -130,7 +172,8 @@ void life::parameters ( ) {
   bool fout;
 
   cout << "S = Stoppen, V = Verschuivingsstap grote, " << endl
-       << "K = Twee versch karakters, P = Percentage." << endl << endl;
+       << "K = Twee versch karakters, P = Percentage, " << endl
+       << "T = Terug." << endl << endl;
 
   while (letter != 'T' && letter != 't'){
 
@@ -138,6 +181,7 @@ void life::parameters ( ) {
 
       case 'V': case 'v':
         cout << "Verschuiving" << endl << endl;
+        verschuivingsstap ( );
         fout = false;
         break;
 
@@ -173,11 +217,33 @@ void life::parameters ( ) {
 
   } // while
 
+    cout << "Terug" << endl << endl;
+
   return;
 } // void submenu
 
 void life::randomizer ( ) {
+  static int randomgetal = 42;
+  int i, j;
+  int mogelijkheid;
 
+    for ( i = 0; i < hoogte; i++ ) {
+      for ( j = 0; j < breedte; j++ ) {
+
+          randomgetal = ( 221 * randomgetal + 1 ) % 1000;
+          mogelijkheid = 10 * percentage;
+
+          if (randomgetal < mogelijkheid) {
+            dewereld[i][j] = true;
+          }
+
+          else {
+            dewereld[i][j] = false;
+          }
+        }
+      }
+
+    drukaf( );
 }
 
 void life::toggle ( ) {
