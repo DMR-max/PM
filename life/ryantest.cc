@@ -4,15 +4,15 @@ using namespace std;
 class life {
   public:
     life ( ) {
-      hoogte = 4;
-      breedte = 4;
+      hoogte = 6;
+      breedte = 6;
 
     }
     void drukaf ( );
     void heelschoon ( );
     void schoon ( );
-    void verschuif ( );
-    void verschuivingsstap ( );
+    int verschuif ( );
+    int verschuivingsstap ( );
     void Percentage ( );
     void parameters ( );
     void randomizer ( );
@@ -21,20 +21,32 @@ class life {
     void een ( );
     void gaan ( );
     void menu ( );
+    void LeesGetal ( );
 
   private:
-    static const int MAX = 1000;
-    bool dewereld[1][1]; // array!!!
-    bool reserve[3][4];
+    static const int MAX = 6;
+    bool dewereld[MAX][MAX]; // array!!!
+    bool reserve[MAX][MAX];
     int hoogte, breedte;
-    int percentage, schuif;
+    int percentage;
+    int schuif = 0;
+    int schuifbreedte = 0;
+    int omlaag = 1;
+    int omhoog = 1;
+    int rechts = 1;
+    int links = 1;
 };
 
 void life::drukaf ( ){
   int i, j;
-  for ( i = 0; i < hoogte; i++ ) { // hij start dus bij i = 1
-    for ( j = 0; j < breedte; j++ ) {
-      if ( dewereld[i][j] ) {
+
+  for ( i = schuif; i < hoogte; i++ ) { // hij start dus bij i = 1
+    for ( j = schuifbreedte; j < breedte; j++ ) {
+
+      if (i == MAX - 1 || i == 0 || j == MAX - 1 || j == 0) {
+        dewereld[i][j] = false;
+        cout << "= ";
+      }else if (dewereld[i][j]) {
         cout << "X ";
       }
       else {
@@ -46,19 +58,24 @@ void life::drukaf ( ){
 cout << endl;
 }//life::drukaf
 
-void LeesGetal ( ) {
+void life::LeesGetal ( ) {
   char kar;
-  int getal = 0;
+  percentage = 0;
 
-  kar = cin.get ( );
+  cin.get ( );
 
-  while (kar != '\n') {
-    if ('0' <= kar && kar <= '9') {
-      getal = 10 * getal + (kar - '0');
+  while (kar !='\n'){
+    if ('0' <= kar && kar <= '9' && percentage * 10 < 101) {
+      percentage = 10 * percentage + (kar - '0');
     }
     kar = cin.get( );
   }
-  cout << "Getal: " << getal << endl;
+
+  if (percentage > 100 && percentage < 110) {
+    percentage = percentage / 10;
+  }
+
+  cout << "Getal: " << percentage << endl << endl;
 }
 
 void life::heelschoon ( ) {
@@ -82,36 +99,83 @@ void life::schoon ( ) {
 cout << endl;
 }
 
-void life::verschuif ( ) {
-  int omhoog, hoogte_min, j;
-  cout << "voer in hoeveel u omhoog wil gaan in" << endl;
-  omhoog = cin.get();
-  hoogte_min = -omhoog;
-  for ( hoogte_min; hoogte_min < hoogte; hoogte_min++ ) { // hij start dus bij i = 1
-    for ( j = 0; j < breedte; j++ ) {
-      if ( dewereld[hoogte_min][j] ) {
-        cout << "X ";
-      }
-      else {
-        cout << "O ";
-      }
-    }//for j
-  cout << endl;
-  }//for i
-cout << endl;
+int life::verschuif ( ) {
+  int j, i = 0;
+  char letterinvoer;
+  cout << "voer een letter in: S = omlaag, W = omhoog, A = links, D = rechts" << endl;
+  letterinvoer = cin.get( );
+  while (letterinvoer == '\n') {
+    letterinvoer = cin.get( );
+  }
+  switch (letterinvoer) {
+
+    case 'S': case 's':
+      schuif = schuif + omlaag;
+      hoogte = hoogte + omlaag;
+      cout << schuif << endl;
+      break;
+
+    case 'W': case 'w':
+      schuif = schuif - omhoog;
+      hoogte = hoogte - omhoog;
+      break;
+
+    case 'A': case 'a':
+      schuifbreedte = schuifbreedte - links;
+      breedte = breedte - links;
+      break;
+
+    case 'D': case 'd':
+      schuifbreedte = schuifbreedte + rechts;
+      breedte = breedte + rechts;
+      break;
+    }
+    cout << hoogte << endl;
+    cout << breedte << endl;
+    cout << schuif << endl;
+    cout << schuifbreedte << endl;
+  drukaf( );
+
+return 1;
 }
 
+int life::verschuivingsstap ( ) {
+  char omlaag_invoer, omhoog_invoer, links_invoer, rechts_invoer;
+  cout << "voer in hoeveel u omlaag wil gaan in" << endl;
+  omlaag_invoer = cin.get( );
+  while (omlaag_invoer == '\n') {
+    omlaag_invoer = cin.get( );
+  }
+  omlaag = omlaag_invoer - '0';
 
+  cout << "voer in hoeveel u omhoog wil gaan in" << endl;
+  omhoog_invoer = cin.get( );
+  while (omhoog_invoer == '\n') {
+    omhoog_invoer = cin.get( );
+  }
+  omhoog = omhoog_invoer - '0';
 
+  cout << "voer in hoeveel u rechts wil gaan in" << endl;
+  rechts_invoer = cin.get( );
+  while (rechts_invoer == '\n') {
+    rechts_invoer = cin.get( );
+  }
+  rechts = rechts_invoer - '0';
 
-void life::verschuivingsstap ( ) {
+  cout << "voer in hoeveel u links wil gaan in" << endl;
+  links_invoer = cin.get( );
+  while (links_invoer == '\n') {
+    links_invoer = cin.get( );
+  }
+  links = links_invoer - '0';
 
-
+  verschuif( );
+  return 1;
 }
 
 void life::Percentage ( ) {
-  //int percentage;
-  //cout << "Vul een getal tussen 1 en 100 in: " << LeesGetal ( );
+  cout << "Kies een percentage tussen 1 en 100: ";
+  LeesGetal ( );
 
 }
 
@@ -121,7 +185,8 @@ void life::parameters ( ) {
   bool fout;
 
   cout << "S = Stoppen, V = Verschuivingsstap grote, " << endl
-       << "K = Twee versch karakters, P = Percentage." << endl << endl;
+       << "K = Twee versch karakters, P = Percentage, " << endl
+       << "T = Terug." << endl << endl;
 
   while (letter != 'T' && letter != 't'){
 
@@ -129,6 +194,7 @@ void life::parameters ( ) {
 
       case 'V': case 'v':
         cout << "Verschuiving" << endl << endl;
+        verschuivingsstap ( );
         fout = false;
         break;
 
@@ -164,11 +230,33 @@ void life::parameters ( ) {
 
   } // while
 
+    cout << "Terug" << endl << endl;
+
   return;
 } // void submenu
 
 void life::randomizer ( ) {
+  static int randomgetal = 42;
+  int i, j;
+  int mogelijkheid;
 
+    for ( i = 0; i < hoogte; i++ ) {
+      for ( j = 0; j < breedte; j++ ) {
+
+          randomgetal = ( 221 * randomgetal + 1 ) % 1000;
+          mogelijkheid = 10 * percentage;
+
+          if (randomgetal < mogelijkheid) {
+            dewereld[i][j] = true;
+          }
+
+          else {
+            dewereld[i][j] = false;
+          }
+        }
+      }
+
+    drukaf( );
 }
 
 void life::toggle ( ) {
@@ -180,6 +268,64 @@ void life::glidergun ( ) {
 }
 
 void life::een ( ) {
+  int LevendeBuren;
+  int a, b, i, j;
+  bool buur;
+
+
+  for ( i = 0; i < MAX; i++ ) {
+    for ( j = 0; j < MAX; j++ ) {
+      reserve[i][j] = dewereld[i][j];
+    }
+  }
+
+  for ( i = 0; i < MAX; i++ ) {
+    for ( j = 0; j < MAX; j++ ) {
+
+      LevendeBuren = 0;
+      buur = true;
+
+      for (a = i - 1; a <= i + 1; a++) {
+        for (b = i - 1; b <= j + 1; b++) {
+
+          if (a < 0 || a > MAX || b < 0 || b > MAX){
+            buur = false;
+          }
+
+          if (a == i && b == j) {
+            buur = false;
+          }
+
+          if (buur && reserve[a][b]) {
+            LevendeBuren++;
+          }
+
+        }
+      }
+
+
+      cout << i << ", " << j << ": Buren: " << LevendeBuren;
+      if (reserve[i][j]) {
+        cout << " Wereld: X ";
+      }
+
+      else {
+        cout << " Wereld: O ";
+      }
+
+      cout << "Reserve: " << a << ", " << b << endl;
+
+
+      if (LevendeBuren == 3) {
+        dewereld[i][j] = true;
+      }else if (LevendeBuren != 2) {
+        dewereld[i][j] = false;
+      }
+
+    }
+  }
+
+  drukaf( );
 
 }
 
