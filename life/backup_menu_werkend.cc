@@ -1,11 +1,14 @@
 #include <iostream>
+#include <fstream>
+#include <cstdlib>
+#include <string>
 using namespace std;
 
 class life {
   public:
     life ( ) {
-      hoogte = 4;
-      breedte = 4;
+      hoogte = 25;
+      breedte = 80;
 
     }
     void drukaf ( );
@@ -25,8 +28,8 @@ class life {
 
   private:
     static const int MAX = 1000;
-    bool dewereld[1][1]; // array!!!
-    bool reserve[3][4];
+    bool dewereld[MAX][MAX]; // array!!!
+    bool reserve[MAX][MAX];
     int hoogte, breedte;
     int percentage;
     int schuif = 0;
@@ -42,10 +45,10 @@ void life::drukaf ( ){
   for ( i = schuif; i < hoogte; i++ ) { // hij start dus bij i = 1
     for ( j = schuifbreedte; j < breedte; j++ ) {
       if ( dewereld[i][j] ) {
-        cout << "X ";
+        cout << "X";
       }
       else {
-        cout << "O ";
+        cout << " ";
       }
     }//for j
   cout << endl;
@@ -85,8 +88,8 @@ void life::heelschoon ( ) {
 
 void life::schoon ( ) {
   int i, j;
-  for ( i = 0; i < hoogte; i++ ) { // hij start dus bij i = 1
-    for ( j = 0; j < breedte; j++ ) {
+  for ( i = schuif; i < hoogte; i++ ) { // hij start dus bij i = 1
+    for ( j = schuifbreedte; j < breedte; j++ ) {
         cout << "O ";
     }//for j
   cout << endl;
@@ -139,28 +142,28 @@ return 1;
 
 int life::verschuivingsstap ( ) {
   char omlaag_invoer, omhoog_invoer, links_invoer, rechts_invoer;
-  cout << "voer in hoeveel u omlaag wil gaan in" << endl;
+  cout << "voer in hoeveel u omlaag wil gaan" << endl; //CHECK VOOR 0-9 nog BENODIGD
   omlaag_invoer = cin.get( );
   while (omlaag_invoer == '\n') {
     omlaag_invoer = cin.get( );
   }
   omlaag = omlaag_invoer - '0';
 
-  cout << "voer in hoeveel u omhoog wil gaan in" << endl;
+  cout << "voer in hoeveel u omhoog wil gaan" << endl;
   omhoog_invoer = cin.get( );
   while (omhoog_invoer == '\n') {
     omhoog_invoer = cin.get( );
   }
   omhoog = omhoog_invoer - '0';
 
-  cout << "voer in hoeveel u rechts wil gaan in" << endl;
+  cout << "voer in hoeveel u rechts wil gaan" << endl;
   rechts_invoer = cin.get( );
   while (rechts_invoer == '\n') {
     rechts_invoer = cin.get( );
   }
   rechts = rechts_invoer - '0';
 
-  cout << "voer in hoeveel u links wil gaan in" << endl;
+  cout << "voer in hoeveel u links wil gaan" << endl;
   links_invoer = cin.get( );
   while (links_invoer == '\n') {
     links_invoer = cin.get( );
@@ -262,6 +265,31 @@ void life::toggle ( ) {
 }
 
 void life::glidergun ( ) {
+  string eigen_invoer;
+  char kar, glidergun[90][90];
+  int i = 0, j = 0;
+  cout << "geef uw bestandsnaam op voor de glidergun" << endl;
+  cin >> eigen_invoer;
+  ifstream invoer (eigen_invoer, ios::in | ios::binary);
+  cout << eigen_invoer << endl;
+
+  // Main while loop om karakters te printen
+  while (! invoer.eof ( )) {
+    kar = invoer.get ( );
+    if (kar == '\n'){
+      i++;
+      j = 0;
+    }
+    if (kar == 'x'){
+      dewereld[i][j] = true;
+    }
+    j++;
+
+
+  }
+  drukaf();
+
+
 
 }
 
