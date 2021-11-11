@@ -1,14 +1,11 @@
 #include <iostream>
-#include <fstream>
-#include <cstdlib>
-#include <string>
 using namespace std;
 
 class life {
   public:
     life ( ) {
-      hoogte = 25;
-      breedte = 80;
+      hoogte = 5;
+      breedte = 5;
 
     }
     void drukaf ( );
@@ -28,8 +25,8 @@ class life {
 
   private:
     static const int MAX = 1000;
-    bool dewereld[MAX][MAX]; // array!!!
-    bool reserve[MAX][MAX];
+    bool dewereld[2][2]; // array!!!
+    bool reserve[1][1];
     int hoogte, breedte;
     int percentage;
     int schuif = 0;
@@ -38,17 +35,22 @@ class life {
     int omhoog = 1;
     int rechts = 1;
     int links = 1;
+    int getal = 0;
 };
 
 void life::drukaf ( ){
-  int i, j;
+  int i = 0, j = 0;
   for ( i = schuif; i < hoogte; i++ ) { // hij start dus bij i = 1
     for ( j = schuifbreedte; j < breedte; j++ ) {
-      if ( dewereld[i][j] ) {
-        cout << "X";
+
+      if (i == MAX - 1 || i == 0 || j == MAX - 1 || j == 0) {
+        dewereld[i][j] = false;
+        cout << "= ";
+      }else if (dewereld[i][j]) {
+        cout << "X ";
       }
       else {
-        cout << " ";
+        cout << "O ";
       }
     }//for j
   cout << endl;
@@ -58,22 +60,34 @@ cout << endl;
 
 void life::LeesGetal ( ) {
   char kar;
-  percentage = 0;
 
-  cin.get ( );
 
-  while (kar !='\n'){
-    if ('0' <= kar && kar <= '9' && percentage * 10 < 101) {
-      percentage = 10 * percentage + (kar - '0');
+  kar = cin.get ( );
+  if (percentage != 1){
+    while (kar == '\n'){
+      kar = cin.get( );
     }
-    kar = cin.get( );
-  }
+    while (kar !='\n'){
+      if ('0' <= kar && kar <= '9' && getal < 1000) {
+        getal= 10 * getal + (kar - '0');
+      }
+      kar = cin.get( );
+    }
+  }else{
+    while (kar !='\n'){
+      if ('0' <= kar && kar <= '9' && percentage * 10 < 101) {
+        percentage = 10 * percentage + (kar - '0');
+      }
+      kar = cin.get( );
+    }
 
-  if (percentage > 100 && percentage < 110) {
-    percentage = percentage / 10;
-  }
+    if (percentage > 100 && percentage < 110) {
+      percentage = percentage / 10;
+    }
 
-  cout << "Getal: " << percentage << endl << endl;
+    cout << "percentage: " << percentage << endl << endl;
+
+  }
 }
 
 void life::heelschoon ( ) {
@@ -88,14 +102,14 @@ void life::heelschoon ( ) {
 
 void life::schoon ( ) {
   int i, j;
-  for ( i = schuif; i < hoogte; i++ ) { // hij start dus bij i = 1
-    for ( j = schuifbreedte; j < breedte; j++ ) {
-        cout << "O ";
+  for ( i = 0; i < hoogte; i++ ) { // hij start dus bij i = 1
+    for ( j = 0; j < breedte; j++ ) {
+      dewereld[i][j] = false;
     }//for j
-  cout << endl;
   }//for i
-cout << endl;
+  drukaf( );
 }
+
 
 int life::verschuif ( ) {
   int j, i = 0;
@@ -137,38 +151,27 @@ int life::verschuif ( ) {
 return 1;
 }
 
-
-
-
 int life::verschuivingsstap ( ) {
   char omlaag_invoer, omhoog_invoer, links_invoer, rechts_invoer;
-  cout << "voer in hoeveel u omlaag wil gaan" << endl; //CHECK VOOR 0-9 nog BENODIGD
-  omlaag_invoer = cin.get( );
-  while (omlaag_invoer == '\n') {
-    omlaag_invoer = cin.get( );
-  }
-  omlaag = omlaag_invoer - '0';
+  cout << "voer in hoeveel u omlaag wil gaan in" << endl;
+  LeesGetal();
+  omlaag = getal;
+  getal = 0;
 
-  cout << "voer in hoeveel u omhoog wil gaan" << endl;
-  omhoog_invoer = cin.get( );
-  while (omhoog_invoer == '\n') {
-    omhoog_invoer = cin.get( );
-  }
-  omhoog = omhoog_invoer - '0';
+  cout << "voer in hoeveel u omhoog wil gaan in" << endl;
+  LeesGetal();
+  omhoog = getal;
+  getal = 0;
 
-  cout << "voer in hoeveel u rechts wil gaan" << endl;
-  rechts_invoer = cin.get( );
-  while (rechts_invoer == '\n') {
-    rechts_invoer = cin.get( );
-  }
-  rechts = rechts_invoer - '0';
+  cout << "voer in hoeveel u rechts wil gaan in" << endl;
+  LeesGetal();
+  rechts = getal;
+  getal = 0;
 
-  cout << "voer in hoeveel u links wil gaan" << endl;
-  links_invoer = cin.get( );
-  while (links_invoer == '\n') {
-    links_invoer = cin.get( );
-  }
-  links = links_invoer - '0';
+  cout << "voer in hoeveel u links wil gaan in" << endl;
+  LeesGetal();
+  links = getal;
+  getal = 0;
 
   verschuif( );
   return 1;
@@ -176,6 +179,7 @@ int life::verschuivingsstap ( ) {
 
 void life::Percentage ( ) {
   cout << "Kies een percentage tussen 1 en 100: ";
+  percentage = 1;
   LeesGetal ( );
 
 }
@@ -265,35 +269,68 @@ void life::toggle ( ) {
 }
 
 void life::glidergun ( ) {
-  string eigen_invoer;
-  char kar, glidergun[90][90];
-  int i = 0, j = 0;
-  cout << "geef uw bestandsnaam op voor de glidergun" << endl;
-  cin >> eigen_invoer;
-  ifstream invoer (eigen_invoer, ios::in | ios::binary);
-  cout << eigen_invoer << endl;
-
-  // Main while loop om karakters te printen
-  while (! invoer.eof ( )) {
-    kar = invoer.get ( );
-    if (kar == '\n'){
-      i++;
-      j = 0;
-    }
-    if (kar == 'x'){
-      dewereld[i][j] = true;
-    }
-    j++;
-
-
-  }
-  drukaf();
-
-
 
 }
 
 void life::een ( ) {
+  int LevendeBuren;
+  int a, b, i, j;
+  bool buur;
+
+
+  for ( i = 0; i < MAX; i++ ) {
+    for ( j = 0; j < MAX; j++ ) {
+      reserve[i][j] = dewereld[i][j];
+    }
+  }
+
+  for ( i = 0; i < MAX; i++ ) {
+    for ( j = 0; j < MAX; j++ ) {
+
+      LevendeBuren = 0;
+      buur = true;
+
+      for (a = i - 1; a <= i + 1; a++) {
+        for (b = i - 1; b <= j + 1; b++) {
+
+          if (a < 0 || a > MAX || b < 0 || b > MAX){
+            buur = false;
+          }
+
+          if (a == i && b == j) {
+            buur = false;
+          }
+
+          if (buur && reserve[a][b]) {
+            LevendeBuren++;
+          }
+
+        }
+      }
+
+
+      cout << i << ", " << j << ": Buren: " << LevendeBuren;
+      if (reserve[i][j]) {
+        cout << " Wereld: X ";
+      }
+
+      else {
+        cout << " Wereld: O ";
+      }
+
+      cout << "Reserve: " << a << ", " << b << endl;
+
+
+      if (LevendeBuren == 3) {
+        dewereld[i][j] = true;
+      }else if (LevendeBuren != 2) {
+        dewereld[i][j] = false;
+      }
+
+    }
+  }
+
+  drukaf( );
 
 }
 
@@ -312,6 +349,11 @@ void life::menu ( ) {
   while (letter != 'S' && letter != 's'){
 
     switch (letter) {
+      case 'K':
+        cout << "voer getal in:" << endl;
+        LeesGetal( );
+        fout = false;
+        break;
 
       case 'H': case 'h':
         cout << "Heelschoon" << endl << endl;
