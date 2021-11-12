@@ -1,11 +1,14 @@
 #include <iostream>
+#include <fstream>
+#include <cstdlib>
+#include <string>
 using namespace std;
 
 class life {
   public:
     life ( ) {
-      hoogte = 5;
-      breedte = 5;
+      hoogte = 25;
+      breedte = 80;
 
     }
     void drukaf ( );
@@ -25,8 +28,8 @@ class life {
 
   private:
     static const int MAX = 1000;
-    bool dewereld[2][2]; // array!!!
-    bool reserve[1][1];
+    bool dewereld[MAX][MAX]; // array!!!
+    bool reserve[MAX][MAX];
     int hoogte, breedte;
     int percentage;
     int schuif = 0;
@@ -47,10 +50,10 @@ void life::drukaf ( ){
         dewereld[i][j] = false;
         cout << "= ";
       }else if (dewereld[i][j]) {
-        cout << "X ";
+        cout << "X";
       }
       else {
-        cout << "O ";
+        cout << " ";
       }
     }//for j
   cout << endl;
@@ -269,6 +272,29 @@ void life::toggle ( ) {
 }
 
 void life::glidergun ( ) {
+  string eigen_invoer;
+  char kar, glidergun[90][90];
+  int i = 0, j = 0;
+  cout << "geef uw bestandsnaam op voor de glidergun" << endl;
+  cin >> eigen_invoer;
+  ifstream invoer (eigen_invoer, ios::in | ios::binary);
+  cout << eigen_invoer << endl;
+
+  // Main while loop om karakters te printen
+  while (! invoer.eof ( )) {
+    kar = invoer.get ( );
+    if (kar == '\n'){
+      i++;
+      j = 0;
+    }
+    if (kar == 'x'){
+      dewereld[i][j] = true;
+    }
+    j++;
+
+
+  }
+  drukaf();
 
 }
 
