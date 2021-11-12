@@ -1,11 +1,12 @@
 #include <iostream>
+#include <stdlib.h>
 using namespace std;
 
 class life {
   public:
     life ( ) {
-      hoogte = 6;
-      breedte = 6;
+      hoogte = 15;
+      breedte = 15;
 
     }
     void drukaf ( );
@@ -24,7 +25,7 @@ class life {
     void LeesGetal ( );
 
   private:
-    static const int MAX = 6;
+    static const int MAX = 15;
     bool dewereld[MAX][MAX]; // array!!!
     bool reserve[MAX][MAX];
     int hoogte, breedte;
@@ -45,12 +46,13 @@ void life::drukaf ( ){
 
       if (i == MAX - 1 || i == 0 || j == MAX - 1 || j == 0) {
         dewereld[i][j] = false;
+        reserve[i][j] = false;
         cout << "= ";
       }else if (dewereld[i][j]) {
         cout << "X ";
       }
       else {
-        cout << "O ";
+        cout << "  ";
       }
     }//for j
   cout << endl;
@@ -236,18 +238,19 @@ void life::parameters ( ) {
 } // void submenu
 
 void life::randomizer ( ) {
-  static int randomgetal = 42;
+  static int randomgetal;                                                           //Check ff of dit mag bitch
+  srand(randomgetal);
+
+  cout << "Random: " << randomgetal << endl;
   int i, j;
-  int mogelijkheid;
 
     for ( i = 0; i < hoogte; i++ ) {
       for ( j = 0; j < breedte; j++ ) {
 
           randomgetal = ( 221 * randomgetal + 1 ) % 1000;
-          mogelijkheid = 10 * percentage;
 
-          if (randomgetal < mogelijkheid) {
-            dewereld[i][j] = true;
+          if (percentage != 0) {
+            dewereld[i][j] = ((randomgetal % 100) <= percentage);
           }
 
           else {
@@ -269,8 +272,7 @@ void life::glidergun ( ) {
 
 void life::een ( ) {
   int LevendeBuren;
-  int a, b, i, j;
-  bool buur;
+  int l, r, b, o, i, j;
 
 
   for ( i = 0; i < MAX; i++ ) {
@@ -279,47 +281,54 @@ void life::een ( ) {
     }
   }
 
-  for ( i = 0; i < MAX; i++ ) {
-    for ( j = 0; j < MAX; j++ ) {
+  for ( i = 1; i < MAX - 1; i++ ) {
+    for ( j = 1; j < MAX - 1; j++ ) {
+
+      l = i + 1;
+      r = i - 1;
+      b = j + 1;
+      o = j - 1;
 
       LevendeBuren = 0;
-      buur = true;
 
-      for (a = i - 1; a <= i + 1; a++) {
-        for (b = i - 1; b <= j + 1; b++) {
-
-          if (a < 0 || a > MAX || b < 0 || b > MAX){
-            buur = false;
-          }
-
-          if (a == i && b == j) {
-            buur = false;
-          }
-
-          if (buur && reserve[a][b]) {
-            LevendeBuren++;
-          }
-
-        }
+      if (dewereld[l][j]) {
+        LevendeBuren++;
       }
 
-
-      cout << i << ", " << j << ": Buren: " << LevendeBuren;
-      if (reserve[i][j]) {
-        cout << " Wereld: X ";
+      if (dewereld[r][j]) {
+        LevendeBuren++;
       }
 
-      else {
-        cout << " Wereld: O ";
+      if (dewereld[i][b]) {
+        LevendeBuren++;
       }
 
-      cout << "Reserve: " << a << ", " << b << endl;
+      if (dewereld[i][o]) {
+        LevendeBuren++;
+      }
 
+      if (dewereld[l][b]) {
+        LevendeBuren++;
+      }
 
-      if (LevendeBuren == 3) {
+      if (dewereld[r][b]) {
+        LevendeBuren++;
+      }
+
+      if (dewereld[l][o]) {
+        LevendeBuren++;
+      }
+
+      if (dewereld[r][o]) {
+        LevendeBuren++;
+      }
+
+      dewereld[i][j] = false;
+
+      if ((reserve[i][j] && LevendeBuren == 2) || (reserve[i][j] && LevendeBuren == 3)) {
         dewereld[i][j] = true;
-      }else if (LevendeBuren != 2) {
-        dewereld[i][j] = false;
+      }else if (! reserve[i][j] && LevendeBuren == 3) {
+        dewereld[i][j] = true;
       }
 
     }
@@ -330,7 +339,14 @@ void life::een ( ) {
 }
 
 void life::gaan ( ) {
+  int loop, a = 1;
 
+  cout << "Hoeveel iteraties: ";
+  cin >> loop;                                                                    // aanpassen
+
+  for (a; a <= loop; a++) {
+    een ( );
+  }
 }
 
 void life::menu ( ) {
