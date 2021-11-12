@@ -25,6 +25,7 @@ class life {
     void gaan ( );
     void menu ( );
     void LeesGetal ( );
+    void karakters ( );
 
   private:
     static const int MAX = 1000;
@@ -39,6 +40,8 @@ class life {
     int rechts = 1;
     int links = 1;
     int getal = 0;
+    char kar_levend = 'X';
+    char kar_dood = ' ';
 };
 
 void life::drukaf ( ){
@@ -50,10 +53,10 @@ void life::drukaf ( ){
         dewereld[i][j] = false;
         cout << "= ";
       }else if (dewereld[i][j]) {
-        cout << "X";
+        cout << kar_levend;
       }
       else {
-        cout << " ";
+        cout << kar_dood;
       }
     }//for j
   cout << endl;
@@ -100,7 +103,7 @@ void life::heelschoon ( ) {
       dewereld[i][j] = false;
     }
   }
-  drukaf( );
+  menu( );
 }
 
 void life::schoon ( ) {
@@ -110,7 +113,7 @@ void life::schoon ( ) {
       dewereld[i][j] = false;
     }//for j
   }//for i
-  drukaf( );
+  menu( );
 }
 
 
@@ -149,7 +152,7 @@ int life::verschuif ( ) {
     cout << breedte << endl;
     cout << schuif << endl;
     cout << schuifbreedte << endl;
-  drukaf( );
+  menu( );
 
 return 1;
 }
@@ -187,6 +190,20 @@ void life::Percentage ( ) {
 
 }
 
+void life::karakters ( ) {
+  cout << "Kies een karakter voor levende cellen: ";
+  kar_levend = cin.get( );
+  while (kar_levend == '\n') {
+    kar_levend = cin.get( );
+  }
+  cout << "Kies een karakter voor dode cellen: ";
+  kar_dood = cin.get( );
+  while (kar_dood == '\n') {
+    kar_dood = cin.get( );
+  }
+
+}
+
 
 void life::parameters ( ) {
   char letter;
@@ -208,6 +225,7 @@ void life::parameters ( ) {
 
       case 'K': case 'k':
         cout << "Karakters" << endl << endl;
+        karakters ( );
         fout = false;
         break;
 
@@ -264,7 +282,7 @@ void life::randomizer ( ) {
         }
       }
 
-    drukaf( );
+    menu( );
 }
 
 void life::toggle ( ) {
@@ -294,7 +312,7 @@ void life::glidergun ( ) {
 
 
   }
-  drukaf();
+  menu();
 
 }
 
@@ -356,7 +374,7 @@ void life::een ( ) {
     }
   }
 
-  drukaf( );
+  menu( );
 
 }
 
@@ -368,6 +386,7 @@ void life::menu ( ) {
   char letter;
   bool fout;
   // life L;
+  drukaf( );
   cout << "S = Stoppen, H = Heelschoon, C = Schoon, " << endl
        << "V = Verschuif, P = Parameters, R = Random, " << endl
        << "T = Toggle, L = Glidergun, E = Een, G = Gaan." << endl << endl;
@@ -459,6 +478,5 @@ void life::menu ( ) {
 
 int main ( ) {
   life M;
-  M.drukaf ( );
   M.menu ( );
 }
