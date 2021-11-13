@@ -9,6 +9,8 @@ class life {
     life ( ) {
       hoogte = 25;
       breedte = 80;
+      cursorhoogte = 12;
+      cursorbreedte = 40;
 
     }
     void drukaf ( );
@@ -42,22 +44,32 @@ class life {
     int getal = 0;
     char kar_levend = 'X';
     char kar_dood = ' ';
+    int cursorhoogte, cursorbreedte;
 };
 
 void life::drukaf ( ){
   int i = 0, j = 0;
+  cout << "cursor coordinaten:" << "(" << cursorbreedte << ", "
+  << cursorhoogte << ")" << endl;
   for ( i = schuif; i < hoogte; i++ ) { // hij start dus bij i = 1
     for ( j = schuifbreedte; j < breedte; j++ ) {
 
       if (i == MAX - 1 || i == 0 || j == MAX - 1 || j == 0) {
         dewereld[i][j] = false;
-        cout << "= ";
-      }else if (dewereld[i][j]) {
+        cout << "=";
+      }else if (dewereld[i][j]) { //BOVEN DE LIJN METEEN ALLEEN MAAR XSJES
         cout << kar_levend;
+        if (i == cursorhoogte && j == cursorbreedte){
+          cout << "#";
+        }
       }
       else {
         cout << kar_dood;
+        if (i == cursorhoogte && j == cursorbreedte){
+          cout << "$";
+        }
       }
+
     }//for j
   cout << endl;
   }//for i
@@ -128,30 +140,50 @@ int life::verschuif ( ) {
   switch (letterinvoer) {
 
     case 'S': case 's':
-      schuif = schuif + omlaag;
-      hoogte = hoogte + omlaag;
-      cout << schuif << endl;
+      if(hoogte + omlaag > MAX ){
+        cout << "Dat lukte niet, de wereldrand wordt bereikt met deze verschuiving" << endl;
+        omlaag = 1;
+      }else{
+        schuif = schuif + omlaag;
+        cursorhoogte = cursorhoogte + omlaag;
+        hoogte = hoogte + omlaag;
+      }
       break;
 
     case 'W': case 'w':
-      schuif = schuif - omhoog;
-      hoogte = hoogte - omhoog;
+      if(hoogte - omhoog < 0 ){ //BORDER DETECTIE TE SNEL AL BIJ 39 IPV 41!!
+        cout << "Dat lukte niet, de wereldrand wordt bereikt met deze verschuiving" << endl;
+        omhoog = 1;
+      }else{
+        schuif = schuif - omhoog;
+        cursorhoogte = cursorhoogte - omhoog;
+        hoogte = hoogte - omhoog;
+
+      }
       break;
 
     case 'A': case 'a':
-      schuifbreedte = schuifbreedte - links;
-      breedte = breedte - links;
+      if(breedte - links < 0 ){
+        cout << "Dat lukte niet, de wereldrand wordt bereikt met deze verschuiving" << endl;
+        links = 1;
+      }else{
+        schuifbreedte = schuifbreedte - links;
+        cursorbreedte = cursorbreedte - links;
+        breedte = breedte - links;
+      }
       break;
 
     case 'D': case 'd':
-      schuifbreedte = schuifbreedte + rechts;
-      breedte = breedte + rechts;
+      if(breedte + rechts > MAX ){
+        cout << "Dat lukte niet, de wereldrand wordt bereikt met deze verschuiving" << endl;
+        rechts = 1;
+      }else{
+        schuifbreedte = schuifbreedte + rechts;
+        cursorbreedte = cursorbreedte + rechts;
+        breedte = breedte + rechts;
+      }
       break;
     }
-    cout << hoogte << endl;
-    cout << breedte << endl;
-    cout << schuif << endl;
-    cout << schuifbreedte << endl;
   menu( );
 
 return 1;
@@ -240,6 +272,12 @@ void life::parameters ( ) {
         exit(1);
 
     } // switch
+    cout << "Kies een letter: " << endl;
+    letter = cin.get( );
+
+    while (letter == '\n') {
+      letter = cin.get( );
+    }
 
     if (fout == true) {
       cout << "Geen optie!" << endl << endl;
@@ -247,12 +285,6 @@ void life::parameters ( ) {
 
     fout = true;
 
-    cout << "Kies een letter: " << endl;
-    letter = cin.get( );
-
-    while (letter == '\n') {
-      letter = cin.get( );
-    }
 
   } // while
 
@@ -456,18 +488,18 @@ void life::menu ( ) {
 
     } // switch
 
-    if (fout == true) {
-      cout << "Geen optie!" << endl << endl;
-    }
-
-    fout = true;
-
     cout << "Kies een letter: ";
     letter = cin.get( );
 
     while (letter == '\n') {
       letter = cin.get( );
     }
+
+    if (fout == true) {
+      cout << "Geen optie!" << endl << endl; //ERROR GEEN OPTIE
+    }
+
+    fout = true;
 
   } // while
 
