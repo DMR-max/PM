@@ -54,7 +54,7 @@ void life::drukaf ( ){
   for ( i = schuif; i < hoogte; i++ ) { // hij start dus bij i = 1
     for ( j = schuifbreedte; j < breedte; j++ ) {
 
-      if (i == MAX - 1 || i == 0 || j == MAX - 1 || j == 0) {
+      if (i == MAX - 1 || i == 0 || j == MAX - 1 || j == 0 ) {
         dewereld[i][j] = false;
         cout << "=";
       }else if (dewereld[i][j]) { //BOVEN DE LIJN METEEN ALLEEN MAAR XSJES
@@ -140,7 +140,7 @@ int life::verschuif ( ) {
   switch (letterinvoer) {
 
     case 'S': case 's':
-      if(hoogte + omlaag > MAX ){
+      if (hoogte + omlaag > MAX){
         cout << "Dat lukte niet, de wereldrand wordt bereikt met deze verschuiving" << endl;
         omlaag = 1;
       }else{
@@ -151,7 +151,7 @@ int life::verschuif ( ) {
       break;
 
     case 'W': case 'w':
-      if(hoogte - omhoog < 0 ){ //BORDER DETECTIE TE SNEL AL BIJ 39 IPV 41!!
+      if (schuif - omhoog < 0){ //BORDER DETECTIE TE SNEL AL BIJ 39 IPV 41!!
         cout << "Dat lukte niet, de wereldrand wordt bereikt met deze verschuiving" << endl;
         omhoog = 1;
       }else{
@@ -163,7 +163,7 @@ int life::verschuif ( ) {
       break;
 
     case 'A': case 'a':
-      if(breedte - links < 0 ){
+      if (schuifbreedte - links < 0){
         cout << "Dat lukte niet, de wereldrand wordt bereikt met deze verschuiving" << endl;
         links = 1;
       }else{
@@ -174,7 +174,7 @@ int life::verschuif ( ) {
       break;
 
     case 'D': case 'd':
-      if(breedte + rechts > MAX ){
+      if (breedte + rechts > MAX){
         cout << "Dat lukte niet, de wereldrand wordt bereikt met deze verschuiving" << endl;
         rechts = 1;
       }else{
