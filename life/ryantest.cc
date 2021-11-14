@@ -7,8 +7,8 @@ using namespace std;
 class life {
   public:
     life ( ) {
-      hoogte = 12;
-      breedte = 12;
+      hoogte = 25;
+      breedte = 80;
       cursorhoogte = hoogte / 2;
       cursorbreedte = breedte / 2;
 
@@ -31,7 +31,7 @@ class life {
     void karakters ( );
 
   private:
-    static const int MAX = 12;
+    static const int MAX = 1000;
     bool dewereld[MAX][MAX]; // array!!!
     bool reserve[MAX][MAX];
     int hoogte, breedte;
@@ -50,8 +50,6 @@ class life {
 
 void life::drukaf ( ){
   int i = 0, j = 0;
-  cout << endl << "Cursor Coordinaten:" << "(" << cursorbreedte << ", "
-  << cursorhoogte << ")" << endl;
   for ( i = schuif; i < hoogte; i++ ) { // hij start dus bij i = 1
     for ( j = schuifbreedte; j < breedte; j++ ) {
 
@@ -59,15 +57,17 @@ void life::drukaf ( ){
         dewereld[i][j] = false;
         cout << "=";
       }else if (dewereld[i][j]) { //BOVEN DE LIJN METEEN ALLEEN MAAR XSJES
-        cout << kar_levend;
         if (i == cursorhoogte && j == cursorbreedte){
           cout << "#";
+        }else{
+          cout << kar_levend;
         }
       }
       else {
-        cout << kar_dood;
         if (i == cursorhoogte && j == cursorbreedte){
           cout << "$";
+        }else{
+          cout << kar_dood;
         }
       }
 
@@ -207,7 +207,7 @@ int life::verschuivingsstap ( ) {
   rechts = getal;
   getal = 0;
 
-  cout << "voer in hoeveel u naar links wil gaan in:  ";
+  cout << "Voer in hoeveel u naar links wil gaan in:  ";
   LeesGetal();
   links = getal;
   getal = 0;
@@ -225,9 +225,8 @@ void life::randomizer ( ) {
     for ( i = 0; i < hoogte; i++ ) {
       for ( j = 0; j < breedte; j++ ) {
 
-          randomgetal = ( 221 * randomgetal + 1 ) % (hoogte * breedte + 1);
-          mogelijkheid = (hoogte * breedte + 1) / 100 * percentage;
-
+          randomgetal = ( 221 * randomgetal + 1 ) % 1000;
+          mogelijkheid = 1000 / 100 * percentage;
 
           if (randomgetal < mogelijkheid) {
             dewereld[i][j] = true;
@@ -247,26 +246,65 @@ void life::randomizer ( ) {
 }
 
 void life::toggle ( ) {
+
+  /*
   string regel;
+  char n;
   int i, regellengte = 0;
-  cin >> regel;
+  cin >> n;
   getline (cin, regel);
+  regel = n + regel;
   cout << regel << endl;
   regellengte = regel.length ( );
   cout << regellengte << endl;
   for (i = 0; i < regellengte; i++){
-    if (regel[i] == 'd'){
-      cursorbreedte = cursorbreedte + 1;
-      cout << cursorbreedte << endl;
+    if (cursorbreedte + 1 >= breedte || cursorhoogte + 1 >= hoogte ||
+      cursorhoogte - 1 <= schuif || cursorbreedte - 1 <= schuifbreedte){
+        //cout << "Dat lukte niet probeer de view aan te passen: " << endl;
+        if (cursorbreedte >= breedte && cursorbreedte < (breedte / 2) - MAX){
+          schuifbreedte = 80 + schuifbreedte;
+        }
+        if (cursorhoogte >= hoogte && cursorhoogte < (hoogte / 2) - MAX){
+          schuif = 25 + schuif;
+        }
+        if (cursorbreedte <= schuifbreedte && cursorbreedte > (breedte / 2)){
+          schuifbreedte = schuifbreedte - 80;
+        }
+        if (cursorhoogte >= hoogte && cursorhoogte < (hoogte / 2) ){
+          schuif = schuif - 25;
+        }
+        //menu();
+      }else{
+      switch (regel[i]) {
+          case 'T': case 't':
+            if(dewereld[cursorhoogte][cursorbreedte]){
+              dewereld[cursorhoogte][cursorbreedte] = false;
+            }else{
+              dewereld[cursorhoogte][cursorbreedte] = true;
+            }
+            break;
+            case 'D': case 'd':
+              cursorbreedte = cursorbreedte + 1;
+              break;
+            case 'A': case 'a':
+              cursorbreedte = cursorbreedte - 1;
+              break;
+            case 'W': case 'w':
+              cursorhoogte = cursorhoogte - 1;
+              break;
+            case 'Z': case 'z':
+              cursorhoogte = cursorhoogte + 1;
+              break;
+        }
     }
-    cout << regellengte << endl;
   }
-  menu ( );
+
+  */
 }
 
 void life::file ( ) {
 
-/*
+  /*
   string eigen_invoer;
   char kar, glidergun[90][90];
   int i = 0, j = 0;
@@ -289,13 +327,12 @@ void life::file ( ) {
     }
     if (kar == 'x'){
       dewereld[i][j] = true;
+    }else{
+    dewereld[i][j] = false;
     }
     j++;
-
-
   }
-*/
-
+  */
 }
 
 void life::een ( ) {
@@ -319,35 +356,35 @@ void life::een ( ) {
 
       LevendeBuren = 0;
 
-      if (dewereld[l][j]) {
+      if (reserve[l][j]) {
         LevendeBuren++;
       }
 
-      if (dewereld[r][j]) {
+      if (reserve[r][j]) {
         LevendeBuren++;
       }
 
-      if (dewereld[i][b]) {
+      if (reserve[i][b]) {
         LevendeBuren++;
       }
 
-      if (dewereld[i][o]) {
+      if (reserve[i][o]) {
         LevendeBuren++;
       }
 
-      if (dewereld[l][b]) {
+      if (reserve[l][b]) {
         LevendeBuren++;
       }
 
-      if (dewereld[r][b]) {
+      if (reserve[r][b]) {
         LevendeBuren++;
       }
 
-      if (dewereld[l][o]) {
+      if (reserve[l][o]) {
         LevendeBuren++;
       }
 
-      if (dewereld[r][o]) {
+      if (reserve[r][o]) {
         LevendeBuren++;
       }
 
@@ -368,7 +405,7 @@ void life::gaan ( ) {
   int a = 1;
 
   cout << endl << "Hoeveel iteraties: ";
-  LeesGetal( );                                                                    // aanpassen
+  LeesGetal( );
 
   for (a; a <= getal; a++) {
     een ( );
@@ -379,7 +416,7 @@ void life::gaan ( ) {
 }
 
 void life::Percentage ( ) {
-  cout << endl << "Kies een percentage tussen 1 en 100: ";
+  cout << endl << "Kies een percentage tussen 0 en 100: ";
   percentage = 1;
   LeesGetal ( );
 
@@ -481,7 +518,12 @@ void life::menu ( ) {
   char letter;
   bool fout;
   // life L;
+
+  cout << endl << "Cursor Coordinaten:" << "(" << cursorbreedte << ", "
+  << cursorhoogte << ")" << endl;
+
   drukaf( );
+
   cout << "(S)toppen, (H)eelschoon, S(c)hoon, "
        << "(V)erschuif, (P)arameters, (R)andom, "
        << "(T)oggle, (F)ile, (E)en, (G)aan." << endl;
