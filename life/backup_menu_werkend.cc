@@ -9,8 +9,8 @@ class life {
     life ( ) {
       hoogte = 25;
       breedte = 80;
-      cursorhoogte = 12;
-      cursorbreedte = 40;
+      cursorhoogte = hoogte / 2;
+      cursorbreedte = breedte / 2;
 
     }
     void drukaf ( );
@@ -22,10 +22,11 @@ class life {
     void parameters ( );
     void randomizer ( );
     void toggle ( );
-    void glidergun ( );
+    void file ( );
     void een ( );
     void gaan ( );
     void menu ( );
+    void view ( );
     void LeesGetal ( );
     void karakters ( );
 
@@ -49,7 +50,7 @@ class life {
 
 void life::drukaf ( ){
   int i = 0, j = 0;
-  cout << "cursor coordinaten:" << "(" << cursorbreedte << ", "
+  cout << endl << "Cursor Coordinaten:" << "(" << cursorbreedte << ", "
   << cursorhoogte << ")" << endl;
   for ( i = schuif; i < hoogte; i++ ) { // hij start dus bij i = 1
     for ( j = schuifbreedte; j < breedte; j++ ) {
@@ -58,15 +59,17 @@ void life::drukaf ( ){
         dewereld[i][j] = false;
         cout << "=";
       }else if (dewereld[i][j]) { //BOVEN DE LIJN METEEN ALLEEN MAAR XSJES
-        cout << kar_levend;
         if (i == cursorhoogte && j == cursorbreedte){
           cout << "#";
+        }else{
+          cout << kar_levend;
         }
       }
       else {
-        cout << kar_dood;
         if (i == cursorhoogte && j == cursorbreedte){
           cout << "$";
+        }else{
+          cout << kar_dood;
         }
       }
 
@@ -78,7 +81,6 @@ cout << endl;
 
 void life::LeesGetal ( ) {
   char kar;
-
 
   kar = cin.get ( );
   if (percentage != 1){
@@ -92,6 +94,8 @@ void life::LeesGetal ( ) {
       kar = cin.get( );
     }
   }else{
+    percentage = 0;
+    kar = cin.get( );
     while (kar !='\n'){
       if ('0' <= kar && kar <= '9' && percentage * 10 < 101) {
         percentage = 10 * percentage + (kar - '0');
@@ -103,10 +107,11 @@ void life::LeesGetal ( ) {
       percentage = percentage / 10;
     }
 
-    cout << "percentage: " << percentage << endl << endl;
-
+    cout << "Percentage: " << percentage << endl;
   }
+
 }
+
 
 void life::heelschoon ( ) {
   int i, j;
@@ -115,7 +120,6 @@ void life::heelschoon ( ) {
       dewereld[i][j] = false;
     }
   }
-  menu( );
 }
 
 void life::schoon ( ) {
@@ -125,23 +129,23 @@ void life::schoon ( ) {
       dewereld[i][j] = false;
     }//for j
   }//for i
-  menu( );
 }
 
 
 int life::verschuif ( ) {
   int j, i = 0;
   char letterinvoer;
-  cout << "voer een letter in: S = omlaag, W = omhoog, A = links, D = rechts" << endl;
+  cout << endl << "Z = Omlaag, W = Omhoog, A = Links, D = Rechts " << endl
+       << "Voer een letter in: ";
   letterinvoer = cin.get( );
   while (letterinvoer == '\n') {
     letterinvoer = cin.get( );
   }
   switch (letterinvoer) {
 
-    case 'S': case 's':
+    case 'Z': case 'z':
       if (hoogte + omlaag > MAX){
-        cout << "Dat lukte niet, de wereldrand wordt bereikt met deze verschuiving" << endl;
+        cout << "Dat lukte niet, de wereldrand wordt bereikt met deze verschuiving." << endl;
         omlaag = 1;
       }else{
         schuif = schuif + omlaag;
@@ -152,7 +156,7 @@ int life::verschuif ( ) {
 
     case 'W': case 'w':
       if (schuif - omhoog < 0){ //BORDER DETECTIE TE SNEL AL BIJ 39 IPV 41!!
-        cout << "Dat lukte niet, de wereldrand wordt bereikt met deze verschuiving" << endl;
+        cout << "Dat lukte niet, de wereldrand wordt bereikt met deze verschuiving." << endl;
         omhoog = 1;
       }else{
         schuif = schuif - omhoog;
@@ -164,7 +168,7 @@ int life::verschuif ( ) {
 
     case 'A': case 'a':
       if (schuifbreedte - links < 0){
-        cout << "Dat lukte niet, de wereldrand wordt bereikt met deze verschuiving" << endl;
+        cout << "Dat lukte niet, de wereldrand wordt bereikt met deze verschuiving." << endl;
         links = 1;
       }else{
         schuifbreedte = schuifbreedte - links;
@@ -175,7 +179,7 @@ int life::verschuif ( ) {
 
     case 'D': case 'd':
       if (breedte + rechts > MAX){
-        cout << "Dat lukte niet, de wereldrand wordt bereikt met deze verschuiving" << endl;
+        cout << "Dat lukte niet, de wereldrand wordt bereikt met deze verschuiving." << endl;
         rechts = 1;
       }else{
         schuifbreedte = schuifbreedte + rechts;
@@ -184,29 +188,28 @@ int life::verschuif ( ) {
       }
       break;
     }
-  menu( );
 
 return 1;
 }
 
 int life::verschuivingsstap ( ) {
   char omlaag_invoer, omhoog_invoer, links_invoer, rechts_invoer;
-  cout << "voer in hoeveel u omlaag wil gaan in" << endl;
+  cout << endl << "Voer in hoeveel u omhoog wil gaan in: ";
   LeesGetal();
   omlaag = getal;
   getal = 0;
 
-  cout << "voer in hoeveel u omhoog wil gaan in" << endl;
+  cout << "Voer in hoeveel u omlaag wil gaan in: ";
   LeesGetal();
   omhoog = getal;
   getal = 0;
 
-  cout << "voer in hoeveel u rechts wil gaan in" << endl;
+  cout << "Voer in hoeveel u naar rechts wil gaan in: ";
   LeesGetal();
   rechts = getal;
   getal = 0;
 
-  cout << "voer in hoeveel u links wil gaan in" << endl;
+  cout << "voer in hoeveel u naar links wil gaan in:  ";
   LeesGetal();
   links = getal;
   getal = 0;
@@ -215,8 +218,196 @@ int life::verschuivingsstap ( ) {
   return 1;
 }
 
+void life::randomizer ( ) {
+  static int randomgetal;                                                           //Check ff of dit mag bitch
+  srand(randomgetal);
+  int mogelijkheid;
+  int i, j;
+
+    for ( i = 0; i < hoogte; i++ ) {
+      for ( j = 0; j < breedte; j++ ) {
+
+          randomgetal = ( 221 * randomgetal + 1 ) % (hoogte * breedte + 1);
+          mogelijkheid = (hoogte * breedte + 1) / 100 * percentage;
+
+
+          if (randomgetal < mogelijkheid) {
+            dewereld[i][j] = true;
+          }
+
+          /*
+          if (percentage != 0) {
+            dewereld[i][j] = ((randomgetal % 100) <= percentage);
+          }
+          */
+
+          else {
+            dewereld[i][j] = false;
+          }
+        }
+      }
+}
+
+void life::toggle ( ) {
+  string regel;
+  char n;
+  int i, regellengte = 0;
+  cin >> n;
+  getline (cin, regel);
+  regel = n + regel;
+  cout << regel << endl;
+  regellengte = regel.length ( );
+  cout << regellengte << endl;
+  for (i = 0; i < regellengte; i++){
+    if (cursorbreedte + 1 >= breedte || cursorhoogte + 1 >= hoogte ||
+      cursorhoogte - 1 <= schuif || cursorbreedte - 1 <= schuifbreedte){
+        cout << "Dat lukte niet probeer de view aan te passen: " << endl;
+        menu();
+      }else{
+      switch (regel[i]) {
+          case 'T': case 't':
+            if(dewereld[cursorhoogte][cursorbreedte]){
+              dewereld[cursorhoogte][cursorbreedte] = false;
+            }else{
+              dewereld[cursorhoogte][cursorbreedte] = true;
+            }
+            break;
+            case 'D': case 'd':
+              cursorbreedte = cursorbreedte + 1;
+              break;
+            case 'A': case 'a':
+              cursorbreedte = cursorbreedte - 1;
+              break;
+            case 'W': case 'w':
+              cursorhoogte = cursorhoogte - 1;
+              break;
+            case 'Z': case 'z':
+              cursorhoogte = cursorhoogte + 1;
+              break;
+        }
+    }
+  }
+  menu ( );
+}
+
+void life::file ( ) {
+
+/*
+  string eigen_invoer;
+  char kar, glidergun[90][90];
+  int i = 0, j = 0;
+  cout << "Geef uw bestandsnaam op:" << endl;
+  cin >> eigen_invoer;
+  ifstream invoer (eigen_invoer, ios::in | ios::binary);
+  if (invoer.fail ( )){
+    cout << "Dit bestand bestaat niet." << endl;
+    exit(1);
+  }
+
+  cout << eigen_invoer << endl;
+
+  // Main while loop om karakters te printen
+  while (! invoer.eof ( )) {
+    kar = invoer.get ( );
+    if (kar == '\n'){
+      i++;
+      j = 0;
+    }
+    if (kar == 'x'){
+      dewereld[i][j] = true;
+    }else{
+    dewereld[i][j] = false;
+  }
+    j++;
+
+
+  }
+*/
+
+}
+
+void life::een ( ) {
+  int LevendeBuren;
+  int l, r, b, o, i, j;
+
+
+  for ( i = 1; i < MAX - 1; i++ ) {
+    for ( j = 1; j < MAX - 1; j++ ) {
+      reserve[i][j] = dewereld[i][j];
+    }
+  }
+
+  for ( i = 1; i < MAX - 1; i++ ) {
+    for ( j = 1; j < MAX - 1; j++ ) {
+
+      l = i + 1;
+      r = i - 1;
+      b = j + 1;
+      o = j - 1;
+
+      LevendeBuren = 0;
+
+      if (dewereld[l][j]) {
+        LevendeBuren++;
+      }
+
+      if (dewereld[r][j]) {
+        LevendeBuren++;
+      }
+
+      if (dewereld[i][b]) {
+        LevendeBuren++;
+      }
+
+      if (dewereld[i][o]) {
+        LevendeBuren++;
+      }
+
+      if (dewereld[l][b]) {
+        LevendeBuren++;
+      }
+
+      if (dewereld[r][b]) {
+        LevendeBuren++;
+      }
+
+      if (dewereld[l][o]) {
+        LevendeBuren++;
+      }
+
+      if (dewereld[r][o]) {
+        LevendeBuren++;
+      }
+
+      dewereld[i][j] = false;
+
+      if ((reserve[i][j] && LevendeBuren == 2) || (reserve[i][j] && LevendeBuren == 3)) {
+        dewereld[i][j] = true;
+      }else if (! reserve[i][j] && LevendeBuren == 3) {
+        dewereld[i][j] = true;
+      }
+
+    }
+  }
+
+}
+
+void life::gaan ( ) {
+  int a = 1;
+
+  cout << endl << "Hoeveel iteraties: ";
+  LeesGetal( );                                                                    // aanpassen
+
+  for (a; a <= getal; a++) {
+    een ( );
+    drukaf ( );
+  }
+
+  getal = 0;
+}
+
 void life::Percentage ( ) {
-  cout << "Kies een percentage tussen 1 en 100: ";
+  cout << endl << "Kies een percentage tussen 1 en 100: ";
   percentage = 1;
   LeesGetal ( );
 
@@ -236,279 +427,172 @@ void life::karakters ( ) {
 
 }
 
+void life::view ( ) {
+  cout << endl << "Voer de hoogte van de view in: ";
+  LeesGetal();
+  hoogte = getal;
+  cursorhoogte = hoogte / 2;
+  getal = 0;
+
+  cout << "Voer de breedte van de view in: ";
+  LeesGetal();
+  breedte = getal;
+  cursorbreedte = breedte / 2;
+  getal = 0;
+}
+
 
 void life::parameters ( ) {
   char letter;
   bool fout;
 
-  cout << "S = Stoppen, V = Verschuivingsstap grote, " << endl
-       << "K = Twee versch karakters, P = Percentage, " << endl
-       << "T = Terug." << endl << endl;
+  cout << endl << "(S)toppen, (V)erschuivingsstap grote, "
+       << "Twee verschillende (k)arakters, (P)ercentage, "
+       << "(A)anpassen view, (T)erug." << endl;
+
+  cout << "Kies een letter: ";
+
+  letter = cin.get( );
+
+  while (letter == '\n') {
+    letter = cin.get( );
+}
 
   while (letter != 'T' && letter != 't'){
 
     switch (letter) {
 
       case 'V': case 'v':
-        cout << "Verschuiving" << endl << endl;
         verschuivingsstap ( );
+        menu ( );
         fout = false;
         break;
 
       case 'K': case 'k':
-        cout << "Karakters" << endl << endl;
         karakters ( );
+        parameters ( );
         fout = false;
         break;
 
       case 'P': case 'p':
-        cout << "Percentage" << endl << endl;
         Percentage ( );
+        parameters ( );
+        fout = false;
+        break;
+
+      case 'A': case 'a':
+        view ( );
+        parameters ( );
         fout = false;
         break;
 
       case 'S': case 's':
-        cout << "Stop" << endl;
         exit(1);
 
     } // switch
-    cout << "Kies een letter: " << endl;
-    letter = cin.get( );
-
-    while (letter == '\n') {
-      letter = cin.get( );
-    }
-
     if (fout == true) {
-      cout << "Geen optie!" << endl << endl;
-    }
+     cout << "Geen optie!" << endl << endl;
+     parameters ( );
+  }
 
     fout = true;
-
+    cout << endl;
 
   } // while
 
-    cout << "Terug" << endl << endl;
-
+  menu ( );
   return;
-} // void submenu
 
-void life::randomizer ( ) {
-  static int randomgetal = 42;
-  int i, j;
-  int mogelijkheid;
-
-    for ( i = 0; i < hoogte; i++ ) {
-      for ( j = 0; j < breedte; j++ ) {
-
-          randomgetal = ( 221 * randomgetal + 1 ) % 1000;
-          mogelijkheid = 10 * percentage;
-
-          if (randomgetal < mogelijkheid) {
-            dewereld[i][j] = true;
-          }
-
-          else {
-            dewereld[i][j] = false;
-          }
-        }
-      }
-
-    menu( );
-}
-
-void life::toggle ( ) {
-
-}
-
-void life::glidergun ( ) {
-  string eigen_invoer;
-  char kar, glidergun[90][90];
-  int i = 0, j = 0;
-  cout << "geef uw bestandsnaam op voor de glidergun" << endl;
-  cin >> eigen_invoer;
-  ifstream invoer (eigen_invoer, ios::in | ios::binary);
-  invoer.open (eigen_invoer.c_str ( ));
-  if (invoer.fail ( )){
-    cout << "Dit bestand bestaat niet." << endl;
-    exit(1);
-  }
-  cout << eigen_invoer << endl;
-
-  // Main while loop om karakters te printen
-  while (! invoer.eof ( )) {
-    kar = invoer.get ( );
-    if (kar == '\n'){
-      i++;
-      j = 0;
-    }
-    if (kar == 'x'){
-      dewereld[i][j] = true;
-    }
-    j++;
-
-
-  }
-  menu();
-
-}
-
-void life::een ( ) {
-  int LevendeBuren;
-  int a, b, i, j;
-  bool buur;
-
-
-  for ( i = 0; i < MAX; i++ ) {
-    for ( j = 0; j < MAX; j++ ) {
-      reserve[i][j] = dewereld[i][j];
-    }
-  }
-
-  for ( i = 0; i < MAX; i++ ) {
-    for ( j = 0; j < MAX; j++ ) {
-
-      LevendeBuren = 0;
-      buur = true;
-
-      for (a = i - 1; a <= i + 1; a++) {
-        for (b = i - 1; b <= j + 1; b++) {
-
-          if (a < 0 || a > MAX || b < 0 || b > MAX){
-            buur = false;
-          }
-
-          if (a == i && b == j) {
-            buur = false;
-          }
-
-          if (buur && reserve[a][b]) {
-            LevendeBuren++;
-          }
-
-        }
-      }
-
-
-      cout << i << ", " << j << ": Buren: " << LevendeBuren;
-      if (reserve[i][j]) {
-        cout << " Wereld: X ";
-      }
-
-      else {
-        cout << " Wereld: O ";
-      }
-
-      cout << "Reserve: " << a << ", " << b << endl;
-
-
-      if (LevendeBuren == 3) {
-        dewereld[i][j] = true;
-      }else if (LevendeBuren != 2) {
-        dewereld[i][j] = false;
-      }
-
-    }
-  }
-
-  menu( );
-
-}
-
-void life::gaan ( ) {
-
-}
+} // void menu
 
 void life::menu ( ) {
   char letter;
   bool fout;
   // life L;
   drukaf( );
-  cout << "S = Stoppen, H = Heelschoon, C = Schoon, " << endl
-       << "V = Verschuif, P = Parameters, R = Random, " << endl
-       << "T = Toggle, L = Glidergun, E = Een, G = Gaan." << endl << endl;
+  cout << "(S)toppen, (H)eelschoon, S(c)hoon, "
+       << "(V)erschuif, (P)arameters, (R)andom, "
+       << "(T)oggle, (F)ile, (E)en, (G)aan." << endl;
+
+  cout << "Kies een letter: ";
+
+  letter = cin.get( );
+
+  while (letter == '\n') {
+    letter = cin.get( );
+  }
 
   while (letter != 'S' && letter != 's'){
 
     switch (letter) {
-      case 'K':
-        cout << "voer getal in:" << endl;
-        LeesGetal( );
-        fout = false;
-        break;
 
       case 'H': case 'h':
-        cout << "Heelschoon" << endl << endl;
         heelschoon ( );
+        menu ( );
         fout = false;
         break;
 
       case 'C': case 'c':
-        cout << "Schoon" << endl << endl;
         schoon ( );
+        menu ( );
         fout = false;
         break;
 
       case 'V': case 'v':
-        cout << "verschuif" << endl << endl;
         verschuif ( );
+        menu ( );
         fout = false;
         break;
 
       case 'P': case 'p':
-        cout << "Parameters" << endl << endl;
         parameters ( );
         fout = false;
         break;
 
       case 'R': case 'r':
-        cout << "Random" << endl << endl;
         randomizer ( );
+        menu ( );
         fout = false;
         break;
 
       case 'T': case 't':
-        cout << "Toggle" << endl << endl;
         toggle ( );
+        menu ( );
         fout = false;
         break;
 
-      case 'L': case 'l':
-        cout << "Glidergun" << endl << endl;
-        glidergun ( );
+      case 'F': case 'f':
+        file ( );
+        menu ( );
         fout = false;
         break;
 
       case 'E': case 'e':
-        cout << "Een" << endl << endl;
         een ( );
+        menu ( );
         fout = false;
         break;
 
       case 'G': case 'g':
-        cout << "Gaan" << endl << endl;
         gaan ( );
+        menu ( );
         fout = false;
         break;
 
     } // switch
 
-    cout << "Kies een letter: ";
-    letter = cin.get( );
-
-    while (letter == '\n') {
-      letter = cin.get( );
-    }
-
     if (fout == true) {
-      cout << "Geen optie!" << endl << endl; //ERROR GEEN OPTIE
+      cout << "Geen optie!" << endl << endl;
+      menu ( );
     }
 
     fout = true;
+    cout << endl;
 
   } // while
 
   cout << "Stop" << endl;
+  exit(1);
 
 } // void menu
 
