@@ -5,8 +5,8 @@ using namespace std;
 class life {
   public:
     life ( ) {
-      hoogte = 15;
-      breedte = 15;
+      hoogte = 20;
+      breedte = 20;
 
     }
     void drukaf ( );
@@ -25,7 +25,7 @@ class life {
     void LeesGetal ( );
 
   private:
-    static const int MAX = 15;
+    static const int MAX = 20;
     bool dewereld[MAX][MAX]; // array!!!
     bool reserve[MAX][MAX];
     int hoogte, breedte;
@@ -76,8 +76,6 @@ void life::LeesGetal ( ) {
   if (percentage > 100 && percentage < 110) {
     percentage = percentage / 10;
   }
-
-  cout << "Getal: " << percentage << endl << endl;
 }
 
 void life::heelschoon ( ) {
@@ -94,11 +92,10 @@ void life::schoon ( ) {
   int i, j;
   for ( i = 0; i < hoogte; i++ ) { // hij start dus bij i = 1
     for ( j = 0; j < breedte; j++ ) {
-        cout << "O ";
+        dewereld[i][j] = false;
     }//for j
-  cout << endl;
   }//for i
-cout << endl;
+  drukaf( );
 }
 
 int life::verschuif ( ) {
@@ -172,13 +169,15 @@ int life::verschuivingsstap ( ) {
   links = links_invoer - '0';
 
   verschuif( );
+
   return 1;
 }
 
 void life::Percentage ( ) {
-  cout << "Kies een percentage tussen 1 en 100: ";
+  cout << "Kies een percentage van 0 tot en met 100: ";
   LeesGetal ( );
 
+  cout << endl;
 }
 
 
@@ -186,72 +185,80 @@ void life::parameters ( ) {
   char letter;
   bool fout;
 
-  cout << "S = Stoppen, V = Verschuivingsstap grote, " << endl
-       << "K = Twee versch karakters, P = Percentage, " << endl
-       << "T = Terug." << endl << endl;
+  cout << "(S)toppen, (V)erschuivingsstap grote, "
+       << "Twee verschillende (k)arakters, (P)ercentage, "
+       << "(T)erug." << endl << endl;
 
   while (letter != 'T' && letter != 't'){
 
     switch (letter) {
 
       case 'V': case 'v':
-        cout << "Verschuiving" << endl << endl;
         verschuivingsstap ( );
+        parameters ( );
         fout = false;
         break;
 
       case 'K': case 'k':
-        cout << "Karakters" << endl << endl;
+        parameters ( );
         fout = false;
         break;
 
       case 'P': case 'p':
-        cout << "Percentage" << endl << endl;
         Percentage ( );
+        parameters ( );
         fout = false;
         break;
 
       case 'S': case 's':
-        cout << "Stop" << endl;
         exit(1);
 
     } // switch
 
     if (fout == true) {
       cout << "Geen optie!" << endl << endl;
+      parameters ( );
     }
 
     fout = true;
 
-    cout << "Kies een letter: " << endl;
+    cout << "Kies een letter: ";
     letter = cin.get( );
 
     while (letter == '\n') {
       letter = cin.get( );
     }
 
+    cout << endl;
+
   } // while
 
-    cout << "Terug" << endl << endl;
-
+  menu ( );
   return;
 } // void submenu
 
 void life::randomizer ( ) {
   static int randomgetal;                                                           //Check ff of dit mag bitch
   srand(randomgetal);
-
-  cout << "Random: " << randomgetal << endl;
+  int mogelijkheid;
   int i, j;
 
     for ( i = 0; i < hoogte; i++ ) {
       for ( j = 0; j < breedte; j++ ) {
 
           randomgetal = ( 221 * randomgetal + 1 ) % 1000;
+          mogelijkheid = 10 * percentage;
 
+
+          if (randomgetal < mogelijkheid) {
+            dewereld[i][j] = true;
+          }
+
+          /*
           if (percentage != 0) {
             dewereld[i][j] = ((randomgetal % 100) <= percentage);
           }
+          */
 
           else {
             dewereld[i][j] = false;
@@ -275,8 +282,8 @@ void life::een ( ) {
   int l, r, b, o, i, j;
 
 
-  for ( i = 0; i < MAX; i++ ) {
-    for ( j = 0; j < MAX; j++ ) {
+  for ( i = 1; i < MAX - 1; i++ ) {
+    for ( j = 1; j < MAX - 1; j++ ) {
       reserve[i][j] = dewereld[i][j];
     }
   }
@@ -347,71 +354,72 @@ void life::gaan ( ) {
   for (a; a <= loop; a++) {
     een ( );
   }
+
 }
 
 void life::menu ( ) {
   char letter;
   bool fout;
   // life L;
-  cout << "S = Stoppen, H = Heelschoon, C = Schoon, " << endl
-       << "V = Verschuif, P = Parameters, R = Random, " << endl
-       << "T = Toggle, L = Glidergun, E = Een, G = Gaan." << endl << endl;
+  cout << "(S)toppen, (H)eelschoon, S(c)hoon, "
+       << "(V)erschuif, (P)arameters, (R)andom, "
+       << "(T)oggle, (F)ile, (E)en, (G)aan." << endl << endl;
 
   while (letter != 'S' && letter != 's'){
 
     switch (letter) {
 
       case 'H': case 'h':
-        cout << "Heelschoon" << endl << endl;
         heelschoon ( );
+        menu ( );
         fout = false;
         break;
 
       case 'C': case 'c':
-        cout << "Schoon" << endl << endl;
         schoon ( );
+        menu ( );
         fout = false;
         break;
 
       case 'V': case 'v':
-        cout << "verschuif" << endl << endl;
         verschuif ( );
+        menu ( );
         fout = false;
         break;
 
       case 'P': case 'p':
-        cout << "Parameters" << endl << endl;
         parameters ( );
+        menu ( );
         fout = false;
         break;
 
       case 'R': case 'r':
-        cout << "Random" << endl << endl;
         randomizer ( );
+        menu ( );
         fout = false;
         break;
 
       case 'T': case 't':
-        cout << "Toggle" << endl << endl;
         toggle ( );
+        menu ( );
         fout = false;
         break;
 
-      case 'L': case 'l':
-        cout << "Glidergun" << endl << endl;
+      case 'F': case 'f':
         glidergun ( );
+        menu ( );
         fout = false;
         break;
 
       case 'E': case 'e':
-        cout << "Een" << endl << endl;
         een ( );
+        menu ( );
         fout = false;
         break;
 
       case 'G': case 'g':
-        cout << "Gaan" << endl << endl;
         gaan ( );
+        menu ( );
         fout = false;
         break;
 
@@ -419,6 +427,7 @@ void life::menu ( ) {
 
     if (fout == true) {
       cout << "Geen optie!" << endl << endl;
+      menu ( );
     }
 
     fout = true;
@@ -429,6 +438,8 @@ void life::menu ( ) {
     while (letter == '\n') {
       letter = cin.get( );
     }
+
+    cout << endl;
 
   } // while
 
