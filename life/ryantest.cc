@@ -7,8 +7,8 @@ using namespace std;
 class life {
   public:
     life ( ) {
-      hoogte = 25;
-      breedte = 80;
+      hoogte = 12;
+      breedte = 12;
       cursorhoogte = hoogte / 2;
       cursorbreedte = breedte / 2;
 
@@ -31,7 +31,7 @@ class life {
     void karakters ( );
 
   private:
-    static const int MAX = 1000;
+    static const int MAX = 12;
     bool dewereld[MAX][MAX]; // array!!!
     bool reserve[MAX][MAX];
     int hoogte, breedte;
