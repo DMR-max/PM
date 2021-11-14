@@ -328,6 +328,11 @@ void life::glidergun ( ) {
   cout << "geef uw bestandsnaam op voor de glidergun" << endl;
   cin >> eigen_invoer;
   ifstream invoer (eigen_invoer, ios::in | ios::binary);
+  invoer.open (eigen_invoer.c_str ( ));
+  if (invoer.fail ( )){
+    cout << "Dit bestand bestaat niet." << endl;
+    exit(1);
+  }
   cout << eigen_invoer << endl;
 
   // Main while loop om karakters te printen
