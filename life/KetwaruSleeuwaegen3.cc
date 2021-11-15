@@ -211,7 +211,7 @@ int life::verschuif ( ) {
   switch ( letterinvoer ) {
     //Omlaag gaan
     case 'Z': case 'z':
-      if (hoogte + omlaag >= MAX){
+      if (hoogte + omlaag > MAX){
         error = true;
         omlaag = 1;
       } else {
@@ -222,7 +222,7 @@ int life::verschuif ( ) {
       break;
     //Omhoog gaan
     case 'W': case 'w':
-      if ( schuif - omhoog <= 0 ) { //BORDER DETECTIE TE SNEL AL BIJ 39 IPV 41!!
+      if ( schuif - omhoog < 0 ) {
         error = true;
         omhoog = 1;
       } else {
@@ -233,7 +233,7 @@ int life::verschuif ( ) {
       break;
     //Naar links gaan
     case 'A': case 'a':
-      if ( schuifbreedte - links <= 0 ) {
+      if ( schuifbreedte - links < 0 ) {
         error = true;
         links = 1;
       } else {
@@ -244,7 +244,7 @@ int life::verschuif ( ) {
       break;
     //Naar rechts gaan
     case 'D': case 'd':
-      if ( breedte + rechts >= MAX ) {
+      if ( breedte + rechts > MAX ) {
         error = true;
         rechts = 1;
       } else {
