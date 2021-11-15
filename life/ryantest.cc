@@ -304,7 +304,6 @@ void life::toggle ( ) {
 
 void life::file ( ) {
 
-  /*
   string eigen_invoer;
   char kar, glidergun[90][90];
   int i = 0, j = 0;
@@ -332,7 +331,6 @@ void life::file ( ) {
     }
     j++;
   }
-  */
 }
 
 void life::een ( ) {
@@ -403,16 +401,19 @@ void life::een ( ) {
 
 void life::gaan ( ) {
   int a = 1;
+  int generatie = 0;
 
-  cout << endl << "Hoeveel iteraties: ";
+  //Aantal generaties vragen
+  cout << endl << "Hoeveel generaties: ";
   LeesGetal( );
 
+  //For loop om alle generaties te printen
   for (a; a <= getal; a++) {
     een ( );
     drukaf ( );
+    generatie++;
+    cout << "Generatie: " << generatie << endl;
   }
-
-  getal = 0;
 }
 
 void life::Percentage ( ) {
