@@ -507,14 +507,14 @@ void life::een ( ) {
 
 //Functie om meerdere generaties te doen
 void life::gaan ( ) {
-  int a = 1;
+  int a;
   int generatie = 0;
 
   //Aantal generaties vragen
   cout << endl << "Hoeveel generaties: ";
   LeesGetal( );
   //For loop om alle generaties te printen
-  for (a; a <= getal; a++) {
+  for (a = 1; a <= getal; a++) {
     een ( );
     drukaf ( );
     generatie++;
