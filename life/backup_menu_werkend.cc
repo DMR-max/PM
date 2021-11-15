@@ -372,28 +372,28 @@ void life::toggle ( ) {
             break;
             case 'D': case 'd':
               if (cursorbreedte + 1 >= MAX - 1){
-                error == true;
+                error = true;
               }else{
                 cursorbreedte = cursorbreedte + 1;
               }
               break;
             case 'A': case 'a':
               if (cursorbreedte - 1 <= 0){
-                error == true;
+                error = true;
               }else{
                 cursorbreedte = cursorbreedte - 1;
               }
               break;
             case 'W': case 'w':
               if (cursorhoogte - 1 <= 0){
-                error == true;
+                error = true;
               }else{
                 cursorhoogte = cursorhoogte - 1;
               }
               break;
             case 'Z': case 'z':
               if (cursorhoogte + 1 >= MAX - 1){
-                error == true;
+                error = true;
               }else{
                 cursorhoogte = cursorhoogte + 1;
               }
