@@ -46,6 +46,8 @@ class life {
     char kar_levend = 'X';
     char kar_dood = ' ';
     int cursorhoogte, cursorbreedte;
+    int verschil_breedte = 80;
+    int verschil_hoogte = 25;
 };
 
 void life::drukaf ( ){
@@ -91,6 +93,7 @@ void life::LeesGetal ( ) {
       }
       kar = cin.get( );
     }
+
   }else{
     percentage = 0;
     kar = cin.get( );
@@ -146,6 +149,7 @@ int life::verschuif ( ) {
         cout << "Dat lukte niet, de wereldrand wordt bereikt met deze verschuiving." << endl;
         omlaag = 1;
       }else{
+        cout << omlaag << endl;
         schuif = schuif + omlaag;
         cursorhoogte = cursorhoogte + omlaag;
         hoogte = hoogte + omlaag;
@@ -157,6 +161,7 @@ int life::verschuif ( ) {
         cout << "Dat lukte niet, de wereldrand wordt bereikt met deze verschuiving." << endl;
         omhoog = 1;
       }else{
+        cout << omhoog << endl;
         schuif = schuif - omhoog;
         cursorhoogte = cursorhoogte - omhoog;
         hoogte = hoogte - omhoog;
@@ -192,12 +197,12 @@ return 1;
 
 int life::verschuivingsstap ( ) {
   char omlaag_invoer, omhoog_invoer, links_invoer, rechts_invoer;
-  cout << endl << "Voer in hoeveel u omhoog wil gaan in: ";
+  cout << endl << "Voer in hoeveel u omlaag wil gaan in: ";
   LeesGetal();
   omlaag = getal;
   getal = 0;
 
-  cout << "Voer in hoeveel u omlaag wil gaan in: ";
+  cout << "Voer in hoeveel u omhoog wil gaan in: ";
   LeesGetal();
   omhoog = getal;
   getal = 0;
@@ -246,9 +251,8 @@ void life::randomizer ( ) {
 }
 
 void life::toggle ( ) {
-
-  /*
   string regel;
+  bool error = false;
   char n;
   int i, regellengte = 0;
   cin >> n;
@@ -258,23 +262,24 @@ void life::toggle ( ) {
   regellengte = regel.length ( );
   cout << regellengte << endl;
   for (i = 0; i < regellengte; i++){
-    if (cursorbreedte + 1 >= breedte || cursorhoogte + 1 >= hoogte ||
-      cursorhoogte - 1 <= schuif || cursorbreedte - 1 <= schuifbreedte){
+
         //cout << "Dat lukte niet probeer de view aan te passen: " << endl;
-        if (cursorbreedte >= breedte && cursorbreedte < (breedte / 2) - MAX){
-          schuifbreedte = 80 + schuifbreedte;
+        if (cursorbreedte >= breedte && cursorbreedte <= MAX - breedte){ // MAX VERSCHUIF TOCH NOG VERDER?!
+          schuifbreedte = verschil_breedte + schuifbreedte;
+          breedte = breedte + verschil_breedte;
         }
-        if (cursorhoogte >= hoogte && cursorhoogte < (hoogte / 2) - MAX){
+        /*if (cursorhoogte >= hoogte && cursorhoogte < (hoogte / 2) - MAX){
           schuif = 25 + schuif;
         }
         if (cursorbreedte <= schuifbreedte && cursorbreedte > (breedte / 2)){
           schuifbreedte = schuifbreedte - 80;
-        }
-        if (cursorhoogte >= hoogte && cursorhoogte < (hoogte / 2) ){
-          schuif = schuif - 25;
+        }*/
+        if (cursorhoogte >= hoogte && cursorhoogte < MAX - (hoogte / 2) ){
+          schuif = schuif + verschil_hoogte;
+          hoogte = hoogte + verschil_hoogte;
         }
         //menu();
-      }else{
+      //}else{
       switch (regel[i]) {
           case 'T': case 't':
             if(dewereld[cursorhoogte][cursorbreedte]){
@@ -284,22 +289,38 @@ void life::toggle ( ) {
             }
             break;
             case 'D': case 'd':
+              if (cursorbreedte + 1 >= MAX){
+                error == true;
+                break;
+              }
               cursorbreedte = cursorbreedte + 1;
               break;
             case 'A': case 'a':
+              if (cursorbreedte - 1 <= 0){
+                error == true;
+                break;
+              }
               cursorbreedte = cursorbreedte - 1;
               break;
             case 'W': case 'w':
+              if (cursorhoogte - 1 <= 0){
+                error == true;
+                break;
+              }
               cursorhoogte = cursorhoogte - 1;
               break;
             case 'Z': case 'z':
+              if (cursorhoogte + 1 >= MAX){
+                error == true;
+                break;
+              }
               cursorhoogte = cursorhoogte + 1;
               break;
         }
     }
-  }
-
-  */
+      if (error == true){
+        cout << "u gaat buiten de wereld" << endl;
+      }
 }
 
 void life::file ( ) {
@@ -332,13 +353,13 @@ void life::file ( ) {
     }
     j++;
   }
+
   */
 }
 
 void life::een ( ) {
   int LevendeBuren;
   int l, r, b, o, i, j;
-
 
   for ( i = 1; i < MAX - 1; i++ ) {
     for ( j = 1; j < MAX - 1; j++ ) {
@@ -440,12 +461,14 @@ void life::view ( ) {
   cout << endl << "Voer de hoogte van de view in: ";
   LeesGetal();
   hoogte = getal;
+  verschil_hoogte = getal;
   cursorhoogte = hoogte / 2;
   getal = 0;
 
   cout << "Voer de breedte van de view in: ";
   LeesGetal();
   breedte = getal;
+  verschil_breedte = getal;
   cursorbreedte = breedte / 2;
   getal = 0;
 }
