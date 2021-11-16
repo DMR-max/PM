@@ -414,7 +414,7 @@ void life::toggle ( ) {
 void life::file ( ) {
   string eigen_invoer;
   char kar;
-  int i = 0, j = 0;
+  int i = 1, j = 1;
 
   cout << endl << "Geef uw bestandsnaam op: ";
   cin >> eigen_invoer;
