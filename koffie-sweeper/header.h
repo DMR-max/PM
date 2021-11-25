@@ -6,7 +6,7 @@ using namespace std;
 
 class bordvakje {
   public:
-    bordvakje ( );
+    //bordvakje ( );
 
     bool geopend_zichtbaar;
     bool is_koffie;
@@ -28,8 +28,8 @@ bordvakje::bordvakje ( ) {
 
 class koffiebord {
   public:
-    koffiebord ( );
-    ~koffiebord ( );
+    //koffiebord ( );
+    //~koffiebord ( );
 
     void LeesGetal ( );
 

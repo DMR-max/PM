@@ -6,8 +6,9 @@
 using namespace std;
 
 int main ( ) {
-  bordvakje b;
+  int getal;
+  //bordvakje b;
   koffiebord k;
-
+  cin >> getal;
   k.LeesGetal ( );
 }
