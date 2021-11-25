@@ -66,12 +66,16 @@ void Afdrukken (vakje* ingang) {
 // druk lijst met ingang als ingang af
   cout << "Lijst afdrukken ..." << endl;
 
-  //
-  //   XXXXXX
-  //     XX
-  //     XX
-  //   XXXXXX
-  //
+  vakje* p = ingang;  // pointertje om lijst mee door te lopen
+  while ( p != nullptr ) {
+    cout << " # " << p->info << " | ";
+    if ( p->andere != nullptr )
+      cout << " # " << *(p -> andere) << endl;
+    else
+      cout << "--" << " # " << endl;
+    p = p->volgende;
+  }//while
+  cout << endl;
 
 }//Afdrukken
 
@@ -82,12 +86,17 @@ void Toevoegen (vakje* & ingang, int een, int twee) {
 // mooier: als bijvoorbeeld twee = -1, dan p->andere nullptr maken
   cout << "Voeg een nieuw vakje toe ..." << endl;
 
-  //
-  //   XXXXXX XXXXXX
-  //     XX     XX
-  //     XX     XX
-  //   XXXXXX XXXXXX
-  //
+  vakje* p;  // hulppointertje
+  p = new vakje;
+  p->info = een;
+  if ( twee != -1 ) {
+    p->andere = new int;
+    *(p->andere) = twee;
+  }//if
+  else
+    p->andere = nullptr;
+  p->volgende = ingang;
+  ingang = p;
 
 }//Toevoegen
 
@@ -95,12 +104,14 @@ void Verwijderen (vakje*& ingang) {
 // gooi eerste vakje van lijst ingang weg als ingang niet nullptr is
   cout << "Verwijder een vakje ..." << endl;
 
-  //
-  //   XXXXXX XXXXXX XXXXXX
-  //     XX     XX     XX
-  //     XX     XX     XX
-  //   XXXXXX XXXXXX XXXXXX
-  //
+  vakje* p = ingang;  // hulppointertje
+  if ( ingang != nullptr ) {
+    ingang = ingang->volgende;
+    if ( p->andere != nullptr )
+      delete p->andere;   // !!!
+    delete p;           // in deze volgorde
+  }//if
+
 
 }//Verwijderen
 
