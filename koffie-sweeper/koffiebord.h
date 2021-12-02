@@ -3,8 +3,10 @@
 #include <cstdlib>
 #include <string>
 using namespace std;
+#ifndef _KOFFIEBORD_
+#define _KOFFIEBORD_
 
-int LeesGetal (int bovengrens);
+
 
 class bordvakje {
   public:
@@ -53,3 +55,5 @@ class koffiebord {
     void voeg_voor ( );
     void bouw_bord ( );
 };
+int LeesGetal (int bovengrens);
+#endif

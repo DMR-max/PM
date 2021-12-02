@@ -5,31 +5,13 @@
 #include "koffiebord.h"
 using namespace std;
 
+//leesgetal
 
-int leesgetal (int bovengrens) {
-  char kar;
-  int getal = 0;
+ //bordvakje::bordvakje ( ) {
+//  for(i = 0; buren < 8; )
+//}//bordvakje::bordvakje
 
-  kar = cin.get ( );
-
-    while ( kar == '\n' ) {
-      kar = cin.get ( );
-    }
-
-    while (kar !='\n') {
-      if ( '0' <= kar && kar <= '9' && getal < bovengrens ) {
-        getal = 10 * getal + (kar - '0');
-      }
-      kar = cin.get ( );
-    }
-    return getal;
-}//leesgetal
-
-/* bordvakje::bordvakje ( ) {
-  // TODO
-}//bordvakje::bordvakje
-
-koffiebord::koffiebord ( ) {
+/*koffiebord::koffiebord ( ) {
   // TODO
 }//koffiebord::koffiebord
 
