@@ -2,13 +2,17 @@
 #include <fstream>
 #include <cstdlib>
 #include <string>
-#include "header.h"
+#include "koffiebord.h"
 using namespace std;
 
 int main ( ) {
-  int getal;
+  int b, h;
   //bordvakje b;
-  koffiebord k;
-  cin >> getal;
-  k.LeesGetal ( );
+  koffiebord K;
+
+  cout << "Breedte: ";
+  b = LeesGetal (1000);
+
+  cout << "hoogte: ";
+  h = LeesGetal (1000);
 }

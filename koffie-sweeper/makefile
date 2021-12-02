@@ -1,7 +1,7 @@
 # eenvoudige makefile
-all: hoofd.o header.o
-	g++ -Wall -Wextra -o hetspel header.o hoofd.o
-header.o: header.cc header.h
-	g++ -Wall -Wextra -c header.cc
-hoofd.o: hoofd.cc header.h
+all: hoofd.o koffiebord.o
+	g++ -Wall -Wextra -o hetspel koffiebord.o koffiebord.o
+koffiebord.o: koffiebord.cc koffiebord.h
+	g++ -Wall -Wextra -c koffiebord.cc
+hoofd.o: hoofd.cc koffiebord.h
 	g++ -Wall -Wextra -c hoofd.cc

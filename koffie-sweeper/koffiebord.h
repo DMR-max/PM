@@ -4,6 +4,8 @@
 #include <string>
 using namespace std;
 
+int LeesGetal (int bovengrens);
+
 class bordvakje {
   public:
     //bordvakje ( );
@@ -30,8 +32,6 @@ class koffiebord {
   public:
     //koffiebord ( );
     //~koffiebord ( );
-
-    void LeesGetal ( );
 
     bool klaar ( );
     void drukaf ( );
