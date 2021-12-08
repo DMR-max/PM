@@ -2,9 +2,7 @@
 #include "koffiebord.h"
 using namespace std;
 
-//leesgetal
 
-<<<<<<< HEAD
 int maak_getal (char c, int & getal) {
   if ('0' <= c && c <= '9') {
     if (getal <= 999) {
@@ -234,15 +232,6 @@ void koffiebord::druk_af ( ) {
     if (eerste_rij == nullptr && tweede_rij != nullptr) {
       cout << endl << h % 10 << '\t';
       h++;
-=======
- //bordvakje::bordvakje ( ) {
-//  for(i = 0; buren < 8; )
-//}//bordvakje::bordvakje
-
-/*koffiebord::koffiebord ( ) {
-  // TODO
-}//koffiebord::koffiebord
->>>>>>> f4ee07ba19a45b2f60ae370ed9aaba425d1ae723
 
       eerste_rij = tweede_rij;
       tweede_rij = eerste_rij -> buren[4];
