@@ -22,9 +22,8 @@ using namespace std;
 
 class element {
   public:
-    element* vorige;
     int info;
-    element* volgende;
+    element* buren[8];
 };//element
 
 class lijst {
@@ -33,11 +32,12 @@ class lijst {
     element* uitgang;
     element* huidige;
     element* nieuwe;
+    int b, h, i, j;
   public:
     lijst ( );
     void afdrukkenVA ( );
     void afdrukkenAV ( );
-    void bouwlijst (int n);
+    void bouwlijst ( );
 };//lijst
 
 //   +-----+      +-----+----+-----+        +-----+----+-----+      +-----+
@@ -59,46 +59,60 @@ lijst::lijst ( ) {
 // druk lijst af, van voor naar achter
 void lijst::afdrukkenVA ( ) {
   element* p = ingang;
-  while (p != uitgang) {
-    cout << " # " << p -> info << " | ";
-    p = p -> volgende;
-  }
-  cout << endl;
+  int test = 0;
+
+    while (p != uitgang) {
+      cout << p -> info;
+      p = p -> buren[2];
+      test++;
+      if (test == b) {
+        cout << endl;
+        test = 0;
+      }
+    }
+    cout <<
   // TODO
 }//lijst::afdrukkenVA
 
-// druk lijst af, van achter naar voor
+/* druk lijst af, van achter naar voor
 void lijst::afdrukkenAV ( ) {
   element* p = uitgang -> vorige;
-  while (p != nullptr) {
-    cout << " # " << p -> info << " | ";
-    p = p -> vorige;
-  }
-  cout << endl;
-  // TODO
-}//lijst::afdrukkenAV
 
-// maak lijst met n elementen, bevattende 10,20,...,10*n
-void lijst::bouwlijst (int n) {
+    while (p != nullptr) {
+      cout << " # " << p -> info << " | ";
+      p = p -> vorige;
+    }
+    cout << endl;
+
+  // TODO
+}//lijst::afdrukkenAV */
+
+void lijst::bouwlijst ( ) {
   huidige = new element;
   ingang = huidige;
 
-  for (int i = 1; i <= n; i++) {
-    huidige -> info = 10 * i;
-    nieuwe = new element;
-    nieuwe -> vorige = huidige;
-    huidige -> volgende = nieuwe;
-    huidige = nieuwe;
-  }
+  cout << "Hoogte: ";
+  cin >> h;
+  cout << "Breedte: ";
+  cin >> b;
+  cout << endl;
 
+  for (j = 1; j <= 1; j++) {
+      for (i = 1; i <= b * h; i++) {
+
+        huidige -> info = i;
+        nieuwe = new element;
+        nieuwe -> buren[6] = huidige;
+        huidige -> buren[2] = nieuwe;
+        huidige = nieuwe;
+      }
   uitgang = nieuwe;
-  // TODO
+  }
 }//lijst::bouwlijst
 
 int main () {
   lijst L;
-  L.bouwlijst (6);
+  L.bouwlijst ( );
   L.afdrukkenVA ( );
-  L.afdrukkenAV ( );
   return 0;
 }//main
