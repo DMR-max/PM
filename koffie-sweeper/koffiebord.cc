@@ -30,7 +30,7 @@ char input ( ) {
 
 
 
-int lees_getal (int bovengrens, int ondergrens) {
+int lees_getal (int eerstegrens, int tweedegrens) {
   char kar = input ( );
   int getal = 0;
 
@@ -38,10 +38,10 @@ int lees_getal (int bovengrens, int ondergrens) {
 
     maak_getal (kar, getal);
 
-    if (getal > bovengrens) {
-      getal = bovengrens;
-    } else if (getal < ondergrens) {
-        getal = ondergrens;
+    if (getal > eerstegrens) {
+      getal = eerstegrens;
+    } else if (getal < tweedegrens) {
+        getal = tweedegrens;
       }
 
     cin.get (kar);
@@ -54,9 +54,8 @@ int lees_getal (int bovengrens, int ondergrens) {
 
 
 void koffiebord::menu ( ) {
-  druk_af ( );
-
   char letter;
+  druk_af ( );
 
     cout << endl << "(D)ruk af, (O)penen, (S)toppen." << endl;
     cout << "Kies een letter: ";
@@ -87,12 +86,21 @@ void koffiebord::menu ( ) {
 
 bordvakje * koffiebord::coords ( ) {
   cout << "x coordinaat: ";
-  int x = lees_getal( breedte - 1, 0);
+  int x = lees_getal(breedte, 0);
 
   cout << "y coordinaat: ";
-  int y = lees_getal (hoogte - 1, 0);
+  int y = lees_getal (hoogte, 0);
 
-  // nog verder
+  bordvakje * c = ingang;
+  for (int i = 0; i < x; i++) {
+    c = c -> buren[2];
+  }
+
+  for (int j = 0; j < y; j++) {
+    c = c -> buren[4];
+  }
+
+  return c;
 }
 
 
@@ -106,88 +114,88 @@ void koffiebord::open (bordvakje * o) {
     return;
   }
 
-  // nog verder
-}
-
-
-
-
-void koffiebord::voor_voegen (bordvakje * & vorrig_vakje) {
-  bordvakje * p = new bordvakje;
-  p -> buren[2] = vorrig_vakje;
-
-  if (vorrig_vakje != nullptr) {
-    vorrig_vakje -> buren[6] = p;
+  if (o -> aantal == 0) {
+    for (int r = 0; r <= 7; r++) {
+      if (o -> buren[r] != nullptr && !o -> buren[r] -> geopend) {
+        open (o -> buren[r]);
+      }
+    }
   }
 
-  vorrig_vakje = p;
+
 }
 
 
+
+
+void koffiebord::vakjes_toevoegen (bordvakje * & huidig_vakje) {
+  bordvakje * nieuw_vakje = new bordvakje;
+  nieuw_vakje -> buren[2] = huidig_vakje;
+
+  if (huidig_vakje != nullptr) {
+    huidig_vakje -> buren[6] = nieuw_vakje;
+  }
+
+  huidig_vakje = nieuw_vakje;
+}
 
 
 bordvakje * koffiebord::maak_rij ( ) {
   bordvakje * ingang = nullptr;
 
   for (int i = 0; i < breedte; i++) {
-    voor_voegen (ingang);
+    vakjes_toevoegen (ingang);
   }
 
   return ingang;
 }
 
 
+void koffiebord::pointers (bordvakje * eerste_rij, bordvakje * tweede_rij) {
+  while (eerste_rij != nullptr) {
 
+    eerste_rij -> buren[4] = tweede_rij;
+    tweede_rij -> buren[0] = eerste_rij;
 
-void koffiebord::rits (bordvakje * onder_rij, bordvakje * boven_rij) {
-  while (boven_rij != nullptr) {
+    eerste_rij -> buren[5] = tweede_rij -> buren[6];
+    tweede_rij -> buren[7] = eerste_rij -> buren[6];
 
-    boven_rij -> buren[4] = onder_rij;
-    onder_rij -> buren[0] = boven_rij;
+    eerste_rij -> buren[3] = tweede_rij -> buren[2];
+    tweede_rij -> buren[1] = eerste_rij -> buren[2];
 
-    boven_rij -> buren[5] = onder_rij -> buren[6];
-    onder_rij -> buren[7] = boven_rij -> buren[6];
+    eerste_rij -> maak_aantal ( );
 
-    boven_rij -> buren[3] = onder_rij -> buren[2];
-    onder_rij -> buren[1] = boven_rij -> buren[2];
-
-    boven_rij -> maak_aantal ( );
-
-    boven_rij = boven_rij -> buren[2];
-    onder_rij = onder_rij -> buren[2];
+    eerste_rij = eerste_rij -> buren[2];
+    tweede_rij = tweede_rij -> buren[2];
   }
 }
-
-
 
 
 void koffiebord::maak_bord ( ) {
-  bordvakje * nieuwe_rij, * vorige_rij;
+  bordvakje * tweede_rij, * eerste_rij;
   ingang = maak_rij ( );
-  vorige_rij = ingang;
+  eerste_rij = ingang;
 
   for (int j = 1; j < hoogte; j++) {
 
-    nieuwe_rij = maak_rij ( );
+    tweede_rij = maak_rij ( );
 
-    if (vorige_rij != nullptr) {
+    if (eerste_rij != nullptr) {
 
-      rits (nieuwe_rij, vorige_rij);
+      pointers (eerste_rij, tweede_rij);
     }
 
-    vorige_rij = nieuwe_rij;
+    eerste_rij = tweede_rij;
   }
 
-  bordvakje * hulp = nieuwe_rij;
+  bordvakje * aantal = tweede_rij;
 
-  while (hulp != nullptr) {
+  while (aantal != nullptr) {
 
-    hulp -> maak_aantal ( );
-    hulp = hulp -> buren[2];
+    aantal -> maak_aantal ( );
+    aantal = aantal -> buren[2];
   }
 }
-
-
 
 
 void koffiebord::druk_af ( ) {
@@ -211,7 +219,17 @@ void koffiebord::druk_af ( ) {
 
     if (!eerste_rij -> geopend) {
       if (!eerste_rij -> gemarkeerd) {
-        cout << ". ";
+
+
+
+        if (eerste_rij -> koffie) {
+          cout << "K ";
+
+
+
+        } else {
+          cout << ". ";
+        }
       }
 
       else {
@@ -242,15 +260,10 @@ void koffiebord::druk_af ( ) {
 }
 
 
-
-
-
 bool bordvakje::maak_koffie ( ) {
-  int v = rand ( ) % 100;
+  int v = rand ( ) % 50;
   return (v < perc);
 }
-
-
 
 
 void bordvakje::maak_aantal ( ) {
@@ -258,7 +271,7 @@ void bordvakje::maak_aantal ( ) {
     for (int i = 0; i <= 7; i++) {
 
       if (buren[i] != nullptr) {
-        (buren[i]-> aantal)++;
+        (buren[i] -> aantal)++;
       }
     }
   }

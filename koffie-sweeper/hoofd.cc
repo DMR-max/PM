@@ -4,7 +4,7 @@ using namespace std;
 
 int main ( ) {
   srand(time(0));
-  koffiebord Koffiebord;
-  Koffiebord.menu( );
+  koffiebord K;
+  K.menu( );
   return 0;
 }

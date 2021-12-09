@@ -8,8 +8,8 @@ class bordvakje {
     bordvakje ( ) {
       perc = 10;
       geopend = false;
-      aantal = 0;
       gemarkeerd = false;
+      aantal = 0;
       koffie = maak_koffie ( );
     }
     bool geopend;
@@ -42,11 +42,11 @@ class koffiebord {
     void druk_af ( );
     void menu ( );
     void dimensies ( );
-    void voor_voegen (bordvakje * & tst);
+    void vakjes_toevoegen (bordvakje * & tst);
     bordvakje * maak_rij ( );
     void maak_bord ( );
     void print_rij (bordvakje * rij);
-    void rits (bordvakje * nieuw, bordvakje * vorige);
+    void pointers (bordvakje * tweede, bordvakje * eerste);
     void open (bordvakje * o);
     void markeren (bordvakje * m);
     void gewonnen_check ( );
