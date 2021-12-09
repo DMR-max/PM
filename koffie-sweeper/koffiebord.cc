@@ -57,7 +57,7 @@ void koffiebord::menu ( ) {
   char letter;
   druk_af ( );
 
-    cout << endl << "(D)ruk af, (O)penen, (S)toppen." << endl;
+    cout << endl << "(D)ruk af, (O)penen, (M)arkeren, (S)toppen." << endl;
     cout << "Kies een letter: ";
     letter = input ( );
     cout << endl;
@@ -69,6 +69,11 @@ void koffiebord::menu ( ) {
       case 'o': case 'O': {
         bordvakje * o = coords ( );
         open (o);
+        menu ( );
+        break;
+      }
+      case 'm': case 'M': {
+        markeren ( );
         menu ( );
         break;
       }
@@ -90,6 +95,8 @@ bordvakje * koffiebord::coords ( ) {
 
   cout << "y coordinaat: ";
   int y = lees_getal (hoogte, 0);
+
+  cout << endl;
 
   bordvakje * c = ingang;
   for (int i = 0; i < x; i++) {
@@ -121,8 +128,10 @@ void koffiebord::open (bordvakje * o) {
       }
     }
   }
+}
 
-
+void koffiebord::markeren (bordvakje * m) {
+  
 }
 
 
@@ -219,17 +228,17 @@ void koffiebord::druk_af ( ) {
 
     if (!eerste_rij -> geopend) {
       if (!eerste_rij -> gemarkeerd) {
+        cout << ". ";
 
-
-
+/*
         if (eerste_rij -> koffie) {
           cout << "K ";
-
-
 
         } else {
           cout << ". ";
         }
+
+*/
       }
 
       else {
