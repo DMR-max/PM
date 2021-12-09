@@ -6,7 +6,7 @@ class bordvakje {
 
   public:
     bordvakje ( ) {
-      perc = 10;
+      perc = 20;
       geopend = false;
       gemarkeerd = false;
       aantal = 0;
@@ -19,6 +19,7 @@ class bordvakje {
     bordvakje * buren[8];  //     6   2
     bool maak_koffie ( );  //     5 4 3
     void maak_aantal ( );
+    //void percentage ( );
 };
 
 class koffiebord {
@@ -26,6 +27,7 @@ class koffiebord {
     bordvakje * ingang;
     int hoogte, breedte;
     bool verloren, gewonnen;
+    int zetten = 0;
 
   public:
     koffiebord ( ) {
@@ -41,7 +43,7 @@ class koffiebord {
 
     void druk_af ( );
     void menu ( );
-    void dimensies ( );
+    void grootte_bord ( );
     void vakjes_toevoegen (bordvakje * & tst);
     bordvakje * maak_rij ( );
     void maak_bord ( );
