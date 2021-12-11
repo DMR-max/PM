@@ -70,10 +70,12 @@ void koffiebord::menu ( ) {
   cout << "Beurt: " << zetten - 1 <<  "\t" << "Koffie: " << aantal_koffie << endl;
 
   if (verloren) {
-    cout << endl << "Helaas! Je bent dood na: " << zetten - 1 << " zet(ten)." << endl << endl;
+    cout << endl << "Helaas! Je bent dood na: " << zetten - 1 << " zet(ten)." << endl;
+    cout << "==========================================================" << endl << endl;
     zetten = 0;
     aantal_koffie = 0;
     verloren = false;
+    hulp = true;
     maak_bord ( );
     menu ( );
 
@@ -81,14 +83,17 @@ void koffiebord::menu ( ) {
   if (gewonnen || aantal_koffie == 0) {
     cout <<  endl << "Gefeliciteerd! Je hebt gewonnen na: " << zetten - 1 << " zet(ten)." << endl;
     if (aantal_koffie == 0) {
-      cout << "(Je hebt alle koffie gemarkeerd!)" << endl << endl;
+      cout << "(Je hebt alle koffie gemarkeerd!)" << endl;
+      cout << "==========================================================" << endl << endl;
     }
     else {
-      cout << "(Je hebt alle lege vakjes geopend!)" << endl << endl;
+      cout << "(Je hebt alle lege vakjes geopend!)" << endl;
+      cout << "==========================================================" << endl << endl;
     }
     zetten = 0;
     aantal_koffie = 0;
     gewonnen = false;
+    hulp = true;
     maak_bord ( );
     menu ( );
   }
@@ -103,6 +108,7 @@ void koffiebord::menu ( ) {
       maak_bord ( );
       aantal_koffie = 0;
       zetten = 0;
+      hulp = true;
       menu ( );
       break;
     }
@@ -122,12 +128,11 @@ void koffiebord::menu ( ) {
       break;
     }
     case 'p': case 'P': {
-      bordvakje B;
-      // Werkt niet
-      B.percentage ( );
+      percentage ( );
       maak_bord ( );
       aantal_koffie = 0;
       zetten = 0;
+      hulp = true;
       menu ( );
       break;
     }
@@ -136,6 +141,7 @@ void koffiebord::menu ( ) {
       maak_bord ( );
       aantal_koffie = 0;
       zetten = 0;
+      hulp = true;
       menu ( );
       break;
     }
@@ -151,15 +157,6 @@ void koffiebord::menu ( ) {
     }
 
   }
-}
-
-//Werkt niet
-int bordvakje::percentage ( ) {
-
-  cout << "Percentage: ";
-  perc = lees_getal(100, 0);
-  cout << "Test: "  << perc << endl;
-  return perc;
 }
 
 
@@ -329,8 +326,6 @@ void koffiebord::pointers (bordvakje * eerste_rij, bordvakje * tweede_rij) {
     eerste_rij -> buren[3] = tweede_rij -> buren[2];
     tweede_rij -> buren[1] = eerste_rij -> buren[2];
 
-    eerste_rij -> maak_aantal ( );
-
     eerste_rij = eerste_rij -> buren[2];
     tweede_rij = tweede_rij -> buren[2];
   }
@@ -387,12 +382,14 @@ void koffiebord::druk_af ( ) {
 
   while (eerste_rij != nullptr) {
 
+    if (hulp) {
+      randomizer (eerste_rij);
+      eerste_rij -> maak_aantal ( );
+    }
+
 
     if (!eerste_rij -> geopend) {
       if (!eerste_rij -> gemarkeerd) {
-        if (eerste_rij -> koffie && zetten ==1) {
-          aantal_koffie++;
-        }
         cout << ". ";
       }
       else {
@@ -417,14 +414,37 @@ void koffiebord::druk_af ( ) {
       tweede_rij = eerste_rij -> buren[4];
     }
   }
-
+   hulp = false;
   cout << endl << endl;
 }
 
 
+/*
 bool bordvakje::maak_koffie ( ) {
   int v = rand ( ) % 100;
   return (v < perc);
+}
+*/
+
+
+void koffiebord::percentage ( ) {
+  cout << "Percentage: ";
+  perc = lees_getal (100, 0);
+  cout << endl;
+}
+
+
+
+void koffiebord::randomizer (bordvakje* p) {
+  int randomgetal = rand ( ) % 1000000;
+
+    if (randomgetal <= (perc * 10000)) {
+      p -> koffie = true;
+      aantal_koffie++;
+    }
+    else {
+      p -> koffie = false;
+    }
 }
 
 

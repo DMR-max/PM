@@ -8,6 +8,7 @@ int main ( ) {
   //bordvakje B;
   K.infoblokje ( );
   K.grootte_bord ( );
+  K.percentage ( );
   K.maak_bord ( );
   K.menu( );
   return 0;
