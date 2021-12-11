@@ -1,25 +1,25 @@
 int lees_getal (int bovengrens);
 
 class bordvakje {
-  private:
-    int perc;
 
   public:
     bordvakje ( ) {
-      perc = 20;
       geopend = false;
       gemarkeerd = false;
       aantal = 0;
+      perc = 20;
       koffie = maak_koffie ( );
     }
     bool geopend;
+    int perc;
     bool koffie;
     bool gemarkeerd;
     int aantal;            //     7 0 1
     bordvakje * buren[8];  //     6   2
     bool maak_koffie ( );  //     5 4 3
     void maak_aantal ( );
-    //void percentage ( );
+    int percentage ( );
+
 };
 
 class koffiebord {
@@ -28,19 +28,17 @@ class koffiebord {
     int hoogte, breedte;
     bool verloren, gewonnen;
     int zetten = 0;
+    int aantal_koffie;
 
   public:
     koffiebord ( ) {
-      breedte = 10;
-      hoogte = 10;
       verloren = false;
       gewonnen = false;
-
-      maak_bord ( );
+      aantal_koffie = 0;
     }
 
     //~koffiebord ( );
-
+    void infoblokje ( );
     void druk_af ( );
     void menu ( );
     void grootte_bord ( );
@@ -53,4 +51,5 @@ class koffiebord {
     void markeren (bordvakje * m);
     void gewonnen_check ( );
     bordvakje * coords ( );
+    bordvakje * random_zet ( );
 };
