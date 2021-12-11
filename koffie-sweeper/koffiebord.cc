@@ -10,7 +10,7 @@ void koffiebord::infoblokje ( ) {
   << "Opgave 4, gemaakt op 13-12-2021" << endl << endl;
 
   cout << "=============== KOFFIE-SWEEPER ===============" << endl << endl;
-} // Void infoblokje
+}
 
 
 int maak_getal (char c, int & getal) {
@@ -78,8 +78,14 @@ void koffiebord::menu ( ) {
     menu ( );
 
   }
-  if (gewonnen) {
-    cout <<  endl << "Gefeliciteerd! Je hebt gewonnen na: " << zetten - 1 << " zet(ten)." << endl << endl;
+  if (gewonnen || aantal_koffie == 0) {
+    cout <<  endl << "Gefeliciteerd! Je hebt gewonnen na: " << zetten - 1 << " zet(ten)." << endl;
+    if (aantal_koffie == 0) {
+      cout << "(Je hebt alle koffie gemarkeerd!)" << endl << endl;
+    }
+    else {
+      cout << "(Je hebt alle lege vakjes geopend!)" << endl << endl;
+    }
     zetten = 0;
     aantal_koffie = 0;
     gewonnen = false;
@@ -94,7 +100,9 @@ void koffiebord::menu ( ) {
   cout << endl;
   switch (letter) {
     case 'n': case 'N': {
-      zetten--;
+      maak_bord ( );
+      aantal_koffie = 0;
+      zetten = 0;
       menu ( );
       break;
     }
@@ -155,25 +163,36 @@ int bordvakje::percentage ( ) {
 }
 
 
-// Moet nog checken of vakje al open is, werkt verder
+
 bordvakje * koffiebord::random_zet ( ) {
   int x, y;
-  bordvakje * c = ingang;
+  bool hulp = true;
+  bordvakje * d;
 
-  x = rand ( ) % breedte;
-  y = rand ( ) % hoogte;
+  while (hulp) {
+    bordvakje * c = ingang;
 
-  for (int i = 0; i < x; i++) {
-    c = c -> buren[2];
+    x = rand ( ) % breedte;
+    y = rand ( ) % hoogte;
+
+    for (int i = 0; i < x; i++) {
+      c = c -> buren[2];
+    }
+
+    for (int j = 0; j < y; j++) {
+      c = c -> buren[4];
+    }
+
+    if (!c -> geopend) {
+      hulp = false;
+      d = c;
+    }
+
   }
 
-  for (int j = 0; j < y; j++) {
-    c = c -> buren[4];
-  }
+  cout << "Vakje geopend: (" << x << ", " << y << ")" << endl << endl;
 
-  cout << "Coordinaat: (" << x << ", " << y << ")" << endl << endl;
-
-  return c;
+  return d;
 }
 
 
@@ -258,7 +277,9 @@ void koffiebord::open (bordvakje * o) {
 void koffiebord::markeren (bordvakje * m) {
   if (m -> gemarkeerd == true) {
     m -> gemarkeerd = false;
-    aantal_koffie = aantal_koffie + 2;
+    if (m -> koffie) {
+      aantal_koffie = aantal_koffie + 2;
+    }
   } else {
       m -> gemarkeerd = true;
   }
@@ -379,7 +400,7 @@ void koffiebord::druk_af ( ) {
       }
     }
     else if (eerste_rij -> koffie) {
-      cout << "M ";
+      cout << "K ";
     }
     else {
       cout << eerste_rij -> aantal << " ";
