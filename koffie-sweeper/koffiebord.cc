@@ -270,7 +270,9 @@ bordvakje * koffiebord::coords ( ) {
 
 
 void koffiebord::open (bordvakje * o) {
-  o -> geopend = true;
+
+  if (!o -> gemarkeerd) {
+    o -> geopend = true;
 
     if (zetten == 1 && o -> koffie) {
       o -> koffie = false;
@@ -280,14 +282,15 @@ void koffiebord::open (bordvakje * o) {
       verloren = true;
       }
 
-  if (o -> aantal == 0) {
-    for (int r = 0; r <= 7; r++) {
-      if (o -> buren[r] != nullptr && !o -> buren[r] -> geopend) {
-        open (o -> buren[r]);
+    if (o -> aantal == 0 && !o -> koffie) {
+      for (int r = 0; r <= 7; r++) {
+        if (o -> buren[r] != nullptr && !o -> buren[r] -> geopend) {
+          open (o -> buren[r]);
+        }
       }
     }
+    gewonnen_check ( );
   }
-  gewonnen_check ( );
 }
 
 void koffiebord::markeren (bordvakje * m) {
