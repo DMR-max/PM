@@ -15,11 +15,7 @@ void koffiebord::infoblokje ( ) {
 
 int maak_getal (char c, int & getal) {
   if ('0' <= c && c <= '9') {
-    if (getal <= 999) {
-
-      getal = 10 * getal + (c - '0');
-
-    }
+    getal = 10 * getal + (c - '0');
   }
   return getal;
 }
@@ -65,7 +61,11 @@ int lees_getal (int eerstegrens, int tweedegrens) {
 void koffiebord::menu ( ) {
   char letter;
 
-  druk_af ( );
+  if (comp) {
+    comp = false;
+  } else {
+    druk_af ( );
+  }
 
   zetten++;
 
@@ -162,15 +162,53 @@ void koffiebord::reset ( ) {
 
 void koffiebord::computer ( ) {
   comp = true;
+  int spellen;
 
-  while (!gewonnen && !verloren) {
-    bordvakje * t = random_zet ( );
-    open (t);
-    zetten++;
+  cout << "Aantal potjes: ";
+  spellen = lees_getal (100000, 0);
+  cout << endl;
+
+  for (int p = 0; p < spellen; p++) {
+
+    while (!gewonnen && !verloren) {
+      bordvakje * t = random_zet ( );
+      open (t);
+      zetten++;
+    }
+
+    if (p == 0) {
+      zetten--;
+      cout << "Eindbord:" << endl << endl;
+      druk_af ( );
+    } else {
+      cout << "Eindbord:" << endl << endl;
+      druk_af ( );
+    }
+
+    if (verloren) {
+      cout << endl << "Helaas! Je bent dood na: " << zetten << " zet(ten)." << endl;
+      cout << "==========================================================" << endl << endl;
+      aantal_verloren++;
+      reset ( );
+      maak_bord ( );
+      cout << "Beginbord:" << endl << endl;
+      druk_af ( );
+    }
+    if (gewonnen) {
+      cout <<  endl << "Gefeliciteerd! Je hebt gewonnen na: " << zetten << " zet(ten)." << endl;
+      cout << "==========================================================" << endl << endl;
+      aantal_gewonnen++;
+      reset ( );
+      maak_bord ( );
+      cout << "Beginbord:" << endl << endl;
+      druk_af ( );
+    }
+
   }
 
-  zetten = zetten - 1;
-  comp = false;
+  cout << "Gewonnen: " << aantal_gewonnen << " Verloren: " << aantal_verloren << endl;
+  aantal_gewonnen = 0;
+  aantal_verloren = 0;
   menu ( );
 }
 
@@ -213,10 +251,10 @@ bordvakje * koffiebord::random_zet ( ) {
 
 void koffiebord::grootte_bord ( ) {
   cout << "Breedte: ";
-  breedte = lees_getal(200, 1);
+  breedte = lees_getal(100, 2);
 
   cout << "Hoogte: ";
-  hoogte = lees_getal(200, 1);
+  hoogte = lees_getal(100, 2);
 
   cout << endl;
 }
@@ -274,7 +312,7 @@ void koffiebord::open (bordvakje * o) {
   if (!o -> gemarkeerd) {
     o -> geopend = true;
 
-    if (zetten == 1 && o -> koffie) {
+    if ((zetten == 1 || zetten == 0) && o -> koffie) {
       o -> koffie = false;
       aantal_koffie--;
     }
@@ -443,12 +481,6 @@ void koffiebord::druk_af ( ) {
 }
 
 
-/*
-bool bordvakje::maak_koffie ( ) {
-  int v = rand ( ) % 100;
-  return (v < perc);
-}
-*/
 
 
 void koffiebord::percentage ( ) {

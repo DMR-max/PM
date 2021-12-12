@@ -10,6 +10,6 @@ int main ( ) {
   K.grootte_bord ( );
   K.percentage ( );
   K.maak_bord ( );
-  K.menu( );
+  K.menu ( );
   return 0;
 }

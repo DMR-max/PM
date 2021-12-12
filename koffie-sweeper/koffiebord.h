@@ -23,7 +23,7 @@ class koffiebord {
     bordvakje * ingang;
     int hoogte, breedte;
     bool verloren, gewonnen;
-    int zetten = 0;
+    int zetten;
     int aantal_koffie;
     int perc;
     bool print;
@@ -37,6 +37,7 @@ class koffiebord {
       print = true;
       verloren = false;
       gewonnen = false;
+      zetten = 0;
       aantal_gewonnen = 0;
       aantal_verloren = 0;
       aantal_koffie = 0;
