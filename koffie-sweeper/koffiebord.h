@@ -38,11 +38,11 @@ class koffiebord {
       zetten = 0;
       aantal_koffie = 0;
 
-      for (int i = 0; i < 10000; i++) {
+      for (int i = 0; i <= 10000; i++) {
         win[i] = 0;
         verlies[i] = 0;
       }
-
+      
     }
 
     //~koffiebord ( );

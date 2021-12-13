@@ -246,8 +246,10 @@ void koffiebord::computer ( ) {
 
   } // For
 
-  for (int i = 1; i <= meeste_zetten; i++) {
+  for (int i = 0; i <= meeste_zetten; i++) {
     cout << "Zetten: " << i << ", Win: " << win[i] << ", Verlies: " << verlies[i] << endl;
+    win[i] = 0;
+    verlies[i] = 0;
   }
 
   cout << endl;
