@@ -26,21 +26,23 @@ class koffiebord {
     int zetten;
     int aantal_koffie;
     int perc;
-    bool print;
     bool comp;
-    int aantal_gewonnen;
-    int aantal_verloren;
+    int win[10000];
+    int verlies[10000];
 
   public:
     koffiebord ( ) {
       comp = false;
-      print = true;
       verloren = false;
       gewonnen = false;
       zetten = 0;
-      aantal_gewonnen = 0;
-      aantal_verloren = 0;
       aantal_koffie = 0;
+
+      for (int i = 0; i < 10000; i++) {
+        win[i] = 0;
+        verlies[i] = 0;
+      }
+
     }
 
     //~koffiebord ( );
@@ -49,6 +51,7 @@ class koffiebord {
     void percentage ( );
     void computer ( );
     void druk_af ( );
+    void keuze ( );
     void randomizer (bordvakje* p);
     void menu ( );
     void grootte_bord ( );
