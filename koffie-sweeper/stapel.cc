@@ -2,16 +2,14 @@
 #include "stapel.h"
 using namespace std;
 
-void stapel::zetopstapel (bordvakje * koffiebord) { // push
+void stapel::zetopstapel (bordvakje * ingang, int breedte, int hoogte) { // push
   bordvakje * temp = new bordvakje;
-  temp->info = koffiebord;
-  temp->volgende = bovenste;
-  bovenste = temp;
-  cout << koffiebord -> geopend << endl;
+  bordvakje * koffie = new bordvakje;
+
   int h = 1;
 
-  bordvakje * eerste_rij = ingang;
-  bordvakje * tweede_rij = eerste_rij -> buren[4];
+  bordvakje * eerste_rij = koffie -> ingang;
+  bordvakje * tweede_rij = koffie -> eerste_rij -> buren[4];
 
   cout << '\t';
 
@@ -26,6 +24,7 @@ void stapel::zetopstapel (bordvakje * koffiebord) { // push
   cout << '0' << '\t';
 
   while (eerste_rij != nullptr) {
+
 
     // Als vakje niet geopend en niet gemarkeerd is een . printen
     if (!eerste_rij -> geopend) {
@@ -64,6 +63,10 @@ void stapel::zetopstapel (bordvakje * koffiebord) { // push
 
   // Print welke beurt je bent en hoeveel koffie er nog is
   cout << "Beurt: " << zetten <<  "\t" << "Koffie: " << aantal_koffie << endl;
+  temp->info = koffiebord;
+  temp->volgende = bovenste;
+  bovenste = temp;
+  cout << koffiebord -> geopend << endl;
 
   /*bordvakje * temp = getal;
   temp->info = getal;

@@ -1,7 +1,20 @@
+/*
+Auteurs: Sjouk Ketwaru en Ryan Sleeuwaegen
+Student nummers: s3287297 en s3122166
+naam bestanden: koffiebord.cc, koffiebord.h, hoofd.cc
+
+Het programma is in staat om koffiesweeper te spelen via een menu-systeem.
+Aan de hand van het menu is het spel speelbaar en anders kan de computer spelen.
+Ook is het mogelijk om random zetten te doen.
+
+Text editor: Atom (ubuntu), Compiler: G++ versie: 9.3.0.
+Laatst aan gewerkt op: 13-12-2021.
+*/
+
 #include <iostream>
-#include "koffiebord.h"
+#include "stapel.h"
 #include <fstream>
-stapel S;
+
 using namespace std;
 
 //infoblokje geeft informatie over de makers en het programma
@@ -10,9 +23,26 @@ void koffiebord::infoblokje ( ) {
   << "Ryan Sleeuwaegen (s3122166)" << endl
   << "Jaar van aankomst: 2021" << endl
   << "Studierichting: Kunstmatige Intelligentie" << endl
-  << "Opgave 4, gemaakt op 13-12-2021" << endl << endl;
+  << "Opgave 4, gemaakt op 13-12-2021" << endl << endl
+  << "Het programma is in staat om koffiesweeper te spelen" << endl
+  << "via een menu-systeem."<< endl
+  << "Via het menu kan de gebruiker uit meerdere "
+  << "opties kiezen." << endl << endl
+  << "Namelijk de volgende:" << endl
+  << "(N)ieuw bord, (O)penen, (M)arkeren, " << endl
+  << "(P)ercentage, (G)rootte bord, (R)andom zet, (S)toppen." << endl << endl
+  << "Nieuw bord: maakt het boord schoon en geeft een nieuw boord." << endl
+  << "Openen: opent een vakje." << endl
+  << "Markeren: markeert een vakje waar u denkt dat een bom zit." << endl
+  << "Percentage: verandert het percentage van koffies in het veld." << endl
+  << "Grootte bord: verandert de grote van het bord." << endl
+  << "Random zet: dan zet de computer een zet" << endl
+  << "Stoppen: stopt het programma." << endl;
 
-  cout << "==================== KOFFIE-SWEEPER ====================" << endl << endl;
+
+
+  cout << "==================== KOFFIE-SWEEPER ====================" << endl
+  << endl;
 }
 
 
@@ -61,11 +91,6 @@ int lees_getal (int eerstegrens, int tweedegrens) {
 void koffiebord::menu ( ) {
   char letter;
 
-  // Als de computer speelt niet nog een keer afdrukken op het laatst
-  if (comp) {
-    comp = false;
-  }
-
   druk_af ( );
 
   // Aantal zetten tellen
@@ -73,8 +98,10 @@ void koffiebord::menu ( ) {
 
   // Als je verloren hebt, daarna reset
   if (verloren) {
-    cout << endl << "Helaas! Je bent dood na: " << zetten - 1 << " zet(ten)." << endl;
-    cout << "==========================================================" << endl << endl;
+    cout << endl << "Helaas! Je bent dood na: " << zetten - 1 << " zet(ten)."
+    << endl;
+    cout << "==========================================================" << endl
+    << endl;
     reset ( );
     maak_bord ( );
     menu ( );
@@ -82,8 +109,10 @@ void koffiebord::menu ( ) {
 
   // Als je gewonnen hebt, daarna reset
   if (gewonnen) {
-    cout <<  endl << "Gefeliciteerd! Je hebt gewonnen na: " << zetten  - 1 << " zet(ten)." << endl;
-    cout << "==========================================================" << endl << endl;
+    cout <<  endl << "Gefeliciteerd! Je hebt gewonnen na: " << zetten  - 1
+    << " zet(ten)." << endl;
+    cout << "==========================================================" << endl
+    << endl;
     reset ( );
     maak_bord ( );
     menu ( );
@@ -153,7 +182,7 @@ void koffiebord::menu ( ) {
     }
     // Stoppen
     case 's': case 'S': {
-      return;
+      exit(1);
       break;
     }
   } // Switch
@@ -252,7 +281,8 @@ void koffiebord::computer ( ) {
   } // For loop voor de hoeveelheid zetten die gewonnen of verloren zijn
 
   for (int i = 0; i <= meeste_zetten; i++) {
-    cout << "Zetten: " << i << ", Win: " << win[i] << ", Verlies: " << verlies[i] << endl;
+    cout << "Zetten: " << i << ", Win: " << win[i] << ", Verlies: "
+    << verlies[i] << endl;
     plot1 << i << " " << win[i] << endl;
     plot2 << i << " " << verlies[i] << endl;
     win[i] = 0;
@@ -260,6 +290,7 @@ void koffiebord::computer ( ) {
   }
 
   cout << endl;
+  comp = false;
   menu ( );
 
 } // Void computer
@@ -468,7 +499,8 @@ void koffiebord::pointers (bordvakje * eerste_rij, bordvakje * tweede_rij) {
 
     eerste_rij -> maak_aantal ( );
 
-    // Horizontale pointers (naar buren[6] wordt al gemaakt bij vakjes_toevoegen)
+    // Horizontale pointers
+    //(naar buren[6] wordt al gemaakt bij vakjes_toevoegen)
     eerste_rij = eerste_rij -> buren[2];
     tweede_rij = tweede_rij -> buren[2];
   } // while
@@ -567,6 +599,7 @@ void koffiebord::druk_af ( ) {
 
   // Print welke beurt je bent en hoeveel koffie er nog is
   cout << "Beurt: " << zetten <<  "\t" << "Koffie: " << aantal_koffie << endl;
+
 } // Void druk_af
 
 // Percentage koffie kunnen aangeven

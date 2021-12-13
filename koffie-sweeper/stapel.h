@@ -18,7 +18,7 @@ class stapel { // de stapel zelf
         bovenste_kar = nullptr;
        }// maak lege stapel
         ~stapel ( ); // destructor
-        void zetopstapel (bordvakje * koffiebord); // push
+        void zetopstapel (bordvakje * ingang, int hoogte, int breedte); // push
         void haalvanstapel (bordvakje * koffiebord, int breedte, int hoogte); // pop
         bool isstapelleeg ( ) { // is stapel leeg?
           //return ( ( bovenste == nullptr ) ? true : false )
