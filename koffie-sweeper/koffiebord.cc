@@ -194,8 +194,8 @@ void koffiebord::keuze ( ) {
 void koffiebord::computer ( ) {
   comp = true;
   int spellen, meeste_zetten;
-  ofstream plot1 ("plot1.txt");
-  ofstream plot2 ("plot2.txt");
+  ofstream plot1 ("win.txt");
+  ofstream plot2 ("verlies.txt");
 
   meeste_zetten = zetten;
 
