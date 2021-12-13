@@ -7,6 +7,11 @@ class bordvakje {
       geopend = false;
       gemarkeerd = false;
       aantal = 0;
+      
+      for (int i = 0; i <= 8; i++) {
+        buren[i] = nullptr;
+      }
+
     }
     bool geopend;
     bool koffie;
@@ -42,7 +47,7 @@ class koffiebord {
         win[i] = 0;
         verlies[i] = 0;
       }
-      
+
     }
 
     //~koffiebord ( );
