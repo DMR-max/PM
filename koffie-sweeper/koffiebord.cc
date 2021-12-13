@@ -197,8 +197,8 @@ void koffiebord::computer ( ) {
   meeste_zetten = zetten;
 
   // Maximaal 100000 spellen spelen (kan worden aangepast)
-  cout << "Aantal potjes (Max = 10000): ";
-  spellen = lees_getal (100000, 0);
+  cout << "Aantal potjes (Max = 1000000): ";
+  spellen = lees_getal (1000000, 1);
   cout << endl;
 
   // Spellen blijven spelen totdat aantal berijkt is
@@ -402,26 +402,13 @@ void koffiebord::open (bordvakje * o) {
 
 // Vakjes kunnen markeren
 void koffiebord::markeren (bordvakje * m) {
-
   // Als je een vakje markeerd, kan je ook de-markeren
   // (nodig als je perongeluk een verkeerd vakje markeerd)
   if (m -> gemarkeerd == true) {
     m -> gemarkeerd = false;
-
-    // Aantal_koffie + 2 omdat hij eerst 1 er af haalt, (zie regel 425)
-    // maar je wilt er juist 1 bij
-    if (m -> koffie) {
-      aantal_koffie = aantal_koffie + 2;
-    }
   } else {
       m -> gemarkeerd = true;
   }
-
-  // Als een koffie is gemarkeerd wordt het aantal_koffie minder
-  if (m -> koffie == true) {
-    aantal_koffie--;
-  }
-
 } // Void markeren
 
 // Een nieuw vakje voor voegen
