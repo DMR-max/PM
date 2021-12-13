@@ -1,8 +1,10 @@
 #include <iostream>
 #include "koffiebord.h"
 #include <fstream>
+stapel S;
 using namespace std;
 
+//infoblokje geeft informatie over de makers en het programma
 void koffiebord::infoblokje ( ) {
   cout << "Makers: Sjouk Ketwaru (s3287297), "
   << "Ryan Sleeuwaegen (s3122166)" << endl
@@ -26,7 +28,7 @@ int maak_getal (char c, int & getal) {
 char input ( ) {
   char kar;
   kar = cin.get ( );
-
+  //filtert enters
   while(kar == '\n') {
     cin.get (kar);
   }
@@ -40,7 +42,7 @@ int lees_getal (int eerstegrens, int tweedegrens) {
   int getal = 0;
 
   while (kar != '\n') {
-
+    //berekent volgende tiental
     maak_getal (kar, getal);
 
     if (getal > eerstegrens) {
@@ -247,7 +249,7 @@ void koffiebord::computer ( ) {
     }
 
 
-  } // For
+  } // For loop voor de hoeveelheid zetten die gewonnen of verloren zijn
 
   for (int i = 0; i <= meeste_zetten; i++) {
     cout << "Zetten: " << i << ", Win: " << win[i] << ", Verlies: " << verlies[i] << endl;

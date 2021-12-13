@@ -38,3 +38,5 @@ class stapel { // de stapel zelf
     bordvakje * bovenste; // de bovenkant van de stapel
     bordvakje * bovenste_kar;
 };//stapel
+
+extern stapel S;

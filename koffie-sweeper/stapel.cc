@@ -8,6 +8,62 @@ void stapel::zetopstapel (bordvakje * koffiebord) { // push
   temp->volgende = bovenste;
   bovenste = temp;
   cout << koffiebord -> geopend << endl;
+  int h = 1;
+
+  bordvakje * eerste_rij = ingang;
+  bordvakje * tweede_rij = eerste_rij -> buren[4];
+
+  cout << '\t';
+
+  // Printen x-coordinaten
+  for (int b = 0; b < breedte; b++) {
+    cout << b % 10 << ' ';
+  }
+
+  cout << endl << endl;
+
+  // Print 1e y-coordinaat
+  cout << '0' << '\t';
+
+  while (eerste_rij != nullptr) {
+
+    // Als vakje niet geopend en niet gemarkeerd is een . printen
+    if (!eerste_rij -> geopend) {
+      if (!eerste_rij -> gemarkeerd) {
+        cout << ". ";
+      }
+      // Als vakje gemarkeerd is # printen
+      else {
+        cout << "# ";
+      }
+    }
+    // Als een koffie wordt geopend K printen
+    else if (eerste_rij -> koffie) {
+      cout << "K ";
+    }
+    // Anders het aantal koffie buren printen
+    else {
+      cout << eerste_rij -> aantal << " ";
+    }
+
+    // Naar volgende vakje gaan in de rij
+    eerste_rij = eerste_rij -> buren[2];
+
+    // Printen y-coordinaat
+    if (eerste_rij == nullptr && tweede_rij != nullptr) {
+      cout << endl << h % 10 << '\t';
+      h++;
+
+      // Naar de volgende rij gaan
+      eerste_rij = tweede_rij;
+      tweede_rij = eerste_rij -> buren[4];
+    }
+  } // While
+
+  cout << endl << endl;
+
+  // Print welke beurt je bent en hoeveel koffie er nog is
+  cout << "Beurt: " << zetten <<  "\t" << "Koffie: " << aantal_koffie << endl;
 
   /*bordvakje * temp = getal;
   temp->info = getal;
