@@ -1,5 +1,6 @@
 /*
 Auteurs: Sjouk Ketwaru en Ryan Sleeuwaegen
+Student nummers: 3287297 en 3122166
 naam bestand: KetwaruSleeuwaegen3.cc
 
 Het programma is in staat LIFE te spelen via een menu-systeem.
@@ -21,7 +22,7 @@ using namespace std;
 
 void infoblokje ( ) {
   cout << "Makers: Sjouk Ketwaru (s3287297), "
-       << "Ryan Sleeuwaegen (s3122166)" <<endl
+       << "Ryan Sleeuwaegen (s3122166)" << endl
        << "Jaar van aankomst: 2021" << endl
        << "Studierichting: Kunstmatige Intelligentie" << endl
        << "Opgave 3: gemaakt op 15-11-2021" << endl << endl
@@ -31,7 +32,7 @@ void infoblokje ( ) {
        << "problemen te voorkomen." << endl
        << "De gebruiker ziet een klein deel van deze "
        << "wereld, de view. " << endl
-       << "Via het menu kan de gebruiker uit meerde "
+       << "Via het menu kan de gebruiker uit meerdere "
        << "opties kiezen." << endl << endl
        << "Menu" << endl
        << "Stoppen: Stopt het programma." << endl
@@ -43,7 +44,7 @@ void infoblokje ( ) {
        << "Toggle: Klapt levend en dood om voor de cursor, "
        << "die ook verplaatst kan worden." << endl
        << "File: Leest een txt bestand in en plaatst deze in de wereld." << endl
-       << "Een: Er wordt één generatie van life gedaan." << endl
+       << "Een: Er wordt een generatie van life gedaan." << endl
        << "Gaan: Er worden een hele serie generaties van life gedaan, "
        << "en allemaal getoond." << endl
        << "Parameters: Opent het submenu om "
@@ -414,7 +415,7 @@ void life::toggle ( ) {
 void life::file ( ) {
   string eigen_invoer;
   char kar;
-  int i = 0, j = 0;
+  int i = 1, j = 1;
 
   cout << endl << "Geef uw bestandsnaam op: ";
   cin >> eigen_invoer;
@@ -436,8 +437,8 @@ void life::file ( ) {
     }
     if ( kar == 'x' ) {
       dewereld[i][j] = true;
-    }else{
-    dewereld[i][j] = false;
+    } else {
+      dewereld[i][j] = false;
     }
     j++;
   } //While
@@ -541,7 +542,6 @@ void life::Percentage ( ) {
 
 //Kies karakter voor levende en dode cellen
 void life::karakters ( ) {
-
   //Karakter voor levende cellen kiezen
   cout << "Kies een karakter voor levende cellen: ";
   kar_levend = cin.get ( );
@@ -560,7 +560,6 @@ void life::karakters ( ) {
 
 //Bepaal grootte van je view
 void life::view ( ) {
-
   //Hoogte van je view bepalen
   cout << endl << "Voer de hoogte van de view in: ";
   LeesGetal ( );
