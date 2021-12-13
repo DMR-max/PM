@@ -1,5 +1,6 @@
 #include <iostream>
 #include "koffiebord.h"
+#include <fstream>
 using namespace std;
 
 void koffiebord::infoblokje ( ) {
@@ -193,6 +194,8 @@ void koffiebord::keuze ( ) {
 void koffiebord::computer ( ) {
   comp = true;
   int spellen, meeste_zetten;
+  ofstream plot1 ("plot1.txt");
+  ofstream plot2 ("plot2.txt");
 
   meeste_zetten = zetten;
 
@@ -248,6 +251,8 @@ void koffiebord::computer ( ) {
 
   for (int i = 0; i <= meeste_zetten; i++) {
     cout << "Zetten: " << i << ", Win: " << win[i] << ", Verlies: " << verlies[i] << endl;
+    plot1 << i << " " << win[i] << endl;
+    plot2 << i << " " << verlies[i] << endl;
     win[i] = 0;
     verlies[i] = 0;
   }

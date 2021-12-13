@@ -7,10 +7,12 @@ class bordvakje {
       geopend = false;
       gemarkeerd = false;
       aantal = 0;
-      
+
+      /*
       for (int i = 0; i <= 8; i++) {
         buren[i] = nullptr;
       }
+      */
 
     }
     bool geopend;
