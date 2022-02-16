@@ -86,6 +86,25 @@ class life {
     void karakters ( );
 
   private:
+<<<<<<< HEAD
+    static const int MAX = 1000;
+    bool dewereld[MAX][MAX]; // array!!!
+    bool reserve[MAX][MAX];
+    int hoogte, breedte;
+    int percentage;
+    int schuif = 0;
+    int schuifbreedte = 0;
+    int omlaag = 1;
+    int omhoog = 1;
+    int rechts = 1;
+    int links = 1;
+    int getal = 0;
+    char kar_levend = 'X';
+    char kar_dood = ' ';
+    int cursorhoogte, cursorbreedte;
+    int verschil_breedte = 80;
+    int verschil_hoogte = 25;
+=======
     static const int MAX = 1000; //Grootte v.d. wereld
     bool dewereld[MAX][MAX]; //De wereld
     bool reserve[MAX][MAX]; //Backup van de wereld
@@ -103,6 +122,7 @@ class life {
     int cursorhoogte, cursorbreedte; //Positie voor de cursor
     int verschil_breedte = 80; //Nodig om view te wijzigen voor toggle
     int verschil_hoogte = 25; //Nodig om view te wijzigen voor toggle
+>>>>>>> 487b3e768ed806548bc4a2724ba13a32ca6a2a39
 };
 
 //Print je view
@@ -156,7 +176,12 @@ void life::LeesGetal ( ) {
       }
       kar = cin.get ( );
     }
+<<<<<<< HEAD
+
+  }else{
+=======
   } else {
+>>>>>>> 487b3e768ed806548bc4a2724ba13a32ca6a2a39
     percentage = 0;
     kar = cin.get ( );
     //Zorgen dat percentage niet groter dan 100 kan zijn
@@ -214,7 +239,12 @@ int life::verschuif ( ) {
       if (hoogte + omlaag >= MAX){
         error = true;
         omlaag = 1;
+<<<<<<< HEAD
+      }else{
+        cout << omlaag << endl;
+=======
       } else {
+>>>>>>> 487b3e768ed806548bc4a2724ba13a32ca6a2a39
         schuif = schuif + omlaag;
         cursorhoogte = cursorhoogte + omlaag;
         hoogte = hoogte + omlaag;
@@ -225,7 +255,12 @@ int life::verschuif ( ) {
       if ( schuif - omhoog <= 0 ) { //BORDER DETECTIE TE SNEL AL BIJ 39 IPV 41!!
         error = true;
         omhoog = 1;
+<<<<<<< HEAD
+      }else{
+        cout << omhoog << endl;
+=======
       } else {
+>>>>>>> 487b3e768ed806548bc4a2724ba13a32ca6a2a39
         schuif = schuif - omhoog;
         cursorhoogte = cursorhoogte - omhoog;
         hoogte = hoogte - omhoog;
@@ -263,6 +298,16 @@ int life::verschuif ( ) {
 
 //Bepaal met hoeveel cellen per keer je je view kan verschuiven
 int life::verschuivingsstap ( ) {
+<<<<<<< HEAD
+  char omlaag_invoer, omhoog_invoer, links_invoer, rechts_invoer;
+  cout << endl << "Voer in hoeveel u omlaag wil gaan in: ";
+  LeesGetal();
+  omlaag = getal;
+  getal = 0;
+
+  cout << "Voer in hoeveel u omhoog wil gaan in: ";
+  LeesGetal();
+=======
   //Aantal cellen omlaag gaan
   cout << endl << "Voer in hoeveel u omlaag wil gaan in: ";
   LeesGetal ( );
@@ -271,6 +316,7 @@ int life::verschuivingsstap ( ) {
   //Aantal cellen omhoog gaan
   cout << "Voer in hoeveel u omhoog wil gaan in: ";
   LeesGetal ( );
+>>>>>>> 487b3e768ed806548bc4a2724ba13a32ca6a2a39
   omhoog = getal;
   getal = 0;
   //Aantal cellen naar rechts gaan
@@ -331,6 +377,64 @@ void life::toggle ( ) {
   regel = n + regel;
   //Telt hoeveel karakters in een regel
   regellengte = regel.length ( );
+<<<<<<< HEAD
+  cout << regellengte << endl;
+  for (i = 0; i < regellengte; i++){
+
+        //cout << "Dat lukte niet probeer de view aan te passen: " << endl;
+        if (cursorbreedte >= breedte && cursorbreedte <= MAX - breedte){ // MAX VERSCHUIF TOCH NOG VERDER?!
+          schuifbreedte = verschil_breedte + schuifbreedte;
+          breedte = breedte + verschil_breedte;
+        }
+        /*if (cursorhoogte >= hoogte && cursorhoogte < (hoogte / 2) - MAX){
+          schuif = 25 + schuif;
+        }
+        if (cursorbreedte <= schuifbreedte && cursorbreedte > (breedte / 2)){
+          schuifbreedte = schuifbreedte - 80;
+        }*/
+        if (cursorhoogte >= hoogte && cursorhoogte < MAX - (hoogte / 2) ){
+          schuif = schuif + verschil_hoogte;
+          hoogte = hoogte + verschil_hoogte;
+        }
+        //menu();
+      //}else{
+      switch (regel[i]) {
+          case 'T': case 't':
+            if(dewereld[cursorhoogte][cursorbreedte]){
+              dewereld[cursorhoogte][cursorbreedte] = false;
+            }else{
+              dewereld[cursorhoogte][cursorbreedte] = true;
+            }
+            break;
+            case 'D': case 'd':
+              if (cursorbreedte + 1 >= MAX){
+                error == true;
+                break;
+              }
+              cursorbreedte = cursorbreedte + 1;
+              break;
+            case 'A': case 'a':
+              if (cursorbreedte - 1 <= 0){
+                error == true;
+                break;
+              }
+              cursorbreedte = cursorbreedte - 1;
+              break;
+            case 'W': case 'w':
+              if (cursorhoogte - 1 <= 0){
+                error == true;
+                break;
+              }
+              cursorhoogte = cursorhoogte - 1;
+              break;
+            case 'Z': case 'z':
+              if (cursorhoogte + 1 >= MAX){
+                error == true;
+                break;
+              }
+              cursorhoogte = cursorhoogte + 1;
+              break;
+=======
   //For loop om langs alle karakters individueel te gaan
   for ( i = 0; i < regellengte; i++ ) {
     //Switch voor wat het programma moet doen met ieder karakter
@@ -371,6 +475,7 @@ void life::toggle ( ) {
           error = true;
         }else{
           cursorhoogte = cursorhoogte + 1;
+>>>>>>> 487b3e768ed806548bc4a2724ba13a32ca6a2a39
         }
         break;
     }
@@ -404,10 +509,16 @@ void life::toggle ( ) {
       schuif = schuif + verschil_hoogte;
       hoogte = hoogte + verschil_hoogte;
     }
+<<<<<<< HEAD
+      if (error == true){
+        cout << "u gaat buiten de wereld" << endl;
+      }
+=======
   }
   if ( error == true ) {
     cout << "u gaat buiten de wereld" << endl;
   }
+>>>>>>> 487b3e768ed806548bc4a2724ba13a32ca6a2a39
 }
 
 //Lees txt file in en zet het in de wereld
@@ -440,16 +551,29 @@ void life::file ( ) {
     dewereld[i][j] = false;
     }
     j++;
+<<<<<<< HEAD
+  }
+<<<<<<< HEAD
+
+  */
+=======
+>>>>>>> a3ad8e556187a984ed5b3f4447f78c9e235f4461
+}
+=======
   } //While
 } //life::file
+>>>>>>> 487b3e768ed806548bc4a2724ba13a32ca6a2a39
 
 //Doet 1 generatie
 void life::een ( ) {
   int LevendeBuren;
   int l, r, b, o, i, j;
 
+<<<<<<< HEAD
+=======
   //Backup van de wereld maken, zodat alle cellen tegelijk kunnen
   //worden verandert
+>>>>>>> 487b3e768ed806548bc4a2724ba13a32ca6a2a39
   for ( i = 1; i < MAX - 1; i++ ) {
     for ( j = 1; j < MAX - 1; j++ ) {
       reserve[i][j] = dewereld[i][j];
@@ -566,7 +690,10 @@ void life::view ( ) {
   LeesGetal ( );
   hoogte = getal;
   verschil_hoogte = getal;
+<<<<<<< HEAD
+=======
   //Verticale positie cursor bepalen
+>>>>>>> 487b3e768ed806548bc4a2724ba13a32ca6a2a39
   cursorhoogte = hoogte / 2;
   getal = 0;
   //Breedte van je view bepalen
@@ -574,7 +701,10 @@ void life::view ( ) {
   LeesGetal ( );
   breedte = getal;
   verschil_breedte = getal;
+<<<<<<< HEAD
+=======
   //Horizontale positie cursor bepalen
+>>>>>>> 487b3e768ed806548bc4a2724ba13a32ca6a2a39
   cursorbreedte = breedte / 2;
   getal = 0;
 } //life::view
