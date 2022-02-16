@@ -1,6 +1,6 @@
 /*
 Auteurs: Sjouk Ketwaru en Ryan Sleeuwaegen
-naam bestand: KetwaruSleeuwaegen2.cc
+naam bestand: KetwaruSleeuwaegen.cc
 
 Het programmma maakt een begin aan het compileren
 van een C++ programma. Al het commentaar dat begint
@@ -10,7 +10,7 @@ geeft een 3 letter combinatie, en het programma kijkt
 hoe vaak die combinatie voor komt. Er wordt gecontroleerd
 of het collatz vermoeden waar is voor alle getallen.
 
-Text editor: Atom (ubuntu), Compiler: G++.
+Text editor: Atom, Compiler: MinGW.
 Laatst aan gewerkt op: 17-10-2021.
 */
 
@@ -22,7 +22,6 @@ Laatst aan gewerkt op: 17-10-2021.
 #include <string>
 using namespace std;
 
-// Functie met alle informatie over de makers en het programma
 void infoblokje ( ) {
   cout << "Makers: Sjouk Ketwaru (s3287297), "
   << "Ryan Sleeuwaegen (s3122166)" << endl
@@ -35,10 +34,9 @@ void infoblokje ( ) {
   << "hoeveel spaties een tab is. De gebruiker moet 3 letters " << endl
   << "invoeren, en er wordt gecontroleerd hoe vaak die combinatie "<< endl
   << "voor komt. Als laatst wordt voor elk getal gecontroleerd of " << endl
-  << "Collatz vermoeden waar is." << endl << endl;
+  << "Collatz vermoeden waar is." << endl endl;
 } // Void infoblokje
 
-// Functie om commentaar te filteren
 void comments (ofstream & uitvoer, char & kar,
   char & kar_vorige, char & kar_vorige2, bool & commentaar) {
 
@@ -58,7 +56,6 @@ void comments (ofstream & uitvoer, char & kar,
   }
 } // Void comments
 
-// Funcite om tabs toe te voegen en spaties weg te halen
 void tabs (char & kar, char & kar_vorige, bool & nr,
   int & diepte, ofstream & uitvoer, bool & commentaar, int & d) {
 
@@ -73,7 +70,7 @@ void tabs (char & kar, char & kar_vorige, bool & nr,
   }
 
   // { Detecteren en 1 er bij optellen
-  if (kar_vorige == '{' && ! commentaar) {
+  if (kar_vorige == '{' && ! commentaar) {                                       //boba2 geeft inspringen bij b terwijl dat niet hoort.
     diepte++;
   }
 
@@ -85,13 +82,12 @@ void tabs (char & kar, char & kar_vorige, bool & nr,
   // Spaties voor tabs printen
   if (kar_vorige == '\n') {
 
-    for (int i=0; i < diepte * d; i++) {
+    for (int i = 0; i < diepte * d; i++) {
       uitvoer.put (' ');
     }
   }
 } // Void tabs
 
-// Functie voor 3 letters vragen
 void letterinvoer (char & a, char & b, char & c, bool & letters) {
 
   cout << "Vul aub 3 verschillende kleine letters in (1 per keer)." << endl;
@@ -122,8 +118,7 @@ void letterinvoer (char & a, char & b, char & c, bool & letters) {
   } // While
 } // Void letterinvoer
 
-// Functie om 3 gevraagde letters ook te detecteren als er hoofdletters zijn
-void convertie (char & a, char & b, char & c, char & kar,
+void convertie (char & a, char & b, char & c,char & kar,
   char & kar_vorige, char & kar_vorige2, int & aantal_letters) {
 
   // Hoofdletters en kleine letters detecteren voor 3 letter combinatie
@@ -134,25 +129,30 @@ void convertie (char & a, char & b, char & c, char & kar,
   }
 } // Void convertie
 
-// Functie om Collatz vermoeden te berekenen en getallen te detecteren
-void collatz (char & kar_vorige, char & kar, int & getal,
-  int & iteraties, bool & commentaar) {
+void collatz (char & kar_vorige, char & kar, int & getal, int & iteraties) {
 
   // Loop totdat gehele getal is gedetecteerd
-  if ('0' <= kar_vorige && kar_vorige <= '9' && ! commentaar) {
+  if ('0' <= kar_vorige && kar_vorige <= '9') {
+
     getal = 10 * getal + (kar_vorige - '0');
+
     if (! ('0' <= kar && kar <= '9')) {
+
       cout << "Getal: " << getal << endl;
 
       //Loop om Collatz vermoeden te berekenen
-      while (getal != 1 && getal > 0 && getal <= INT_MAX) {
+      while (getal != 1 && getal > 0 && getal < INT_MAX) {
 
-        if (getal % 2 == 0) {
+        if ( getal % 2 == 0 ) {
           getal = getal / 2;
           iteraties++;
         } else {
             getal = 3 * getal + 1;
             iteraties++;
+
+            if (iteraties == 100) {
+              cout << iteraties << endl;
+            }
           }
       } // While
 
@@ -164,6 +164,7 @@ void collatz (char & kar_vorige, char & kar, int & getal,
         cout << "Boven INT_MAX of getal = 0 dus gestopt." << endl;
       }
       cout << endl;
+
       // Reset aantal iteraties en getal voor het volgende getal
       getal = 0;
       iteraties = 0;
@@ -171,13 +172,11 @@ void collatz (char & kar_vorige, char & kar, int & getal,
   } // Eerste if (r. 125)
 } // Void collatz
 
-// Functie om invoer en uitvoer file te openen
-void filenaam (string & eigen_invoer,
-  string & eigen_uitvoer, ifstream & invoer) {
+void filenaam (string & eigen_invoer, string & eigen_uitvoer, ifstream & invoer) {
 
   cout << "Voer de naam van het invoer bestand in (.txt niet invullen): ";
   cin >> eigen_invoer;
-  eigen_invoer = eigen_invoer + ".txt";
+  eigen_invoer = eigen_invoer + ".txt"; //vraag of dit nodig is!!!!!
   invoer.open (eigen_invoer.c_str ( ));
   if (invoer.fail ( )){
     cout << "Dit bestand bestaat niet." << endl;
@@ -185,22 +184,15 @@ void filenaam (string & eigen_invoer,
   }
   cout << "Voer de naam van het uitvoer bestand in (.txt niet invullen): ";
   cin >> eigen_uitvoer;
-  eigen_uitvoer = eigen_uitvoer + ".txt";
+  eigen_uitvoer = eigen_uitvoer + ".txt"; //vraag of dit nodig is!!!!!
   cout << endl;
 }
 
-// Functie met de grote while loop en alle andere functies waarin
-// alles wordt gecontroleerd en wordt geprint in het uitvoer bestand
 void hoofdvoid ( ) {
   // Eigen textbestanden
   string eigen_invoer;
   string eigen_uitvoer;
   ifstream invoer (eigen_invoer, ios::in | ios::binary);
-
-  filenaam(eigen_invoer, eigen_uitvoer, invoer);
-
-  // Bestand maken of bestand
-  ofstream uitvoer (eigen_uitvoer, ios::out | ios::binary);
   // Karakters inlezen, en de vorige 2 karakters
   char kar;
   char kar_vorige, kar_vorige2;
@@ -211,21 +203,31 @@ void hoofdvoid ( ) {
   // de 3 door de gebruiker ingevulde letters
   char a, b, c;
 
+  // Functie om invoer en uitvoer file te openen
+  filenaam(eigen_invoer, eigen_uitvoer, invoer);
+  ofstream uitvoer (eigen_uitvoer, ios::out | ios::binary); // random y met trema error FIXEN
+
 
   cout << "Aantal spaties voor een tab: ";
   cin >> d;
   cout << endl;
 
+  // Functie voor 3 letters vragen
   letterinvoer (a, b, c, letters);
-  kar = invoer.get ( );
-
-  // Main while loop om karakters te printen
+  kar = invoer.get();
   while (! invoer.eof ( )) {
 
+    // Functie om 3 gevraagde letters ook te detecteren als er hoofdletters zijn
     convertie (a, b, c, kar, kar_vorige, kar_vorige2, aantal_letters);
+
+    // Functie om comments te filteren
     comments (uitvoer, kar, kar_vorige, kar_vorige2, commentaar);
+
+    // Funcite om tabs toe te voegen en spaties weg te halen
     tabs (kar, kar_vorige, nr, diepte, uitvoer, commentaar, d);
-    collatz (kar_vorige, kar, getal, iteraties, commentaar);
+
+    // Functie om Collatz vermoeden te berekenen
+    collatz (kar_vorige, kar, getal, iteraties);
 
     // Hier mogen de meeste karakters pas worden geprint
     // Commentaar, slashes (worden eerder al geprint als er geen /
