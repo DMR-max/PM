@@ -41,9 +41,24 @@ int binaireboom::aantalbladeren(void) {
 
 // Private functie aantalbladeren_p
 int binaireboom::aantalbladeren_p(knoop *ingang) {
-  // TODO: deze functie implementeren
-  cout << "Functie aantalbladeren_p nog niet geimplementeerd. ";
-  return 0;
+  int teller = 0;
+  bool test = false;
+
+  if (ingang != nullptr && ingang -> links != nullptr){
+    teller += aantalbladeren_p(ingang -> links);
+    test = true;
+  }
+
+  if (ingang != nullptr && ingang -> rechts != nullptr){
+    teller += aantalbladeren_p(ingang -> rechts);
+    test = true;
+  }
+
+  if (!test){
+    test = false;
+    teller++;
+  }
+  return teller;
 }
 
 /****************************************************************************
@@ -64,7 +79,7 @@ int binaireboom::hoogte_p(knoop *ingang) {
 /****************************************************************************
  * Opgave 3: Initialiseer het niveau veld van elke knoop in de boom.
  ****************************************************************************/
-// Wrapper-functie initniveau 
+// Wrapper-functie initniveau
 void binaireboom::initniveau(void) {
   int fouten = 0;
 
@@ -134,7 +149,7 @@ void binaireboom::doepostorde_p(knoop *ingang) {
 }
 
 /****************************************************************************
- * Opgave 7: Zoek de grootste waarde kleiner dan de waarde van de root 
+ * Opgave 7: Zoek de grootste waarde kleiner dan de waarde van de root
  * eis: NIET recursief
  ****************************************************************************/
 // Private functie grootstekleinere
@@ -145,7 +160,7 @@ knoop *binaireboom::grootstekleinere(knoop *ingang, knoop *&ouder) {
 }
 
 /****************************************************************************
- * Opgave 8: Zoek de kleinste waarde groter dan de waarde van de root 
+ * Opgave 8: Zoek de kleinste waarde groter dan de waarde van de root
  * eis: NIET recursief
  ****************************************************************************/
 // Private functie kleinstegrotere
@@ -268,7 +283,7 @@ void binaireboom::bouw(knoop *ingang, char *preorde, int &i) {
  * Functies voor het verwijderen van een boom.
  ****************************************************************************/
 
-// Private functie verwijder 
+// Private functie verwijder
 // Verwijder een boom met wortel ingang.
 // Argumenten: knoop *ingang ; De wortel van de te verwijderen boom.
 // Na afloop wordt de knoop ingang op nullptr gezet.
@@ -294,7 +309,7 @@ void binaireboom::drukaf() {
   // int hoog = hoogte();
   int hoog = 6;
   int breed = 6 * pow( 2, hoog );
-  beeldbuffer buffer = beeldbuffer( breed, 2 * hoog ); 
+  beeldbuffer buffer = beeldbuffer( breed, 2 * hoog );
 
   // Teken de boom in de beeldbuffer
   int midden = buffer.getWidth() / 2;
