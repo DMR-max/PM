@@ -79,6 +79,7 @@ int binaireboom::hoogte_p(knoop *ingang) {
 
   if (ingang != nullptr){
     teller += hoogte_p(ingang -> links);
+    //links en rechts worden nog beiden getelt terwijl per laag getelt moet worden
     teller++;
     test = true;
   }
