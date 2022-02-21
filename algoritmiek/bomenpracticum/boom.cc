@@ -45,6 +45,8 @@ int binaireboom::aantalbladeren_p(knoop *ingang) {
   bool test = false;
 
   if (ingang != nullptr && ingang -> links != nullptr){
+    //links mag geen nulpointer zijn omdat de tellers anders al telt bij
+    //alleen links of rechts een nullptr
     teller += aantalbladeren_p(ingang -> links);
     test = true;
   }
@@ -71,9 +73,25 @@ int binaireboom::hoogte(void) {
 
 //Private functie hoogte_p
 int binaireboom::hoogte_p(knoop *ingang) {
-  // TODO: deze functie implementeren
-  cout << "Functie hoogte_p nog niet geimplementeerd. ";
-  return 6;
+  int teller = 0;
+  int teller2 = 0;
+  bool test = false;
+
+  if (ingang != nullptr){
+    teller += hoogte_p(ingang -> links);
+    teller++;
+    test = true;
+  }
+
+  if (ingang != nullptr){
+    teller += hoogte_p(ingang -> rechts);
+    teller++;
+    test = true;
+  }
+
+  cout << teller << endl;
+ return teller;
+
 }
 
 /****************************************************************************
