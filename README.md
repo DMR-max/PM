@@ -1,1 +1,1 @@
-To run please compile SleeuwaegenKetwaru or SjoukRyan.cc
+To run please compile KetwaruSleeuwaegen.cc or SjoukRyan.cc
